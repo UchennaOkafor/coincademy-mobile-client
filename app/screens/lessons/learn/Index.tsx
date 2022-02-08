@@ -1,0 +1,258 @@
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
+import {
+  Dimensions,
+  Image,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { Volume2, VolumeX, X } from 'react-native-feather';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Carousel } from 'react-native-snap-carousel';
+import GenericContent from 'components/lessons/types/GenericContent';
+import MultipleChoiceQuestion from 'components/lessons/types/MultipleChoiceQuestion';
+import PrimaryButton from 'components/buttons/PrimaryButton';
+import ProgressBar from 'components/ProgressBar';
+import { Lesson } from 'codegen/models/Lesson';
+import { BaseSlide } from 'codegen/models/BaseSlide';
+import { ContentSlide, MultipleChoiceQuestionSlide } from 'codegen';
+import { Theme } from 'styles/Index';
+import { useUserStore } from 'state/useUserStore';
+import { Audio } from 'expo-av';
+const FeedbackWrong = require('@assets/sounds/feedback_wrong.mp3');
+const FeedbackCorrect = require('@assets/sounds/feedback_correct.mp3');
+
+interface LessonRouteProps {
+  lesson: Lesson;
+}
+
+const LessonOverview = (): JSX.Element => {
+  const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
+  const route = useRoute<RouteProp<{params: LessonRouteProps}, 'params'>>();
+
+  const slides: ContentSlide[] = route.params.lesson.slides;
+  const {width: viewportWidth} = Dimensions.get('window');
+
+  const userStore = useUserStore();
+  const carousel = useRef<Carousel<BaseSlide>>(null);
+
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const [hasReachedEnd, setHasReachedEnd] = useState(false);
+  const [selectedAnswerId, setSelectedAnswerId] = useState<string | null>();
+  const [currentLessonSlides, setCurrentLessonSlides] = useState(slides.slice(0, 1));
+  const [currentQuestionMultiChoice, setCurrentQuestionMultiChoice] = useState(false);
+  const [revealMultiChoiceAnswer, setRevealMultiChoiceAnswer] = useState(false);
+
+  const [networkSound, setNetworkSound] = useState<Audio.Sound>();
+  const [localSound, setLocalSound] = useState<Audio.Sound>();
+  const [soundMuted, setSoundMuted] = useState(userStore.preferences.sound.muted);
+
+  const pauseSound = useCallback(() => {
+    networkSound?.pauseAsync();
+    localSound?.pauseAsync();
+  }, [networkSound, localSound]); 
+
+  const playSound = useCallback(() => {
+    networkSound?.playAsync();
+    localSound?.playAsync();
+  }, [networkSound, localSound]); 
+
+  const disposeSound = useCallback(() => {
+    networkSound?.unloadAsync();
+    localSound?.unloadAsync();
+  }, [networkSound, localSound]); 
+
+  useEffect(() => {
+    setHasReachedEnd(carouselIndex === slides.length - 1);
+    const isCurrentQuestionMultiChoice = slides[carouselIndex].type === 'MultiChoiceQuestion';
+    setCurrentQuestionMultiChoice(isCurrentQuestionMultiChoice);
+    if (isCurrentQuestionMultiChoice) {
+      setSelectedAnswerId(null);
+    }
+
+    playAudioFromUrl(slides[carouselIndex].narrationAudioUrl);
+  }, [carouselIndex]);
+
+  useEffect(() => {
+		slides
+			.filter(e => e.imageUrl != null)
+			.forEach(e => Image.prefetch(e.imageUrl!!));
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      disposeSound();
+    }
+  }, [disposeSound]);
+
+  useEffect(() => {
+    userStore.setSoundMuted(soundMuted);
+    
+    if (soundMuted) {
+      pauseSound();
+    } else {
+      playSound();
+    }
+  }, [soundMuted, pauseSound, playSound]);
+
+  return (
+    <SafeAreaView edges={['top']} style={styles.container}>
+      <View style={styles.headerContainer}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <X
+            stroke={Theme.colors.black}
+            fill={Theme.colors.transparent}
+            width={24}
+            height={24}
+            strokeWidth={3}
+          />
+        </TouchableOpacity>
+        <ProgressBar 
+          value={carouselIndex + 1} 
+          max={slides.length} 
+        />
+        <TouchableOpacity onPress={() => setSoundMuted(! soundMuted)}>
+          {soundMuted ? (
+            <VolumeX
+              stroke={Theme.colors.black}
+              fill={Theme.colors.white}
+            />
+          ) : (
+            <Volume2 
+              stroke={Theme.colors.black}
+              fill={Theme.colors.white}
+            />
+          )}
+        </TouchableOpacity>
+      </View>
+      <View style={{ flex: 1, justifyContent: 'space-between'}}>
+        <Carousel
+          vertical={false}
+          ref={carousel}
+          data={currentLessonSlides}
+          renderItem={renderCarouselItem}
+          sliderWidth={viewportWidth}
+          itemWidth={viewportWidth}
+          onScrollIndexChanged={(index: number) => setCarouselIndex(index)}
+          useScrollView={true}
+          loop={false}
+        />
+
+        <View style={[styles.buttonContainer, { bottom: Theme.spacing.spacingXL + insets.bottom}]}>
+          <PrimaryButton
+            disabled={currentQuestionMultiChoice && selectedAnswerId == null}
+            squircle={true}
+            title={!hasReachedEnd ? 'Continue' : 'Finish'} 
+            onPress={() => {
+              if (currentQuestionMultiChoice) {
+                setRevealMultiChoiceAnswer(true);
+                
+                const correctAnswer = (slides[carouselIndex] as MultipleChoiceQuestionSlide).correctAnswer?.id ?? '';
+                if (selectedAnswerId !== correctAnswer) {
+                  playAudioFromFile(FeedbackWrong);
+                  return;
+                }
+
+                playAudioFromFile(FeedbackCorrect);
+              }
+
+              if (hasReachedEnd) {
+                disposeSound();
+                navigation.navigate('LessonComplete', { });
+              } else {
+                setCurrentLessonSlides(slides.slice(0, carouselIndex + 2));
+                requestAnimationFrame(() => {
+                  carousel.current?.snapToNext(true);
+                });
+              }
+            }}
+          />
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+
+  function renderCarouselItem({item}: {item: BaseSlide}): JSX.Element {
+    return (
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {item.type === 'Content' && (
+          <GenericContent item={item} />
+        )}
+
+        {item.type === 'MultiChoiceQuestion' && (
+          <MultipleChoiceQuestion 
+            item={item} 
+            onSelectionChanged={(id: string) => setSelectedAnswerId(id)}
+            revealAnswer={revealMultiChoiceAnswer}
+          />
+        )}
+      </ScrollView>
+    );
+  }
+
+  async function playAudioFromFile(soundFile: any) {
+    if (soundFile == null) {
+      return;
+    }
+    
+		await localSound?.unloadAsync();
+
+		const { sound } = await Audio.Sound.createAsync(soundFile);
+
+		if (! soundMuted) {
+			sound.playAsync();
+		}
+
+    setLocalSound(sound);
+  }
+
+  async function playAudioFromUrl(soundUrl?: string | null) {
+    if (soundUrl == null) {
+      return;
+    }
+
+		await networkSound?.unloadAsync();
+
+		const { sound } = await Audio.Sound.createAsync(
+			{uri: soundUrl}
+	 	);
+
+		if (! soundMuted) {
+			sound.playAsync();
+		}
+
+    setNetworkSound(sound);
+	}
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Theme.colors.backgroundGray,
+  },
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
+  headerContainer: {
+    marginTop: Theme.spacing.spacingL, 
+    marginBottom: Theme.spacing.spacing3XL, 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    paddingHorizontal: Theme.spacing.spacingM
+  },
+  buttonContainer: {
+    backgroundColor: Theme.colors.white, 
+    paddingTop: Theme.spacing.spacingXL, 
+    paddingHorizontal: Theme.spacing.spacingM,
+  }
+});
+
+export default LessonOverview;
