@@ -200,7 +200,6 @@ const LessonOverview = (): JSX.Element => {
     }
     
 		await localSound?.unloadAsync();
-
 		const { sound } = await Audio.Sound.createAsync(soundFile);
 
 		if (! soundMuted) {
@@ -216,7 +215,6 @@ const LessonOverview = (): JSX.Element => {
     }
 
 		await networkSound?.unloadAsync();
-
 		const { sound } = await Audio.Sound.createAsync(
 			{uri: soundUrl}
 	 	);

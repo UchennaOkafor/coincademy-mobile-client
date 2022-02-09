@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
@@ -18,6 +18,8 @@ import Lessons from 'screens/lessons/Index';
 import Lesson from 'screens/lessons/learn/Index';
 import LessonComplete from 'screens/lessons/learn/Complete';
 
+import Settings from 'screens/settings/Settings';
+
 import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Home, User, DollarSign, BarChart2} from 'react-native-feather';
 import { Theme } from 'styles/Index';
@@ -29,6 +31,12 @@ interface StateProps {
   onboarded: boolean;
   authenticated: boolean;
   authToken: string;
+}
+
+const Blank = () => {
+  return (
+    <Text>Loading...</Text>
+  )
 }
 
 const Tabs = () => {
@@ -64,6 +72,7 @@ const Tabs = () => {
           name="Home"
           component={Lessons}
           options={{
+            tabBarBadge: '9+',
             tabBarIcon: ({color, size}) => (
               <Home
                 stroke={color}
@@ -146,6 +155,11 @@ const RootNavigation = (props: StateProps) => {
               component={SecurityOverview} 
             /> */}
             <Stack.Screen 
+              name="Blank" 
+              component={Blank}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen 
               name="Lesson" 
               component={Lesson}
               options={{ headerShown: false }}
@@ -155,6 +169,14 @@ const RootNavigation = (props: StateProps) => {
               component={LessonComplete}
               options={{ 
                 headerShown: false, 
+                gestureEnabled: false 
+              }}
+            />
+            <Stack.Screen 
+              name="Settings" 
+              component={Settings}
+              options={{ 
+                headerShown: true, 
                 gestureEnabled: false 
               }}
             />
@@ -179,7 +201,7 @@ const RootNavigation = (props: StateProps) => {
             <Stack.Screen
               name="Register"
               component={Register}
-              options={{ headerTitle: 'Getting Started' }}
+              options={{ headerTitle: 'Register' }}
             />
           </>
         )}

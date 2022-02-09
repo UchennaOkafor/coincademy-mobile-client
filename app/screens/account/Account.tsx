@@ -4,23 +4,28 @@ import {
   Image,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import Header from 'components/headers/Header';
-import { Clock } from 'react-native-feather';
+import { Bell, Clock, LogOut, MessageSquare } from 'react-native-feather';
 import TitleSectionHeader from 'components/headers/TitleSectionHeader';
 import Badge from 'components/badge/Badge';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Theme } from 'styles/Index';
+import GradientButton from 'components/buttons/GradientButton';
+import { useUserStore } from 'state/useUserStore';
 
 const Account = (): JSX.Element => {
   const navigation = useNavigation();
+  const state = useUserStore();
+
   const hasImage = true;
   const imageSize = 75;
 
   return (
     <View style={styles.container}>
-      <View style={{ paddingVertical: 15, marginTop: 5, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+      <View style={{ marginTop: 5, marginBottom: 15, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
         <View style={{  }}>
           <Text style={{ ...Theme.typography.text.h3 }}>Elon Musk</Text>
           <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
@@ -48,23 +53,22 @@ const Account = (): JSX.Element => {
       </View>
 
       <LinearGradient
-        style={{ width: '100%', height: 3, marginTop: 5, marginBottom: 30, borderRadius: 2 }}
+        style={{ width: '100%', height: 3, borderRadius: 2 }}
         colors={[Theme.colors.orange, Theme.colors.purple]}
         start={{x: 0, y: 0}}
-        end={{x: 1, y: 0}} />
+        end={{x: 1, y: 0}} 
+      />
       
-      <TitleSectionHeader
-        title="Statistics"
-        style={{marginBottom: Theme.spacing.spacingS}}
-      />
-      <View style={styles.emptyContainer} />
-
-      <View style={{ marginVertical: 15 }} /> 
-      <TitleSectionHeader
-        title="Progress"
-        style={{marginBottom: Theme.spacing.spacingS}}
-      />
-      <View style={styles.emptyContainer} />
+      <View style={styles.emptyContainer}>
+        <Image
+          resizeMode="contain"
+          style={{ width: '100%', height: 90, marginBottom: Theme.spacing.spacing2XL }} 
+          source={require('@assets/zen.png')} 
+        />
+        <Text style={{ ...Theme.typography.text.h6, ...Theme.typography.weight.normal, color: Theme.colors.gray }}>
+          Nothing to see here...
+        </Text>
+      </View>
     </View>
   );
 };
@@ -73,17 +77,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: Theme.spacing.spacingM,
-    backgroundColor: Theme.colors.backgroundGray
+    backgroundColor: Theme.colors.backgroundGray,
   },
   emptyContainer: {
+    flex: 1,
     justifyContent: 'center', 
     alignItems: 'center', 
-    width: '100%', 
-    height: 150, 
     borderRadius: Theme.radius.extraSmall, 
     borderStyle: 'dashed', 
     borderWidth: 1.8, 
-    borderColor: Theme.colors.backgroundGrayDark
+    borderColor: Theme.colors.backgroundGrayDark,
+    marginVertical: Theme.spacing.spacingL
   },
 });
 

@@ -6,6 +6,7 @@ import {
 import {useNavigation} from '@react-navigation/core';
 import React, {useCallback, useMemo, useRef, useState} from 'react';
 import {
+  Image,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -22,7 +23,7 @@ import { useUserStore } from 'state/useUserStore';
 const Login = (): JSX.Element => {
   const navigation = useNavigation();
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-  const snapPoints = useMemo(() => ['25%', '50%'], []);
+  const snapPoints = useMemo(() => ['42%', '55%'], []);
   const [loginLoading, setLoginLoading] = useState(false);
   const userStore = useUserStore();
 
@@ -46,6 +47,7 @@ const Login = (): JSX.Element => {
 
               <View style={styles.textInputContainer}>
                 <IconTextInput
+                  autoCapitalize='none'
                   keyboardType="email-address"
                   icon={
                     <Mail
@@ -61,6 +63,7 @@ const Login = (): JSX.Element => {
 
               <View style={styles.textInputContainer}>
                 <IconTextInput
+                  autoCapitalize='none'
                   icon={
                     <Lock
                       stroke="gray"
@@ -112,7 +115,12 @@ const Login = (): JSX.Element => {
                 )}
                 onChange={handleSheetChanges}>
                 <View style={{paddingVertical: 5, paddingHorizontal: 20}}>
-                  <Text>Awesome 🎉</Text>
+                  <Text style={{ ...Theme.typography.text.h4, marginBottom: 10 }}>If you forgot your password just remember it 🧠.</Text>
+                  <Image
+                    resizeMode="contain"
+                    source={{ uri: 'https://hips.hearstapps.com/digitalspyuk.cdnds.net/18/08/1519230368-giphy-7.gif'}}
+                    style={{ width: '100%', height: 200 }}
+                  />
                 </View>
               </BottomSheetModal>
             </View>

@@ -1,9 +1,12 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
+import { Search, Settings } from 'react-native-feather';
 import { Theme } from 'styles/Index';
 
 interface Props {
   title: string;
+  onSettingsPress: () => void;
+  onProfilePress: () => void;
 }
 
 const Header = (props: Props): JSX.Element => {
@@ -11,18 +14,19 @@ const Header = (props: Props): JSX.Element => {
     <View style={styles.container}>
       <Text style={styles.title}>{props.title}</Text>
       <View style={styles.iconsContainer}>
-        {/* <TouchableOpacity>
-          <Search
-            stroke={Theme.colors.black}
-            fill={Theme.colors.transparent}
-            width={24}
-            height={24}
-          />
-        </TouchableOpacity> */}
-        <TouchableOpacity style={styles.secondIconContainer}>
+        <TouchableOpacity style={styles.secondIconContainer} onPress={props.onProfilePress}>
           <Image
             source={{uri: 'https://styles.redditmedia.com/t5_2th52/styles/communityIcon_wzrl8s0hx8a81.png'}} 
-            style={{ width: 32, height: 32, borderRadius: 32 / 2 }} 
+            style={{ width: 28, height: 28, borderRadius: 28 / 2 }}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={props.onSettingsPress}>
+          <Settings
+            stroke={Theme.colors.grayDark}
+            fill={Theme.colors.transparent}
+            width={22}
+            height={22}
+            style={{ marginTop: 5}}
           />
         </TouchableOpacity>
       </View>
@@ -45,8 +49,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   secondIconContainer: {
-    marginLeft: 20,
-    marginRight: 4,
+    marginRight: 15,
+    marginLeft: 4,
   },
 });
 

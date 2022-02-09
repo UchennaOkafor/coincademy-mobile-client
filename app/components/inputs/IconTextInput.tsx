@@ -27,9 +27,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: Theme.radius.normal,
+    borderColor: Theme.colors.backgroundGrayDark,
+    borderWidth: 0.4,
     backgroundColor: Theme.colors.white,
     paddingHorizontal: Theme.spacing.spacingM,
-    elevation: 0.35,
   },
   input: {
     ...Theme.typography.text.h6,

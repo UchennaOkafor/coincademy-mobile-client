@@ -44,7 +44,11 @@ const Index = (): JSX.Element => {
     <ScrollView
       style={styles.container}
       showsVerticalScrollIndicator={false}>
-      <Header title="Hello, Elon 👋" />
+      <Header 
+        title="Hi, Elon 👋"
+        onProfilePress={() => navigation.navigate('Account')}
+        onSettingsPress={() => navigation.navigate('Settings')}
+      />
 
       {loadingFailed ? (
         <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 25 }}>

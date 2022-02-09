@@ -12,23 +12,29 @@ const userStorePersist = persist((set, get) => ({
   misc: { 
     onboarded: false,
     signedIn: false,
-    authToken: ""
+    authToken: ''
   },
   user: {},
   setOnboardingComplete: () => {
     set(produce((state: any) => {
       state.misc.onboarded = true
-    }))
+    }));
   },
   setAuthenticated: (value: boolean) => {
     set(produce((state: any) => {
       state.misc.signedIn = value
-    }))
+    }));
   },
   setSoundMuted: (value: boolean) => {
     set(produce((state: any) => {
       state.preferences.sound.muted = value
-    }))
+    }));
+  },
+  logout: async () => {
+    set(produce((state: any) => {
+      state.misc.signedIn = false
+      state.misc.authToken = ''
+    }));
   },
 }), {
   name: "user-preferences-storage", // unique name
