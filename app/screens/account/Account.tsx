@@ -22,9 +22,8 @@ const Account = (): JSX.Element => {
     <View style={styles.container}>
       <View style={{ paddingVertical: 15, marginTop: 5, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
         <View style={{  }}>
-          <Text style={{ ...Theme.typography.text.h3 }}>Mary Doe</Text>
-          <Text  style={{ ...Theme.typography.text.h5, color: Theme.colors.grayDark, marginTop: 2 }}>@mary</Text>
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 12 }}>
+          <Text style={{ ...Theme.typography.text.h3 }}>Elon Musk</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
             {/* <Badge title="Beginner" primaryColor={Theme.colors.purple} /> */}
             <Clock
               stroke={Theme.colors.grayDark}
@@ -37,13 +36,13 @@ const Account = (): JSX.Element => {
         </View>
         {hasImage ? (
           <Image
-            source={{uri: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fHdvbWFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60'}} 
+            source={{uri: 'https://styles.redditmedia.com/t5_2th52/styles/communityIcon_wzrl8s0hx8a81.png'}} 
             style={{ width: imageSize, height: imageSize, borderRadius: imageSize / 2 }} 
           />
         ) : (
           <View 
             style={{ justifyContent: 'center', alignItems: 'center', width: imageSize, height: imageSize, borderRadius: imageSize / 2,  borderStyle: 'dashed', borderWidth: 2, borderColor: Theme.colors.purple }}>
-              <Text style={{ ...Theme.typography.text.h3 }}>MD</Text>
+              <Text style={{ ...Theme.typography.text.h3 }}>EM</Text>
           </View>
         )}
       </View>

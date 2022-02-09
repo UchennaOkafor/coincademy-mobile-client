@@ -38,18 +38,18 @@ const LessonOverview = (): JSX.Element => {
   return (
     <SafeAreaView edges={['top']} style={styles.container}>
       <View style={{ flex: 1, justifyContent: 'space-between' }}>
-        <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 100  }}>
+        <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 130  }}>
           <LottieView 
             source={require('@assets/animations/checkmark-explode.json')}
             loop={false}
             autoPlay
             speed={0.8}
             resizeMode="center"
-            style={{ width: viewportWidth, aspectRatio: 200 / 100, transform: [{ scale: 1.5 }] }}
+            style={{ width: viewportWidth, aspectRatio: 200 / 100, transform: [{ scale: 1.4 }] }}
           />
           
-          <View style={{ padding: Theme.spacing.spacingM, marginTop: 40 }}>
-            <Text style={{ ...Theme.typography.text.h2, textAlign: 'center', marginTop: -25, marginBottom: 14 }}>You have completed your lesson</Text>
+          <View style={{ padding: Theme.spacing.spacingM }}>
+            <Text style={{ ...Theme.typography.text.h3, textAlign: 'center', marginTop: -25, marginBottom: 14 }}>You have completed your lesson</Text>
             <Text style={{ ...Theme.typography.text.h4, ...Theme.typography.weight.medium, textAlign: 'center', color: Theme.colors.grayDark }}>Keep up the good work!</Text>
           </View>
         </View>

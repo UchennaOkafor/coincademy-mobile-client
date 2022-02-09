@@ -9,7 +9,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "openapi-generate": "rm -rf app/codegen && npx openapi-typescript-codegen -i http://localhost:5000/swagger/v1/swagger.json -o app/codegen -c fetch"
+    "openapi-generate-dev": "rm -rf app/codegen && npx openapi-typescript-codegen -i http://localhost:5000/swagger/v1/swagger.json -o app/codegen -c fetch",
+    "openapi-generate-staging": "rm -rf app/codegen && npx openapi-typescript-codegen -i https://eko-learn-api-staging.azurewebsites.net/swagger/v1/swagger.json -o app/codegen -c fetch"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^4.1.5",

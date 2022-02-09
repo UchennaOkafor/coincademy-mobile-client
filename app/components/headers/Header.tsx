@@ -21,7 +21,7 @@ const Header = (props: Props): JSX.Element => {
         </TouchableOpacity> */}
         <TouchableOpacity style={styles.secondIconContainer}>
           <Image
-            source={{uri: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fHdvbWFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60'}} 
+            source={{uri: 'https://styles.redditmedia.com/t5_2th52/styles/communityIcon_wzrl8s0hx8a81.png'}} 
             style={{ width: 32, height: 32, borderRadius: 32 / 2 }} 
           />
         </TouchableOpacity>

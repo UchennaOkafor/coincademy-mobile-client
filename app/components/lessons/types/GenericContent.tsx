@@ -18,31 +18,39 @@ interface Props {
 }
 
 const GenericContent = (props: Props): JSX.Element => {
-  const hasVideo = false;
   const [lottieAnimation, setLottieAnimation] = useState();
 
   useEffect(() => {
-    fetch(props.item.lottieUrl, {
-        method: "GET",
-    })
-    .then((response) => response.json())
-    .then((responseData) => {
-        setLottieAnimation(responseData)
-    })
-    .catch((error) => {
-        console.log(error);
-    })
+    const initializeContent = async () => {
+      if (props.item.lottieUrl) {
+        try {
+          const response = await fetch(props.item.lottieUrl);
+          const data = await response.json();
+          setLottieAnimation(data)
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    };
+
+    initializeContent();
   }, []);
 
   return (
     <>
-      {lottieAnimation && (
-        <LottieView 
-          source={lottieAnimation}
-          loop
-          autoPlay
-          style={{ height: 225, alignSelf: 'center', marginBottom: Theme.spacing.spacing2XL }}
-        />
+      {props.item.lottieUrl && (
+        <>
+          {lottieAnimation ? (
+            <LottieView 
+              source={lottieAnimation}
+              loop
+              autoPlay
+              style={{ height: 225, alignSelf: 'center', marginBottom: Theme.spacing.spacing2XL }}
+            />
+          ) : (
+            <View style={{ height: 225, alignSelf: 'center', marginBottom: Theme.spacing.spacing2XL }} />
+          )}
+        </>
       )}
       {props.item.imageUrl && (
         <Image 
@@ -51,11 +59,11 @@ const GenericContent = (props: Props): JSX.Element => {
           resizeMode="contain"
         />
       )}
-      {hasVideo && (
+      {props.item.videoUrl && (
         <Video
           shouldPlay
           useNativeControls
-          source={{uri: 'https://vjs.zencdn.net/v/oceans.mp4'}}
+          source={{uri: props.item.videoUrl}}
           resizeMode='cover'
           style={[styles.video, { height: Platform.OS === 'android' ? 200 : 250 }]}
         />

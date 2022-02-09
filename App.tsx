@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import RootNavigation from '@app/navigation/Navigation';
+import RootNavigation from './app/navigation/Navigation';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { LogBox } from 'react-native';
 import { useUserStore } from 'state/useUserStore';
