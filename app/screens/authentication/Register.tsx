@@ -2,8 +2,8 @@ import {useNavigation} from '@react-navigation/native';
 import GradientButton from 'components/buttons/GradientButton';
 import IconTextInput from 'components/inputs/IconTextInput';
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
-import { Mail, User } from 'react-native-feather';
+import {StyleSheet, Text, View} from 'react-native';
+import { Lock, Mail, User } from 'react-native-feather';
 import { Theme } from 'styles/Index';
 
 const Register = (): JSX.Element => {
@@ -12,29 +12,7 @@ const Register = (): JSX.Element => {
   return (
     <View style={styles.container}>
       <View>
-        <Text>Step 1/5</Text>
-        <Text>
-          Let's get you started
-        </Text>
-
-        <Text>
-          What is your difficulty level?
-        </Text>
-
-        <View>
-          <Text>Beginner</Text>
-          <Text>If you've never</Text>
-        </View>
-
-        <View>
-          <Text>Intermediate</Text>
-          <Text>You kind of know it but not properly</Text>
-        </View>
-
-        <View>
-          <Text>Expert</Text>
-          <Text>If you're a seasoned professional</Text>
-        </View>
+        <Text style={styles.registerTitle}>Please fill in the form below to continue</Text>
 
         <View style={styles.textInputContainer}>
           <IconTextInput
@@ -67,6 +45,30 @@ const Register = (): JSX.Element => {
             placeholder="Email"
           />
         </View>
+
+        <View style={styles.textInputContainer}>
+          <IconTextInput
+            autoCapitalize='none'
+            keyboardType="default"
+            secureTextEntry={true}
+            icon={
+              <Lock
+                stroke="gray"
+                fill={Theme.colors.transparent}
+                width={21}
+                height={21}
+              />
+            }
+            placeholder="Password"
+          />
+        </View>
+
+        <Text style={{ paddingHorizontal: 5, marginTop: 15, ...Theme.typography.text.h7, lineHeight: 20, ...Theme.typography.weight.normal, color: Theme.colors.grayDark, }}>
+          By signing up you agree to our 
+          <Text style={{ color: Theme.colors.purple, ...Theme.typography.weight.medium }}> Terms & Conditions </Text>
+          and
+          <Text style={{ color: Theme.colors.purple, ...Theme.typography.weight.medium }}> Privacy Policy </Text>
+        </Text>
       </View>
 
 
@@ -74,6 +76,7 @@ const Register = (): JSX.Element => {
         <GradientButton
           title='Create account'
           onPress={() => {}}
+          squircle={true}
         />
       </View>
     </View>
@@ -89,6 +92,12 @@ const styles = StyleSheet.create({
   },
   textInputContainer: {
     marginBottom: Theme.spacing.spacingL,
+  },
+  registerTitle: {
+    ...Theme.typography.text.h6,
+    ...Theme.typography.weight.normal,
+    marginTop: Theme.spacing.spacingXS,
+    marginBottom: Theme.spacing.spacingXL,
   },
 });
 

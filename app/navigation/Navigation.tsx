@@ -201,7 +201,7 @@ const RootNavigation = (props: StateProps) => {
             <Stack.Screen
               name="Register"
               component={Register}
-              options={{ headerTitle: 'Register' }}
+              options={{ headerTitle: 'Create your account' }}
             />
           </>
         )}

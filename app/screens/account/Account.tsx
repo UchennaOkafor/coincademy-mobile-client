@@ -27,7 +27,7 @@ const Account = (): JSX.Element => {
     <View style={styles.container}>
       <View style={{ marginTop: 5, marginBottom: 15, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
         <View style={{  }}>
-          <Text style={{ ...Theme.typography.text.h3 }}>Elon Musk</Text>
+          <Text style={{ ...Theme.typography.text.h3 }}>Timmy Thick</Text>
           <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
             {/* <Badge title="Beginner" primaryColor={Theme.colors.purple} /> */}
             <Clock

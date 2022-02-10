@@ -25,6 +25,7 @@ export const weight = StyleSheet.create({
   },
   light: {
     fontFamily: 'Inter-Light',
+    fontWeight: '100'
   },
 });
 

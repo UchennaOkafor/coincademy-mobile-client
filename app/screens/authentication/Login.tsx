@@ -41,12 +41,21 @@ const Login = (): JSX.Element => {
       <GestureHandlerRootView style={styles.container}>
         <BottomSheetModalProvider>
           <View style={{flexGrow: 1, justifyContent: 'center'}}>
-            <View>
+            <View style={{ marginBottom: 80}}>
+              <View style={{ marginBottom: 80, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                <Image
+                  resizeMode="contain"
+                  source={require('@assets/icon.png')}
+                  style={{ width: 40, height: 40, alignSelf: 'center' }}
+                />
+                <Text style={{ ...Theme.typography.text.h4, marginLeft: 10}}>Eko</Text>
+              </View>
               <Text style={styles.loginText}>Login</Text>
               <Text style={styles.loginSubText}>Please sign in to continue</Text>
 
               <View style={styles.textInputContainer}>
                 <IconTextInput
+                  value='test@test.com'
                   autoCapitalize='none'
                   keyboardType="email-address"
                   icon={
@@ -63,6 +72,7 @@ const Login = (): JSX.Element => {
 
               <View style={styles.textInputContainer}>
                 <IconTextInput
+                  value='password'
                   autoCapitalize='none'
                   icon={
                     <Lock
@@ -115,11 +125,13 @@ const Login = (): JSX.Element => {
                 )}
                 onChange={handleSheetChanges}>
                 <View style={{paddingVertical: 5, paddingHorizontal: 20}}>
-                  <Text style={{ ...Theme.typography.text.h4, marginBottom: 10 }}>If you forgot your password just remember it 🧠.</Text>
+                  <Text style={{ ...Theme.typography.text.h5, ...Theme.typography.weight.semiBold, marginBottom: 10 }}>
+                    Tip: <Text style={{ ...Theme.typography.text.h5, ...Theme.typography.weight.light }}>If you forgot your password just remember it 🧠.</Text>
+                  </Text>
                   <Image
                     resizeMode="contain"
                     source={{ uri: 'https://hips.hearstapps.com/digitalspyuk.cdnds.net/18/08/1519230368-giphy-7.gif'}}
-                    style={{ width: '100%', height: 200 }}
+                    style={{ height: 200 }}
                   />
                 </View>
               </BottomSheetModal>

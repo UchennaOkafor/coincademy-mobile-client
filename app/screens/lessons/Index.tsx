@@ -45,7 +45,7 @@ const Index = (): JSX.Element => {
       style={styles.container}
       showsVerticalScrollIndicator={false}>
       <Header 
-        title="Hi, Elon 👋"
+        title="Hey, Timmy 👋"
         onProfilePress={() => navigation.navigate('Account')}
         onSettingsPress={() => navigation.navigate('Settings')}
       />
@@ -59,6 +59,7 @@ const Index = (): JSX.Element => {
         <>
           {isLoading ? (
             <ActivityIndicator
+              color={Theme.colors.purple}
               style={{ marginVertical: 20 }}
             />
           ) : (
