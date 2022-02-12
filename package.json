@@ -21,9 +21,11 @@
     "@react-navigation/native-stack": "^6.5.0",
     "expo": "~44.0.6",
     "expo-av": "~10.2.1",
+    "expo-constants": "~13.0.1",
     "expo-font": "~10.0.5",
     "expo-linear-gradient": "~11.0.3",
     "expo-status-bar": "~1.2.0",
+    "expo-updates": "~0.11.6",
     "immer": "^9.0.12",
     "lottie-react-native": "5.0.1",
     "moti": "^0.17.1",
@@ -44,9 +46,7 @@
     "react-native-snap-carousel": "^4.0.0-beta.6",
     "react-native-svg": "12.1.1",
     "react-native-web": "0.17.1",
-    "zustand": "^3.7.0",
-    "expo-constants": "~13.0.1",
-    "expo-updates": "~0.11.6"
+    "zustand": "^3.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

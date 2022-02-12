@@ -40,7 +40,7 @@ const Settings = (): JSX.Element => {
             height={22}
             style={{ marginRight: 15}}
           />
-          <Text style={{...Theme.typography.text.h5, ...Theme.typography.weight.medium, color: Theme.colors.red }}>Logout</Text>
+          <Text style={{...Theme.typography.text.h6, ...Theme.typography.weight.normal, color: Theme.colors.red }}>Logout</Text>
         </TouchableOpacity>
 
         <TouchableOpacity 
@@ -59,11 +59,11 @@ const Settings = (): JSX.Element => {
             height={22}
             style={{ marginRight: 15}}
           />
-          <Text style={{...Theme.typography.text.h5, ...Theme.typography.weight.medium, color: Theme.colors.gray }}>Clear Cache</Text>
+          <Text style={{...Theme.typography.text.h6, ...Theme.typography.weight.normal, color: Theme.colors.gray }}>Clear cache</Text>
         </TouchableOpacity>
       </View>
-      <View style={{ alignSelf: 'center'}}>
-        <Text style={{ ...Theme.typography.text.h6, ...Theme.typography.weight.medium, color: Theme.colors.gray}}>v{Constants.manifest?.version}</Text>
+      <View style={{ alignSelf: 'center', marginBottom: 20}}>
+        <Text style={{ ...Theme.typography.text.h7, ...Theme.typography.weight.normal, color: Theme.colors.gray}}>v{Constants.manifest?.version}</Text>
       </View>
     </SafeAreaView>
   );

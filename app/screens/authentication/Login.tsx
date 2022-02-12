@@ -46,7 +46,7 @@ const Login = (): JSX.Element => {
               <View style={{ marginBottom: 80, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                 <Image
                   resizeMode="contain"
-                  source={require('@assets/icon.png')}
+                  source={require('@assets/images/app/icon.png')}
                   style={{ width: 40, height: 40, alignSelf: 'center' }}
                 />
                 <GradientText style={{ ...Theme.typography.text.h3, marginLeft: 10}}>Eko</GradientText>

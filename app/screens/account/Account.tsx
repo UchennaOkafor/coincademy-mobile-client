@@ -63,7 +63,7 @@ const Account = (): JSX.Element => {
         <Image
           resizeMode="contain"
           style={{ width: '100%', height: 90, marginBottom: Theme.spacing.spacing2XL }} 
-          source={require('@assets/zen.png')} 
+          source={require('@assets/images/zen.png')}
         />
         <Text style={{ ...Theme.typography.text.h6, ...Theme.typography.weight.normal, color: Theme.colors.gray }}>
           Nothing to see here...

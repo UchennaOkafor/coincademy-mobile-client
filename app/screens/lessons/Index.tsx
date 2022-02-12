@@ -33,7 +33,7 @@ const Index = (): JSX.Element => {
     }
 
     setIsLoading(false);
-  }, [setCourses, setLoadingFailed, setIsLoading]);
+  }, []);
 
   useEffect(() => {
     initialize().finally(() => { });

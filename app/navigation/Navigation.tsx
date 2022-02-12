@@ -4,14 +4,10 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 
-// import Portfolio from 'screens/portfolio/Portfolio';
 import Onboarding from '@screens/onboarding/Onboarding';
 import Login from '@screens/authentication/Login';
 import Register from '@screens/authentication/Register';
-// import Investments from '@screens/portfolio/investments/Investments';
-// import SecurityOverview from 'screens/portfolio/Overview';
 
-// import Explore from '@screens/explore/Explore';
 import Account from '@screens/account/Account';
 import Lessons from 'screens/lessons/Index';
 
@@ -21,7 +17,7 @@ import LessonComplete from 'screens/lessons/learn/Complete';
 import Settings from 'screens/settings/Settings';
 
 import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Home, User, DollarSign, BarChart2} from 'react-native-feather';
+import {Home, User} from 'react-native-feather';
 import { Theme } from 'styles/Index';
 
 const Stack = createNativeStackNavigator();
@@ -83,37 +79,6 @@ const Tabs = () => {
             ),
           }}
         />
-        {/* <Tab.Screen
-          name="Portfolio"
-          component={Portfolio}
-          options={{
-            title: 'Earn',
-            tabBarBadge: '9+',
-            tabBarIcon: ({color, size}) => (
-              <DollarSign
-                stroke={color}
-                fill={Theme.colors.transparent}
-                width={iconSize}
-                height={iconSize}
-              />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Explore"
-          component={Explore}
-          options={{
-            title: 'Rankings',
-            tabBarIcon: ({color, size}) => (
-              <BarChart2
-                stroke={color}
-                fill={Theme.colors.transparent}
-                width={iconSize}
-                height={iconSize}
-              />
-            ),
-          }}
-        /> */}
         <Tab.Screen
           name="Account"
           component={Account}
@@ -146,14 +111,6 @@ const RootNavigation = (props: StateProps) => {
         }}>
         {props.authenticated ? (
           <>
-            {/* <Stack.Screen 
-              name="Investments" 
-              component={Investments}
-            />
-            <Stack.Screen 
-              name="SecurityOverview" 
-              component={SecurityOverview} 
-            /> */}
             <Stack.Screen 
               name="Blank" 
               component={Blank}
