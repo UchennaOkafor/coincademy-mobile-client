@@ -1,22 +1,24 @@
-import React, { ReactElement } from "react";
-import { Platform, StyleSheet, TouchableHighlight, TouchableNativeFeedback } from "react-native";
+import React, { ReactElement } from 'react';
+import { Platform, StyleSheet, TouchableHighlight, TouchableNativeFeedback } from 'react-native';
 
 interface Props {
   disabled?: boolean;
-  children: Element;
+  children: ReactElement;
   onPress: () => void;
+  androidDelayPressIn?: number | undefined;
 }
 
 const TouchableSurface = (props: Props): ReactElement => {
   return Platform.OS === 'android' ? (
-    <TouchableNativeFeedback 
+    <TouchableNativeFeedback
+      delayPressIn={props.androidDelayPressIn}
       disabled={props.disabled} 
       onPress={props.onPress}
     >
       {props.children}
     </TouchableNativeFeedback>
   ) : (
-    <TouchableHighlight 
+    <TouchableHighlight
       disabled={props.disabled} 
       style={styles.touchableHighlight} 
       onPress={props.onPress}

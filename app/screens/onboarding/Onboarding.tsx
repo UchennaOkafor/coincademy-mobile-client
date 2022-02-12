@@ -101,9 +101,9 @@ const Onboarding = (): JSX.Element => {
           resizeMode="contain"
           style={styles.carouselItemImage}
         />
-        <GradientText style={styles.carouselItemTitle}>
+        <Text style={styles.carouselItemTitle}>
           {item.title}
-        </GradientText>
+        </Text>
         <Text style={styles.carouselItemDescription}>{item.description}</Text>
       </View>
     );
@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
   },
   carouselItemTitle: {
     ...Theme.typography.text.h2,
+    color: Theme.colors.grayDark900,
     marginTop: Theme.spacing.spacingM,
   },
   carouselItemDescription: {

@@ -142,7 +142,7 @@ const LessonOverview = (): JSX.Element => {
           loop={false}
         />
 
-        <View style={[styles.buttonContainer, { bottom: Theme.spacing.spacingXL + insets.bottom}]}>
+        <View style={[styles.buttonContainer, { paddingBottom: Theme.spacing.spacingXL + insets.bottom}]}>
           <PrimaryButton
             disabled={currentQuestionMultiChoice && selectedAnswerId == null}
             squircle={true}

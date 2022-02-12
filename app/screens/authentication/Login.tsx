@@ -19,6 +19,7 @@ import {Lock, Mail} from 'react-native-feather';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Theme } from 'styles/Index';
 import { useUserStore } from 'state/useUserStore';
+import GradientText from 'components/texts/GradientText';
 
 const Login = (): JSX.Element => {
   const navigation = useNavigation();
@@ -48,7 +49,7 @@ const Login = (): JSX.Element => {
                   source={require('@assets/icon.png')}
                   style={{ width: 40, height: 40, alignSelf: 'center' }}
                 />
-                <Text style={{ ...Theme.typography.text.h4, marginLeft: 10}}>Eko</Text>
+                <GradientText style={{ ...Theme.typography.text.h3, marginLeft: 10}}>Eko</GradientText>
               </View>
               <Text style={styles.loginText}>Login</Text>
               <Text style={styles.loginSubText}>Please sign in to continue</Text>

@@ -21,7 +21,7 @@ interface Props {
 const FeaturedLessonCard = (props: Props): JSX.Element => {
   return (
     <View style={[styles.container, props.style]}>
-      <TouchableSurface onPress={props.onPress}>
+      <TouchableSurface onPress={props.onPress} androidDelayPressIn={75}>
         <View style={styles.innerContainer}>
           <Image
             resizeMode="contain"

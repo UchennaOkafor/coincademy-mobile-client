@@ -36,6 +36,13 @@ const userStorePersist = persist((set, get) => ({
       state.misc.authToken = ''
     }));
   },
+  clearCache: async () => {
+    set(produce((state: any) => {
+      state.misc.onboarded = false
+      state.misc.signedIn = false
+      state.misc.authToken = ''
+    }));
+  }
 }), {
   name: "user-preferences-storage", // unique name
   getStorage: () => AsyncStorage,

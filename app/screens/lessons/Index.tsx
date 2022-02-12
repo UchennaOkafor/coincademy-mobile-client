@@ -30,11 +30,10 @@ const Index = (): JSX.Element => {
       setCourses(availableCourses);
     } catch (error) {
       setLoadingFailed(true);
-      //console.error(error);
     }
 
     setIsLoading(false);
-  }, []);
+  }, [setCourses, setLoadingFailed, setIsLoading]);
 
   useEffect(() => {
     initialize().finally(() => { });

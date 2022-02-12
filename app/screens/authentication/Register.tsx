@@ -1,6 +1,8 @@
 import {useNavigation} from '@react-navigation/native';
 import GradientButton from 'components/buttons/GradientButton';
+import PrimaryButton from 'components/buttons/PrimaryButton';
 import IconTextInput from 'components/inputs/IconTextInput';
+import GradientText from 'components/texts/GradientText';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import { Lock, Mail, User } from 'react-native-feather';
@@ -13,7 +15,6 @@ const Register = (): JSX.Element => {
     <View style={styles.container}>
       <View>
         <Text style={styles.registerTitle}>Please fill in the form below to continue</Text>
-
         <View style={styles.textInputContainer}>
           <IconTextInput
             autoCapitalize='none'
@@ -72,8 +73,8 @@ const Register = (): JSX.Element => {
       </View>
 
 
-      <View style={{ marginBottom: 25}}>
-        <GradientButton
+      <View style={{ marginBottom: 30}}>
+        <PrimaryButton
           title='Create account'
           onPress={() => {}}
           squircle={true}
