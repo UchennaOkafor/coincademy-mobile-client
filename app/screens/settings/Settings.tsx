@@ -60,7 +60,7 @@ const Settings = (): JSX.Element => {
 
   const sections = [
     {title: 'About', items: aboutItems},
-    {title: 'Auth', items: loginItems},
+    {title: 'Device', items: loginItems},
   ];
 
   return (

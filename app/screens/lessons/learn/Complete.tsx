@@ -1,7 +1,7 @@
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import { Lesson } from 'codegen/models/Lesson';
 import PrimaryButton from 'components/buttons/PrimaryButton';
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Dimensions,
   StyleSheet,
@@ -13,6 +13,7 @@ import ConfettiCannon from 'react-native-confetti-cannon';
 import LottieView from 'lottie-react-native';
 import { Theme } from 'styles/Index';
 import { Audio } from 'expo-av';
+import { useUserStore } from 'state/useUserStore';
 
 interface LessonRouteProps {
   lesson: Lesson;
@@ -25,6 +26,8 @@ const LessonOverview = (): JSX.Element => {
   const confettiCannon = useRef<ConfettiCannon>(null);
   const {width: viewportWidth} = Dimensions.get('window');
   const [sound, setSound] = React.useState<Audio.Sound>();
+  const userStore = useUserStore();
+  const [soundMuted] = useState(userStore.preferences.sound.muted);
 
   useEffect(() => {
     confettiCannon.current?.start();
@@ -78,11 +81,11 @@ const LessonOverview = (): JSX.Element => {
 
   async function playDingSound() {
 		const { sound: ding } = await Audio.Sound.createAsync(
-			require('@assets/sounds/positive_ding.mp3')
+			require('@assets/sounds/positive_ding.mp3'),
+      { shouldPlay: true, isMuted: soundMuted }
 		);
 
 		setSound(ding);
-
 		await ding.playAsync();
   }
 }
