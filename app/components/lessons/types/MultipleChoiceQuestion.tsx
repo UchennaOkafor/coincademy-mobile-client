@@ -75,7 +75,7 @@ const MultipleChoiceQuestion = (props: Props): JSX.Element => {
   );
 
   function getBorderColor(choice: Choice, currentIndex: number) {
-    for (let element of highlightedChoices) {
+    for (const element of highlightedChoices) {
       if (element.id === choice.id) {
         return element.action === 'correct' ? Theme.colors.green : Theme.colors.red;
       }
@@ -85,7 +85,7 @@ const MultipleChoiceQuestion = (props: Props): JSX.Element => {
   }
 
   function getIconBackgroundColor(choice: Choice) {
-    for (let element of highlightedChoices) {
+    for (const element of highlightedChoices) {
       if (element.id === choice.id) {
         return element.action === 'correct' ? Theme.colors.green : Theme.colors.red;
       }
@@ -95,7 +95,7 @@ const MultipleChoiceQuestion = (props: Props): JSX.Element => {
   }
 
   function isSelected(choice: Choice) {
-    for (let element of highlightedChoices) {
+    for (const element of highlightedChoices) {
       if (element.id === choice.id) {
         return true;
       }
@@ -105,7 +105,7 @@ const MultipleChoiceQuestion = (props: Props): JSX.Element => {
   }
 
   function renderChoiceIcon(choice: Choice) {
-    for (let element of highlightedChoices) {
+    for (const element of highlightedChoices) {
       if (element.id === choice.id) {
         const Icon = element.action === 'correct' ? Check : X;
 

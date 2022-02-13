@@ -44,7 +44,7 @@ const LessonCard = (props: Props): JSX.Element => {
             </Text>
             <View style={styles.innerContentContainer}>
               <Clock
-                style={{marginRight: Theme.spacing.spacing2XS }}
+                style={styles.clockIcon}
                 stroke={Theme.colors.gray}
                 fill={Theme.colors.transparent}
                 width={14}
@@ -53,7 +53,7 @@ const LessonCard = (props: Props): JSX.Element => {
               <Text style={[styles.subtitle, subTitleTextColor]}>{props.lesson.durationText}</Text>
             </View>
           </View>
-          <View style={{ width: 50, alignItems: 'center' }}>
+          <View style={styles.leadingIconContainer}>
             <LeadingIcon />
           </View>
         </View>
@@ -165,6 +165,13 @@ const styles = StyleSheet.create({
     ...Theme.typography.text.h7,
     ...Theme.typography.weight.normal,
   },
+  leadingIconContainer: {
+    width: 50, 
+    alignItems: 'center'
+  },
+  clockIcon: {
+    marginRight: Theme.spacing.spacing2XS
+  }
 });
 
 export default memo(LessonCard, equals);

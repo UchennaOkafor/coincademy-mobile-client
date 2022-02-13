@@ -11,10 +11,10 @@ interface Props {
 }
 
 const GradientButton = (props: Props): JSX.Element => {
-  const ButtonContainer = props.squircle === true && Platform.OS === 'ios' ? MaskedSquircleView : View;
+  const ButtonView = props.squircle === true && Platform.OS === 'ios' ? MaskedSquircleView : View;
 
   return (
-    <ButtonContainer style={{width: '100%'}}>
+    <ButtonView style={styles.container}>
       <LinearGradient
         start={{x: 0, y: 0}}
         end={{x: 1, y: 0}}
@@ -26,11 +26,14 @@ const GradientButton = (props: Props): JSX.Element => {
           </View>
         </TouchableNativeFeedback>
       </LinearGradient>
-    </ButtonContainer>
+    </ButtonView>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    width: '100%'
+  },
   buttonContainer: {
     flexDirection: 'row',
     overflow: 'hidden',

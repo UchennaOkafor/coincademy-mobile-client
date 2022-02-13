@@ -40,7 +40,6 @@ const LoadingIndicator = (props: Props): JSX.Element => {
          shadowOffset: { width: 0, height: 0 },
          shadowOpacity: 1,
          shadowRadius: 10
-
        }}
     />
   );

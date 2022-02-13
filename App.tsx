@@ -3,14 +3,16 @@ import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import React from 'react';
 import {
-  StyleSheet,
+  StyleProp,
   useColorScheme,
+  ViewStyle,
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import RootNavigation from './app/navigation/Navigation';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useUserStore } from 'state/useUserStore';
+import { Theme } from 'styles/Index';
 
 export default function App() {
   const [loaded] = useFonts({
@@ -33,14 +35,14 @@ export default function App() {
   }
 
   //Colors.lighter
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : '#f5f5f7',
+  const backgroundStyle: StyleProp<ViewStyle> = {
+    backgroundColor: isDarkMode ? Colors.darker : Theme.colors.backgroundGray,
     flex: 1,
   };
 
   return (
     <SafeAreaProvider style={backgroundStyle}>
-      <StatusBar style="dark" backgroundColor="#f5f5f7" />
+      <StatusBar style="dark" backgroundColor={Theme.colors.backgroundGray} />
       <RootNavigation 
         onboarded={userStore.misc.onboarded}
         authenticated={userStore.misc.signedIn}
@@ -49,12 +51,3 @@ export default function App() {
     </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

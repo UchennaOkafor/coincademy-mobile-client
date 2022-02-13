@@ -1,6 +1,5 @@
-import React, {memo, useEffect, useState} from 'react';
+import React, {memo} from 'react';
 import {
-  Dimensions,
   Platform,
   StyleSheet,
   Text,
@@ -10,47 +9,23 @@ import {
 import equals from 'react-fast-compare';
 import { Theme } from 'styles/Index';
 import { ContentSlide } from 'codegen/models/ContentSlide';
-import LottieView from 'lottie-react-native';
-import { Video, AVPlaybackStatus } from 'expo-av';
+import { Video } from 'expo-av';
+import LottieView from 'components/lottie/LottieView';
 
 interface Props {
   item: ContentSlide;
 }
 
 const GenericContent = (props: Props): JSX.Element => {
-  const [lottieAnimation, setLottieAnimation] = useState();
-
-  useEffect(() => {
-    const initializeContent = async () => {
-      if (props.item.lottieUrl) {
-        try {
-          const response = await fetch(props.item.lottieUrl);
-          const data = await response.json();
-          setLottieAnimation(data)
-        } catch (error) {
-          console.log(error);
-        }
-      }
-    };
-
-    initializeContent();
-  }, []);
-
   return (
     <>
       {props.item.lottieUrl && (
-        <>
-          {lottieAnimation ? (
-            <LottieView 
-              source={lottieAnimation}
-              loop
-              autoPlay
-              style={{ height: 225, alignSelf: 'center', marginBottom: Theme.spacing.spacing2XL }}
-            />
-          ) : (
-            <View style={{ height: 225, alignSelf: 'center', marginBottom: Theme.spacing.spacing2XL }} />
-          )}
-        </>
+        <LottieView 
+          source={{ uri: props.item.lottieUrl }}
+          loop
+          autoPlay
+          style={styles.lottieContainer}
+        />
       )}
       {props.item.imageUrl && (
         <Image 
@@ -65,7 +40,7 @@ const GenericContent = (props: Props): JSX.Element => {
           useNativeControls
           source={{uri: props.item.videoUrl}}
           resizeMode='cover'
-          style={[styles.video, { height: Platform.OS === 'android' ? 200 : 250 }]}
+          style={styles.video}
         />
       )}
       <View style={styles.contentContainer}>
@@ -84,7 +59,8 @@ const styles = StyleSheet.create({
     height: 225
   },
   video: {
-    marginBottom: Theme.spacing.spacingL
+    marginBottom: Theme.spacing.spacingL,
+    height: Platform.OS === 'android' ? 200 : 250
   },
   contentContainer: {
     paddingHorizontal: Theme.spacing.spacingM
@@ -96,6 +72,11 @@ const styles = StyleSheet.create({
   content: {
     ...Theme.typography.text.body, 
     marginBottom: Theme.spacing.spacingXL
+  },
+  lottieContainer: {
+    height: 225, 
+    alignSelf: 'center', 
+    marginBottom: Theme.spacing.spacing2XL
   }
 });
 

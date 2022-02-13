@@ -4,16 +4,11 @@ import {
   Image,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
-import Header from 'components/headers/Header';
-import { Bell, Clock, LogOut, MessageSquare } from 'react-native-feather';
-import TitleSectionHeader from 'components/headers/TitleSectionHeader';
-import Badge from 'components/badge/Badge';
+import { Clock, } from 'react-native-feather';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Theme } from 'styles/Index';
-import GradientButton from 'components/buttons/GradientButton';
 import { useUserStore } from 'state/useUserStore';
 
 const Account = (): JSX.Element => {

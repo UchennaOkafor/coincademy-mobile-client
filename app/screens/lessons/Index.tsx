@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: Theme.spacing.spacingM,
-    backgroundColor: '#f5f5f7',
+    backgroundColor: Theme.colors.backgroundGray,
   },
   sectionHeader: {
     marginTop: Theme.spacing.spacingM, 

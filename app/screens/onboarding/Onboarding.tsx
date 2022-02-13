@@ -11,7 +11,6 @@ import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {useNavigation} from '@react-navigation/native';
 import OnboardingCarouselItem from '@models/OnboardingCarouselItem';
 import OnboardingData from 'services/OnboardingData';
-import GradientText from 'components/texts/GradientText';
 import GradientButton from 'components/buttons/GradientButton';
 import PrimaryButton from 'components/buttons/PrimaryButton';
 import { Theme } from 'styles/Index';
@@ -24,8 +23,7 @@ const Onboarding = (): JSX.Element => {
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [hasReachedEnd, setHasReachedEnd] = useState(false);
   const carousel = useRef<Carousel<OnboardingCarouselItem>>(null);
-  const {width: viewportWidth, height: viewportHeight} =
-    Dimensions.get('window');
+  const {width: viewportWidth} = Dimensions.get('window');
 
   const onboardingData = OnboardingData.getCarouselItems();
 

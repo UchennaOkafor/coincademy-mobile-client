@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
     borderRadius: Theme.radius.large,
   },
   innerContainer: {
-    flexDirection: 'column',
     backgroundColor: Theme.colors.white,
   },
   contentContainer: {
