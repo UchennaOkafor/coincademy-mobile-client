@@ -10,12 +10,9 @@ import {
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import RootNavigation from './app/navigation/Navigation';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { LogBox } from 'react-native';
 import { useUserStore } from 'state/useUserStore';
 
 export default function App() {
-  LogBox.ignoreLogs(['Require cycle: node_modules/react-native/Libraries/Network/fetch.js']);
-
   const [loaded] = useFonts({
     'Inter-Black': require('@assets/fonts/Inter/Inter-Black.ttf'),
     'Inter-Bold': require('@assets/fonts/Inter/Inter-Bold.ttf'),
