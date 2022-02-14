@@ -67,11 +67,13 @@ const styles = StyleSheet.create({
   },
   title: {
     ...Theme.typography.text.h4, 
-    marginBottom: Theme.spacing.spacingS
+    marginBottom: Theme.spacing.spacingS,
+    textAlign: 'left'
   },
   content: {
     ...Theme.typography.text.body, 
-    marginBottom: Theme.spacing.spacingXL
+    marginBottom: Theme.spacing.spacingXL,
+    textAlign: 'left'
   },
   lottieContainer: {
     height: 225, 

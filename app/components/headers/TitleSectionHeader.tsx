@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
   title: {
     ...Theme.typography.text.h5,
     marginRight: Theme.spacing.spacingXS,
+    textAlign: 'left'
   },
   rightTextContainer: {
     marginLeft: 'auto', 

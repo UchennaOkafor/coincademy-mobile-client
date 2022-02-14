@@ -158,12 +158,14 @@ const styles = StyleSheet.create({
   title: {
     ...Theme.typography.text.h6,
     ...Theme.typography.weight.medium,
-    flexWrap: 'wrap',
     marginHorizontal: Theme.spacing.spacingM,
+    textAlign: 'left',
+    flexWrap: 'wrap',
   },
   subtitle: {
     ...Theme.typography.text.h7,
     ...Theme.typography.weight.normal,
+    textAlign: 'left',
   },
   leadingIconContainer: {
     width: 50, 

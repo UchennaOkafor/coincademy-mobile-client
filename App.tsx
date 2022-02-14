@@ -1,4 +1,5 @@
 import 'react-native-gesture-handler';
+import '@locales/Localization'
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import React from 'react';
@@ -9,10 +10,10 @@ import {
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import RootNavigation from './app/navigation/Navigation';
+import RootNavigation from '@app/navigation/Navigation';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useUserStore } from 'state/useUserStore';
-import { Theme } from 'styles/Index';
+import { Theme } from '@styles/Index';
 
 export default function App() {
   const [loaded] = useFonts({

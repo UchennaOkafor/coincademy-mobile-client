@@ -8,7 +8,7 @@ import Onboarding from '@screens/onboarding/Onboarding';
 import Login from '@screens/authentication/Login';
 import Register from '@screens/authentication/Register';
 
-import Account from '@screens/account/Account';
+import Profile from 'screens/profile/Profile';
 import Lessons from 'screens/lessons/Index';
 
 import Lesson from 'screens/lessons/learn/Index';
@@ -80,8 +80,8 @@ const Tabs = () => {
           }}
         />
         <Tab.Screen
-          name="Account"
-          component={Account}
+          name="Profile"
+          component={Profile}
           options={{
             tabBarIcon: ({color, size}) => (
               <User

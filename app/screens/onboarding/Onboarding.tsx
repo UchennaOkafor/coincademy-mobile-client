@@ -10,7 +10,7 @@ import {
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {useNavigation} from '@react-navigation/native';
 import OnboardingCarouselItem from '@models/OnboardingCarouselItem';
-import OnboardingData from 'services/OnboardingData';
+import OnboardingData from 'resources/OnboardingData';
 import GradientButton from 'components/buttons/GradientButton';
 import PrimaryButton from 'components/buttons/PrimaryButton';
 import { Theme } from 'styles/Index';

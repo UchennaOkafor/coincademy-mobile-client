@@ -32,10 +32,7 @@ const FeaturedLessonCard = (props: Props): JSX.Element => {
             <Text style={styles.title} numberOfLines={1}>
               {props.lesson.title}
             </Text>
-            <View style={styles.innerContentContainer}>
-              <Text style={styles.subtitle}>{props.lesson.durationText}  </Text>
-              <Text style={styles.subtitle}>•  Earn 3.5 EKO</Text>
-            </View>
+            <Text style={styles.subtitle}>{props.lesson.durationText}  •  Earn 3.5 EKO</Text>
           </View>
         </View>
       </TouchableSurface>
@@ -55,11 +52,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: Theme.spacing.spacingM,
     padding: Theme.spacing.spacingS + Theme.spacing.spacing3XS,
   },
-  innerContentContainer: {
-    flexDirection: 'row',
-    marginTop: Theme.spacing.spacing2XS + Theme.spacing.spacing3XS,
-    alignItems: 'center',
-  },
   image: {
     width: '100%',
     height: 155,
@@ -67,6 +59,7 @@ const styles = StyleSheet.create({
   title: {
     ...Theme.typography.text.h5,
     flexWrap: 'wrap',
+    textAlign: 'left'
   },
   authorIcon: {
     width: 24,
@@ -83,6 +76,8 @@ const styles = StyleSheet.create({
     ...Theme.typography.text.h7,
     ...Theme.typography.weight.normal,
     color: Theme.colors.grayDark,
+    textAlign: 'left',
+    marginTop: Theme.spacing.spacing2XS + Theme.spacing.spacing3XS,
   },
 });
 

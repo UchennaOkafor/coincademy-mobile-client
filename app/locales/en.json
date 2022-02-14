@@ -1,7 +1,4 @@
 {
-  "onboarding": {
-
-  },
   "common": {
     "continue": "Continue",
     "finish": "Finish",
@@ -10,5 +7,6 @@
     "home": "Home",
     "progress": "Progress",
     "statistics": "Statistics"
-  }
+  },
+  "onboarding": {}
 }

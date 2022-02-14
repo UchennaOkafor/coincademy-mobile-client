@@ -14,7 +14,7 @@ const Divider = (props: Props): JSX.Element => {
 
 const styles = StyleSheet.create({
   divider: {
-		borderWidth: 0.8,
+		borderWidth: StyleSheet.hairlineWidth,
 		borderColor: Theme.colors.backgroundGrayDark,
   }
 });

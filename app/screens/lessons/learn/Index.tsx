@@ -129,7 +129,7 @@ const LessonOverview = (): JSX.Element => {
           )}
         </TouchableOpacity>
       </View>
-      <View style={{ flex: 1, justifyContent: 'space-between'}}>
+      <View style={styles.rootContainer}>
         <Carousel
           vertical={false}
           ref={carousel}
@@ -232,12 +232,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Theme.colors.backgroundGray,
   },
-  backgroundVideo: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
+  rootContainer: {
+    flex: 1,
+    justifyContent: 'space-between'
   },
   headerContainer: {
     marginTop: Theme.spacing.spacingL, 

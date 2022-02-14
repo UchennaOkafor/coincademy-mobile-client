@@ -10,10 +10,10 @@ import {
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import ConfettiCannon from 'react-native-confetti-cannon';
-import LottieView from 'lottie-react-native';
 import { Theme } from 'styles/Index';
 import { Audio } from 'expo-av';
 import { useUserStore } from 'state/useUserStore';
+import LottieView from 'components/lottie/LottieView';
 
 interface LessonRouteProps {
   lesson: Lesson;
@@ -40,23 +40,23 @@ const LessonOverview = (): JSX.Element => {
 
   return (
     <SafeAreaView edges={['top']} style={styles.container}>
-      <View style={{ flex: 1, justifyContent: 'space-between' }}>
-        <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 130  }}>
-          <LottieView 
+      <View style={styles.innerContainer}>
+        <View style={styles.contentContainer}>
+          <LottieView
             source={require('@assets/animations/checkmark-explode.json')}
             loop={false}
             autoPlay
             speed={0.8}
             resizeMode="center"
-            style={{ width: viewportWidth, aspectRatio: 200 / 100, transform: [{ scale: 1.4 }] }}
+            style={[styles.animation, {width: viewportWidth}]}
           />
           
-          <View style={{ padding: Theme.spacing.spacingM }}>
-            <Text style={{ ...Theme.typography.text.h3, textAlign: 'center', marginTop: -25, marginBottom: 14 }}>You have completed your lesson</Text>
-            <Text style={{ ...Theme.typography.text.h4, ...Theme.typography.weight.medium, textAlign: 'center', color: Theme.colors.grayDark }}>Keep up the good work!</Text>
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>You have completed your lesson</Text>
+            <Text style={styles.subtitle}>Keep up the good work!</Text>
           </View>
         </View>
-        <View style={{ backgroundColor: Theme.colors.white, paddingTop: 25, paddingBottom: 25 + insets.bottom, paddingHorizontal: Theme.spacing.spacingM, }}>
+        <View style={[styles.buttonContainer, {paddingBottom: Theme.spacing.spacingXL + insets.bottom}]}>
           <PrimaryButton
             squircle={true}
             title="Complete"
@@ -78,7 +78,6 @@ const LessonOverview = (): JSX.Element => {
     </SafeAreaView>
   );
 
-
   async function playDingSound() {
 		const { sound: ding } = await Audio.Sound.createAsync(
 			require('@assets/sounds/positive_ding.mp3'),
@@ -95,6 +94,39 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Theme.colors.backgroundGray,
   },
+  innerContainer: {
+    flex: 1, 
+    justifyContent: 'space-between'
+  },
+  contentContainer: {
+    flex: 1,
+    justifyContent: 'center', 
+  },
+  animation: {
+    aspectRatio: 200 / 100, 
+    transform: [{ scale: 1.35 }]
+  },
+  textContainer: {
+    padding: Theme.spacing.spacingM
+  },
+  title: {
+    ...Theme.typography.text.h3, 
+    ...Theme.typography.weight.semiBold, 
+    marginTop: -Theme.spacing.spacingXL, 
+    marginBottom: Theme.spacing.spacingS,
+    textAlign: 'center', 
+  },
+  subtitle: {
+    ...Theme.typography.text.h4, 
+    ...Theme.typography.weight.medium, 
+    color: Theme.colors.grayDark,
+    textAlign: 'center', 
+  },
+  buttonContainer: {
+    backgroundColor: Theme.colors.white, 
+    paddingHorizontal: Theme.spacing.spacingM,
+    paddingTop: Theme.spacing.spacingXL,
+  }
 });
 
 export default LessonOverview;

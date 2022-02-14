@@ -1,16 +1,11 @@
-import {useNavigation} from '@react-navigation/native';
-import GradientButton from 'components/buttons/GradientButton';
 import PrimaryButton from 'components/buttons/PrimaryButton';
 import IconTextInput from 'components/inputs/IconTextInput';
-import GradientText from 'components/texts/GradientText';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import { Lock, Mail, User } from 'react-native-feather';
 import { Theme } from 'styles/Index';
 
 const Register = (): JSX.Element => {
-  const navigation = useNavigation();
-
   return (
     <View style={styles.container}>
       <View>
@@ -64,16 +59,16 @@ const Register = (): JSX.Element => {
           />
         </View>
 
-        <Text style={{ paddingHorizontal: 5, marginTop: 15, ...Theme.typography.text.h7, lineHeight: 20, ...Theme.typography.weight.normal, color: Theme.colors.grayDark, }}>
+        <Text style={styles.legalText}>
           By signing up you agree to our 
-          <Text style={{ color: Theme.colors.purple, ...Theme.typography.weight.medium }}> Terms & Conditions </Text>
+          <Text style={styles.legalTextLink}> Terms & Conditions </Text>
           and
-          <Text style={{ color: Theme.colors.purple, ...Theme.typography.weight.medium }}> Privacy Policy </Text>
+          <Text style={styles.legalTextLink}> Privacy Policy </Text>
         </Text>
       </View>
 
 
-      <View style={{ marginBottom: 30}}>
+      <View style={styles.registerButtonContainer}>
         <PrimaryButton
           title='Create account'
           onPress={() => {}}
@@ -99,7 +94,24 @@ const styles = StyleSheet.create({
     ...Theme.typography.weight.normal,
     marginTop: Theme.spacing.spacingXS,
     marginBottom: Theme.spacing.spacingXL,
+    textAlign: 'left'
   },
+  registerButtonContainer: {
+    marginBottom: Theme.spacing.spacing2XL
+  },
+  legalText: {
+    ...Theme.typography.text.h7, 
+    ...Theme.typography.weight.normal, 
+    paddingHorizontal: Theme.spacing.spacing2XS, 
+    marginTop: Theme.spacing.spacingM, 
+    lineHeight: 20, 
+    color: Theme.colors.grayDark,
+    textAlign: 'left'
+  },
+  legalTextLink: {
+    ...Theme.typography.weight.medium,
+    color: Theme.colors.purple, 
+  }
 });
 
 export default Register;

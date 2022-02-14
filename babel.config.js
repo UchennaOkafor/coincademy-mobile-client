@@ -17,7 +17,7 @@ module.exports = function(api) {
             '@styles': './app/styles',
             '@locales': './app/locales',
             '@models': './app/models',
-            '@services': './app/services',
+            '@resources': './app/resources',
             '@codegen': './app/codegen',
           },
         },

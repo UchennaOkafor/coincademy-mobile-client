@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import DefaultLottieView, { AnimatedLottieViewProps } from 'lottie-react-native';
 
 const LottieView = (props: AnimatedLottieViewProps): JSX.Element => {
-	const [lottieAnimation, setLottieAnimation] = useState();
+  const [animationContent, setAnimationContent] = useState<any>();
 
   useEffect(() => {
     const initializeContent = async () => {
@@ -11,10 +11,12 @@ const LottieView = (props: AnimatedLottieViewProps): JSX.Element => {
         try {
           const response = await fetch(props.source.uri);
           const data = await response.json();
-          setLottieAnimation(data)
+          setAnimationContent(data)
         } catch (error) {
           console.log(error);
         }
+      } else {
+        setAnimationContent(props.source);
       }
     };
 
@@ -23,10 +25,10 @@ const LottieView = (props: AnimatedLottieViewProps): JSX.Element => {
 
   return (
     <>
-      {lottieAnimation ? (
+      {animationContent ? (
         <DefaultLottieView
           {...props}
-          source={lottieAnimation}
+          source={animationContent}
         />
       ) : (
         <View style={props.style} />

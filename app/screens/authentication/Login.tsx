@@ -20,12 +20,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Theme } from 'styles/Index';
 import { useUserStore } from 'state/useUserStore';
 import GradientText from 'components/texts/GradientText';
+import ForgotPassword from 'components/authentication/ForgotPassword';
 
 const Login = (): JSX.Element => {
   const navigation = useNavigation();
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const snapPoints = useMemo(() => ['42%', '55%'], []);
-  const [loginLoading, setLoginLoading] = useState(false);
+  const [authenticating, setAuthenticating] = useState(false);
   const userStore = useUserStore();
 
   // callbacks
@@ -34,22 +35,22 @@ const Login = (): JSX.Element => {
   }, []);
 
   const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
+    //console.log('HandleSheetChanges', index);
   }, []);
 
   return (
-    <SafeAreaView style={{ flexGrow: 1}}>
+    <SafeAreaView style={styles.root}>
       <GestureHandlerRootView style={styles.container}>
         <BottomSheetModalProvider>
-          <View style={{flexGrow: 1, justifyContent: 'center'}}>
-            <View style={{ marginBottom: 80}}>
-              <View style={{ marginBottom: 80, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+          <View style={styles.loginContainer}>
+            <View style={styles.innerLoginContainer}>
+              <View style={styles.logoContainer}>
                 <Image
                   resizeMode="contain"
                   source={require('@assets/images/app/icon.png')}
-                  style={{ width: 40, height: 40, alignSelf: 'center' }}
+                  style={styles.logoIcon}
                 />
-                <GradientText style={{ ...Theme.typography.text.h3, marginLeft: 10}}>Eko</GradientText>
+                <GradientText style={styles.logoText}>Eko</GradientText>
               </View>
               <Text style={styles.loginText}>Login</Text>
               <Text style={styles.loginSubText}>Please sign in to continue</Text>
@@ -91,9 +92,9 @@ const Login = (): JSX.Element => {
               <PrimaryButton
                 squircle={true}
                 title="Login"
-                loading={loginLoading}
+                loading={authenticating}
                 onPress={() => {
-                  setLoginLoading(true);
+                  setAuthenticating(true);
                   setTimeout(() => {
                     userStore.setAuthenticated(true);
                     navigation.reset({
@@ -125,25 +126,16 @@ const Login = (): JSX.Element => {
                   />
                 )}
                 onChange={handleSheetChanges}>
-                <View style={{paddingVertical: 5, paddingHorizontal: 20}}>
-                  <Text style={{ ...Theme.typography.text.h5, ...Theme.typography.weight.semiBold, marginBottom: 10 }}>
-                    Tip: <Text style={{ ...Theme.typography.text.h5, ...Theme.typography.weight.light }}>If you forgot your password just remember it 🧠.</Text>
-                  </Text>
-                  <Image
-                    resizeMode="contain"
-                    source={{ uri: 'https://hips.hearstapps.com/digitalspyuk.cdnds.net/18/08/1519230368-giphy-7.gif'}}
-                    style={{ height: 200 }}
-                  />
-                </View>
+                <ForgotPassword />
               </BottomSheetModal>
             </View>
 
             <TouchableOpacity
               onPress={() => navigation.navigate('Register')}
-              style={{position: 'absolute', bottom: 15, alignSelf: 'center'}}>
+              style={styles.registerTouchable}>
               <Text style={styles.signupPrefixText}>
-                Don't have an account?{' '}
-                <Text style={styles.signupText}>Register!</Text>
+                Don't have an account?
+                <Text style={styles.signupText}> Register!</Text>
               </Text>
             </TouchableOpacity>
           </View>
@@ -154,20 +146,47 @@ const Login = (): JSX.Element => {
 };
 
 const styles = StyleSheet.create({
+  root: {
+    flexGrow: 1
+  },
   container: {
     flexGrow: 1,
     paddingHorizontal: Theme.spacing.spacingM,
     backgroundColor: Theme.colors.backgroundGray,
   },
+  loginContainer: {
+    flexGrow: 1, 
+    justifyContent: 'center'
+  },
+  innerLoginContainer: {
+    marginBottom: Theme.spacing.spacing3XL * 2
+  },
+  logoContainer: {
+    marginBottom: Theme.spacing.spacing3XL * 2, 
+    flexDirection: 'row', 
+    justifyContent: 'center', 
+    alignItems: 'center'
+  },
+  logoText: {
+    ...Theme.typography.text.h3, 
+    marginLeft: Theme.spacing.spacingXS
+  },
+  logoIcon: {
+    width: 40, 
+    height: 40, 
+    alignSelf: 'center'
+  },
   loginText: {
     ...Theme.typography.text.h2,
     ...Theme.typography.weight.semiBold,
     marginBottom: Theme.spacing.spacingXS,
+    textAlign: 'left'
   },
   loginSubText: {
     ...Theme.typography.text.h6,
     ...Theme.typography.weight.normal,
     marginBottom: Theme.spacing.spacingXL,
+    textAlign: 'left'
   },
   textInputContainer: {
     marginBottom: Theme.spacing.spacingL,
@@ -202,6 +221,11 @@ const styles = StyleSheet.create({
     ...Theme.typography.weight.bold,
     color: Theme.colors.purple,
   },
+  registerTouchable: { 
+    position: 'absolute', 
+    alignSelf: 'center',
+    bottom: Theme.spacing.spacingM, 
+  }
 });
 
 export default Login;

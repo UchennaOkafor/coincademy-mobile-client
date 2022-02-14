@@ -17,7 +17,7 @@ export default class OnboardingData {
       {
         uri: 'https://ouch-cdn2.icons8.com/42ASHOv4yirDsYAUQni0xeWBS7kf11a3AUtt3Wpzxl8/rs:fit:456:456/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvODc2/LzE1ZjJhOGVkLTE1/NTgtNDc2MC04NGIz/LTExOTZhODQ4Yzk5/My5zdmc.png',
         title: 'Ready to start?',
-        description: "You're only a tap away.",
+        description: "You're just a few taps away.",
       },
     ];
 
