@@ -3,7 +3,6 @@ import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {
   Dimensions,
   Image,
-  Platform,
   ScrollView,
   StyleSheet,
   TouchableOpacity,

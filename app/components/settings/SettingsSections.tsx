@@ -53,18 +53,11 @@ const CourseList = (props: Props): JSX.Element => {
 };
 
 const styles = StyleSheet.create({
-	sectionHeader: {
-		marginTop: Theme.spacing.spacingM,
-		marginBottom: Theme.spacing.spacingS
-	},
 	heading: {
 		...Theme.typography.text.h6, 
 		...Theme.typography.weight.medium, 
 		color: Theme.colors.grayDark900, 
 		textAlign: 'left'
-	},
-	lessonCard: {
-		marginBottom: Theme.spacing.spacingXS + Theme.spacing.spacing3XS
 	},
 	itemContainer: {
 		marginTop: Theme.spacing.spacingM + Theme.spacing.spacing3XS, 

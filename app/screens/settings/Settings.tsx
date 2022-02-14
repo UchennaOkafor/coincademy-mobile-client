@@ -55,8 +55,8 @@ const Settings = (): JSX.Element => {
           }}
         />
       </ScrollView>
-      <View style={{ alignSelf: 'center', marginBottom: 20}}>
-        <Text style={{ ...Theme.typography.text.h7, ...Theme.typography.weight.normal, color: Theme.colors.gray}}>v{Constants.manifest?.version}</Text>
+      <View style={styles.versionContainer}>
+        <Text style={styles.versionText}>v{Constants.manifest?.version}</Text>
       </View>
     </SafeAreaView>
   );
@@ -69,6 +69,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: Theme.spacing.spacingM,
     backgroundColor: Theme.colors.backgroundGray
   },
+  versionContainer: {
+    alignSelf: 'center', 
+    marginBottom: Theme.spacing.spacingL
+  },
+  versionText: {
+    ...Theme.typography.text.h7, 
+    ...Theme.typography.weight.normal, 
+    color: Theme.colors.gray
+  }
 });
 
 export default Settings;
