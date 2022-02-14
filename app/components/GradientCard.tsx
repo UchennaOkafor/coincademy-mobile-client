@@ -1,8 +1,8 @@
 import React from 'react';
 import isEqual from 'react-fast-compare';
 import {StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
-import{LinearGradient} from 'expo-linear-gradient';
-import { Theme } from 'styles/Index';
+import {LinearGradient} from 'expo-linear-gradient';
+import {Theme} from 'styles/Index';
 
 interface Props {
   containerStyle?: StyleProp<ViewStyle>;
@@ -27,16 +27,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: Theme.spacing.spacingL,
     paddingTop: Theme.spacing.spacingM + Theme.spacing.spacing3XS,
     paddingBottom: Theme.spacing.spacingM,
-    borderRadius: Theme.radius.extraLarge,
+    borderRadius: Theme.radius.extraLarge
   },
   text: {
     ...Theme.typography.text.h5,
-    color: Theme.colors.white,
+    color: Theme.colors.white
   },
   itemsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
+    justifyContent: 'space-between'
+  }
 });
 
 export default React.memo(GradientCard, isEqual);

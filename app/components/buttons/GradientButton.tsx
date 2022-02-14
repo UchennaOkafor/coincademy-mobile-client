@@ -1,7 +1,13 @@
 import React from 'react';
-import {Platform, StyleSheet, Text, TouchableNativeFeedback, View} from 'react-native';
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableNativeFeedback,
+  View
+} from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
-import { Theme } from 'styles/Index';
+import {Theme} from 'styles/Index';
 import MaskedSquircleView from '../MaskedSquircleView';
 
 interface Props {
@@ -37,19 +43,19 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     overflow: 'hidden',
-    borderRadius: Theme.radius.large + Theme.radius.extraSmall,
+    borderRadius: Theme.radius.large + Theme.radius.extraSmall
   },
   innerButtonContainer: {
     flexGrow: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     paddingHorizontal: Theme.spacing.spacingM,
-    paddingVertical: Theme.spacing.spacingS + Theme.spacing.spacing2XS,
+    paddingVertical: Theme.spacing.spacingS + Theme.spacing.spacing2XS
   },
   title: {
     ...Theme.typography.text.h5,
-    color: Theme.colors.white,
-  },
+    color: Theme.colors.white
+  }
 });
 
 export default GradientButton;

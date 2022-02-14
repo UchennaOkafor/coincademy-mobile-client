@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
-import { Settings } from 'react-native-feather';
-import { Theme } from 'styles/Index';
+import {Settings} from 'react-native-feather';
+import {Theme} from 'styles/Index';
 
 interface Props {
   title: string;
@@ -14,9 +14,13 @@ const Header = (props: Props): JSX.Element => {
     <View style={styles.container}>
       <Text style={styles.title}>{props.title}</Text>
       <View style={styles.iconsContainer}>
-        <TouchableOpacity style={styles.secondIconContainer} onPress={props.onProfilePress}>
+        <TouchableOpacity
+          style={styles.secondIconContainer}
+          onPress={props.onProfilePress}>
           <Image
-            source={{uri: 'https://styles.redditmedia.com/t5_2th52/styles/communityIcon_wzrl8s0hx8a81.png'}} 
+            source={{
+              uri: 'https://styles.redditmedia.com/t5_2th52/styles/communityIcon_wzrl8s0hx8a81.png'
+            }}
             style={styles.avatar}
           />
         </TouchableOpacity>
@@ -39,10 +43,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginVertical: Theme.spacing.spacingL,
+    marginVertical: Theme.spacing.spacingL
   },
   title: {
-    ...Theme.typography.text.h3,
+    ...Theme.typography.text.h3
   },
   iconsContainer: {
     flexDirection: 'row',
@@ -50,12 +54,12 @@ const styles = StyleSheet.create({
   },
   secondIconContainer: {
     marginRight: Theme.spacing.spacingM,
-    marginLeft: Theme.spacing.spacing2XS,
+    marginLeft: Theme.spacing.spacing2XS
   },
   avatar: {
-    width: 28, 
-    height: 28, 
-    borderRadius: 28 / 2,
+    width: 28,
+    height: 28,
+    borderRadius: 28 / 2
   },
   settingsIcon: {
     marginTop: Theme.spacing.spacing2XS

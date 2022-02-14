@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 import equals from 'react-fast-compare';
 import TouchableSurface from 'components/TouchableSurface';
-import { Lesson } from 'codegen/models/Lesson';
-import { Theme } from 'styles/Index';
+import {Lesson} from 'codegen/models/Lesson';
+import {Theme} from 'styles/Index';
 
 interface Props {
   lesson: Lesson;
@@ -25,14 +25,18 @@ const FeaturedLessonCard = (props: Props): JSX.Element => {
         <View style={styles.innerContainer}>
           <Image
             resizeMode="contain"
-            source={{ uri: props.lesson.largePosterUrl ?? props.lesson.smallPosterUrl }}
+            source={{
+              uri: props.lesson.largePosterUrl ?? props.lesson.smallPosterUrl
+            }}
             style={styles.image}
           />
           <View style={styles.contentContainer}>
             <Text style={styles.title} numberOfLines={1}>
               {props.lesson.title}
             </Text>
-            <Text style={styles.subtitle}>{props.lesson.durationText}  •  Earn 3.5 EKO</Text>
+            <Text style={styles.subtitle}>
+              {props.lesson.durationText} • Earn 3.5 EKO
+            </Text>
           </View>
         </View>
       </TouchableSurface>
@@ -43,18 +47,18 @@ const FeaturedLessonCard = (props: Props): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     overflow: 'hidden',
-    borderRadius: Theme.radius.large,
+    borderRadius: Theme.radius.large
   },
   innerContainer: {
-    backgroundColor: Theme.colors.white,
+    backgroundColor: Theme.colors.white
   },
   contentContainer: {
     paddingHorizontal: Theme.spacing.spacingM,
-    padding: Theme.spacing.spacingS + Theme.spacing.spacing3XS,
+    padding: Theme.spacing.spacingS + Theme.spacing.spacing3XS
   },
   image: {
     width: '100%',
-    height: 155,
+    height: 155
   },
   title: {
     ...Theme.typography.text.h5,
@@ -65,20 +69,20 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     borderRadius: 24 / 2,
-    marginRight: Theme.spacing.spacingXS,
+    marginRight: Theme.spacing.spacingXS
   },
   author: {
     ...Theme.typography.text.h7,
     ...Theme.typography.weight.normal,
-    color: Theme.colors.grayDark,
+    color: Theme.colors.grayDark
   },
   subtitle: {
     ...Theme.typography.text.h7,
     ...Theme.typography.weight.normal,
     color: Theme.colors.grayDark,
     textAlign: 'left',
-    marginTop: Theme.spacing.spacing2XS + Theme.spacing.spacing3XS,
-  },
+    marginTop: Theme.spacing.spacing2XS + Theme.spacing.spacing3XS
+  }
 });
 
 export default memo(FeaturedLessonCard, equals);

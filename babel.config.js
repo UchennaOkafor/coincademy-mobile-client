@@ -1,4 +1,4 @@
-module.exports = function(api) {
+module.exports = function (api) {
   api.cache(true);
   return {
     presets: ['babel-preset-expo'],
@@ -18,11 +18,11 @@ module.exports = function(api) {
             '@locales': './app/locales',
             '@models': './app/models',
             '@resources': './app/resources',
-            '@codegen': './app/codegen',
-          },
-        },
+            '@codegen': './app/codegen'
+          }
+        }
       ],
-      'react-native-reanimated/plugin',
-    ],
+      'react-native-reanimated/plugin'
+    ]
   };
 };

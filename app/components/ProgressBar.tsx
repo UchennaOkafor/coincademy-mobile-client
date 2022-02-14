@@ -1,8 +1,8 @@
-import { MotiView } from 'moti';
-import React, { memo } from 'react';
+import {MotiView} from 'moti';
+import React, {memo} from 'react';
 import isEqual from 'react-fast-compare';
 import {StyleSheet, View} from 'react-native';
-import { Theme } from 'styles/Index';
+import {Theme} from 'styles/Index';
 
 interface Props {
   value: number;
@@ -15,10 +15,10 @@ const ProgressBar = (props: Props): JSX.Element => {
   return (
     <View style={styles.container}>
       <MotiView
-        style={{ flexGrow: 1 }}
-        from={{ width: '0%' }}
-        animate={{ width: `${progressValue}%` }}
-        transition={{ type: 'spring', damping: 100, stiffness: 50 }}>
+        style={{flexGrow: 1}}
+        from={{width: '0%'}}
+        animate={{width: `${progressValue}%`}}
+        transition={{type: 'spring', damping: 100, stiffness: 50}}>
         <View style={styles.background} />
       </MotiView>
     </View>
@@ -27,18 +27,18 @@ const ProgressBar = (props: Props): JSX.Element => {
 
 const styles = StyleSheet.create({
   container: {
-    overflow: 'hidden', 
-    flexGrow: 1, 
-    backgroundColor: Theme.colors.backgroundGrayDark, 
-    borderRadius: Theme.radius.normal + Theme.radius.extraSmall, 
+    overflow: 'hidden',
+    flexGrow: 1,
+    backgroundColor: Theme.colors.backgroundGrayDark,
+    borderRadius: Theme.radius.normal + Theme.radius.extraSmall,
     marginLeft: Theme.spacing.spacingS,
     marginRight: Theme.spacing.spacingM,
     height: 24
   },
   background: {
     flexGrow: 1,
-    backgroundColor: Theme.colors.green, 
-    width: '100%', 
+    backgroundColor: Theme.colors.green,
+    width: '100%',
     borderRadius: Theme.radius.normal
   }
 });

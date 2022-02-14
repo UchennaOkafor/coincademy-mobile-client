@@ -1,12 +1,7 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  TouchableNativeFeedback,
-  View,
-} from 'react-native';
-import { ChevronRight } from 'react-native-feather';
-import { Theme } from 'styles/Index';
+import {StyleSheet, Text, TouchableNativeFeedback, View} from 'react-native';
+import {ChevronRight} from 'react-native-feather';
+import {Theme} from 'styles/Index';
 
 interface Props {}
 
@@ -36,22 +31,22 @@ const styles = StyleSheet.create({
     borderRadius: Theme.radius.large,
     backgroundColor: Theme.colors.white,
     borderColor: Theme.colors.orange,
-    borderWidth: 2,
+    borderWidth: 2
   },
   innerButtonContainer: {
     flexGrow: 1,
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: Theme.spacing.spacingM,
-    paddingVertical: Theme.spacing.spacingS + Theme.spacing.spacing3XS,
+    paddingVertical: Theme.spacing.spacingS + Theme.spacing.spacing3XS
   },
   title: {
     ...Theme.typography.text.h5,
-    color: Theme.colors.orange,
+    color: Theme.colors.orange
   },
   chevron: {
     marginLeft: 'auto'
-  },
+  }
 });
 
 export default OutlineChevronButton;

@@ -13,7 +13,7 @@
       "@locales/*": ["app/locales/*"],
       "@models/*": ["app/models/*"],
       "@resources/*": ["app/resources/*"],
-      "@codegen": ["./app/codegen"],
+      "@codegen": ["./app/codegen"]
     }
   }
 }

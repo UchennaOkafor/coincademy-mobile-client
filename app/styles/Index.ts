@@ -4,8 +4,8 @@ import * as Spacing from './Spacing';
 import * as Typography from './Text';
 
 export const Theme = {
-  typography: Typography, 
-  spacing: Spacing.Spacing, 
-  colors: Colors.Colors, 
+  typography: Typography,
+  spacing: Spacing.Spacing,
+  colors: Colors.Colors,
   radius: Radius.Radius
 };

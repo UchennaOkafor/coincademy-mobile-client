@@ -7,5 +7,5 @@ export const Spacing = {
   spacingL: 20,
   spacingXL: 24,
   spacing2XL: 28,
-  spacing3XL: 32,
+  spacing3XL: 32
 };

@@ -1,69 +1,68 @@
-import React, { memo, useState } from 'react';
-import {
-	StyleSheet,
-	Dimensions
-} from 'react-native';
+import React, {memo, useState} from 'react';
+import {StyleSheet, Dimensions} from 'react-native';
 import equals from 'react-fast-compare';
-import Carousel, { Pagination } from 'react-native-snap-carousel';
-import { Theme } from 'styles/Index';
+import Carousel, {Pagination} from 'react-native-snap-carousel';
+import {Theme} from 'styles/Index';
 import FeaturedLessonCard from './FeaturedLessonCard';
-import { Lesson } from 'codegen/models/Lesson';
+import {Lesson} from 'codegen/models/Lesson';
 
 interface Props {
-	featuredLessons: Lesson[];
-	onLessonPressed: (lesson: Lesson) => void
+  featuredLessons: Lesson[];
+  onLessonPressed: (lesson: Lesson) => void;
 }
 
 const FeaturedLessonCardCarousel = (props: Props): JSX.Element => {
-	const { width: viewportWidth } = Dimensions.get('window');
-	const [featuredLessonScrollIndex, setFeaturedLessonScrollIndex] = useState(0);
+  const {width: viewportWidth} = Dimensions.get('window');
+  const [featuredLessonScrollIndex, setFeaturedLessonScrollIndex] = useState(0);
 
-	return (
-		<>
-			<Carousel
-				containerCustomStyle={{ alignSelf: 'center' }}
-				vertical={false}
-				data={props.featuredLessons}
-				renderItem={renderCarouselItem}
-				sliderWidth={viewportWidth}
-				itemWidth={viewportWidth}
-				useScrollView={true}
-				useExperimentalSnap={true}
-				onScrollIndexChanged={(index: number) => setFeaturedLessonScrollIndex(index)}
-			/>
+  return (
+    <>
+      <Carousel
+        containerCustomStyle={{alignSelf: 'center'}}
+        vertical={false}
+        data={props.featuredLessons}
+        renderItem={renderCarouselItem}
+        sliderWidth={viewportWidth}
+        itemWidth={viewportWidth}
+        useScrollView={true}
+        useExperimentalSnap={true}
+        onScrollIndexChanged={(index: number) =>
+          setFeaturedLessonScrollIndex(index)
+        }
+      />
 
-			<Pagination
-				containerStyle={styles.pagination}
-				dotsLength={props.featuredLessons?.length}
-				activeDotIndex={featuredLessonScrollIndex}
-				inactiveDotOpacity={0.4}
-				inactiveDotScale={0.6}
-				inactiveDotColor={Theme.colors.gray}
-				dotColor={Theme.colors.purple}
-			/>
-		</>
-	);
+      <Pagination
+        containerStyle={styles.pagination}
+        dotsLength={props.featuredLessons?.length}
+        activeDotIndex={featuredLessonScrollIndex}
+        inactiveDotOpacity={0.4}
+        inactiveDotScale={0.6}
+        inactiveDotColor={Theme.colors.gray}
+        dotColor={Theme.colors.purple}
+      />
+    </>
+  );
 
-	function renderCarouselItem({ item }: { item: Lesson }): JSX.Element {
-		return (
-			<FeaturedLessonCard
-				key={item.id}
-				style={styles.lessonCard}
-				lesson={item}
-				onPress={() => props.onLessonPressed(item)}
-			/>
-		);
-	}
+  function renderCarouselItem({item}: {item: Lesson}): JSX.Element {
+    return (
+      <FeaturedLessonCard
+        key={item.id}
+        style={styles.lessonCard}
+        lesson={item}
+        onPress={() => props.onLessonPressed(item)}
+      />
+    );
+  }
 };
 
 const styles = StyleSheet.create({
-	lessonCard: {
-		marginHorizontal: Theme.spacing.spacingM
-	},
-	pagination: {
-		paddingTop: Theme.spacing.spacingXL,
-		paddingBottom: Theme.spacing.spacingM,
-	}
+  lessonCard: {
+    marginHorizontal: Theme.spacing.spacingM
+  },
+  pagination: {
+    paddingTop: Theme.spacing.spacingXL,
+    paddingBottom: Theme.spacing.spacingM
+  }
 });
 
 export default memo(FeaturedLessonCardCarousel, equals);

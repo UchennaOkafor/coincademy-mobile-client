@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {useNavigation} from '@react-navigation/native';
@@ -13,8 +13,8 @@ import OnboardingCarouselItem from '@models/OnboardingCarouselItem';
 import OnboardingData from 'resources/OnboardingData';
 import GradientButton from 'components/buttons/GradientButton';
 import PrimaryButton from 'components/buttons/PrimaryButton';
-import { Theme } from 'styles/Index';
-import { useUserStore } from 'state/useUserStore';
+import {Theme} from 'styles/Index';
+import {useUserStore} from 'state/useUserStore';
 
 const Onboarding = (): JSX.Element => {
   const navigation = useNavigation();
@@ -64,8 +64,8 @@ const Onboarding = (): JSX.Element => {
           onPress={() => carousel.current?.snapToNext()}
         />
       ) : (
-        <GradientButton 
-          title="Get Started" 
+        <GradientButton
+          title="Get Started"
           onPress={navigateToLogin}
           squircle={true}
         />
@@ -88,7 +88,7 @@ const Onboarding = (): JSX.Element => {
   }
 
   function renderCarouselItem({
-    item,
+    item
   }: {
     item: OnboardingCarouselItem;
   }): JSX.Element {
@@ -99,9 +99,7 @@ const Onboarding = (): JSX.Element => {
           resizeMode="contain"
           style={styles.carouselItemImage}
         />
-        <Text style={styles.carouselItemTitle}>
-          {item.title}
-        </Text>
+        <Text style={styles.carouselItemTitle}>{item.title}</Text>
         <Text style={styles.carouselItemDescription}>{item.description}</Text>
       </View>
     );
@@ -114,43 +112,43 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: Theme.colors.white,
-    paddingHorizontal: Theme.spacing.spacingXL,
+    paddingHorizontal: Theme.spacing.spacingXL
   },
   carouselContainer: {
-    flexGrow: 0,
+    flexGrow: 0
   },
   carouselItemContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: Theme.spacing.spacingM,
+    paddingHorizontal: Theme.spacing.spacingM
   },
   carouselItemImage: {
     width: 450,
-    height: 300,
+    height: 300
   },
   carouselItemTitle: {
     ...Theme.typography.text.h2,
     color: Theme.colors.grayDark900,
-    marginTop: Theme.spacing.spacingM,
+    marginTop: Theme.spacing.spacingM
   },
   carouselItemDescription: {
     ...Theme.typography.text.body,
     marginTop: Theme.spacing.spacingXS,
     textAlign: 'center',
-    paddingHorizontal: Theme.spacing.spacingM,
+    paddingHorizontal: Theme.spacing.spacingM
   },
   paginationContainer: {
-    marginBottom: Theme.spacing.spacingS,
+    marginBottom: Theme.spacing.spacingS
   },
   skipTextContainer: {
-    marginTop: Theme.spacing.spacing2XS,
+    marginTop: Theme.spacing.spacing2XS
   },
   skipText: {
     ...Theme.typography.text.h6,
     color: Theme.colors.grayDark,
     textDecorationLine: 'underline',
-    marginTop: Theme.spacing.spacingS,
-  },
+    marginTop: Theme.spacing.spacingS
+  }
 });
 
 export default Onboarding;

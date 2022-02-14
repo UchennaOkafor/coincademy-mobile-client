@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
-import DefaultLottieView, { AnimatedLottieViewProps } from 'lottie-react-native';
+import DefaultLottieView, {AnimatedLottieViewProps} from 'lottie-react-native';
 
 const LottieView = (props: AnimatedLottieViewProps): JSX.Element => {
   const [animationContent, setAnimationContent] = useState<any>();
@@ -11,7 +11,7 @@ const LottieView = (props: AnimatedLottieViewProps): JSX.Element => {
         try {
           const response = await fetch(props.source.uri);
           const data = await response.json();
-          setAnimationContent(data)
+          setAnimationContent(data);
         } catch (error) {
           console.log(error);
         }
@@ -26,14 +26,11 @@ const LottieView = (props: AnimatedLottieViewProps): JSX.Element => {
   return (
     <>
       {animationContent ? (
-        <DefaultLottieView
-          {...props}
-          source={animationContent}
-        />
+        <DefaultLottieView {...props} source={animationContent} />
       ) : (
         <View style={props.style} />
       )}
-		</>
+    </>
   );
 };
 

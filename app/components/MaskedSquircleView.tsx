@@ -1,8 +1,8 @@
 import MaskedView from '@react-native-masked-view/masked-view';
-import React, { ReactElement } from 'react';
+import React, {ReactElement} from 'react';
 import {StyleProp, StyleSheet, ViewStyle} from 'react-native';
 import {SquircleView} from 'react-native-figma-squircle';
-import { Theme } from 'styles/Index';
+import {Theme} from 'styles/Index';
 
 interface Props {
   style: StyleProp<ViewStyle>;
@@ -18,7 +18,7 @@ const MaskedSquircleView = (props: Props): JSX.Element => {
           style={StyleSheet.absoluteFill}
           squircleParams={{
             cornerRadius: Theme.radius.large,
-            cornerSmoothing: 1,
+            cornerSmoothing: 1
           }}
         />
       }>
@@ -28,7 +28,7 @@ const MaskedSquircleView = (props: Props): JSX.Element => {
 };
 
 const styles = StyleSheet.create({
-  container: { 
+  container: {
     width: '100%'
   }
 });

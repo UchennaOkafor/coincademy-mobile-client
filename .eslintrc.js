@@ -2,30 +2,30 @@ module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
   plugins: [
-		'@typescript-eslint',
+    '@typescript-eslint',
     'react',
     'react-native',
     'prettier',
     'react-hooks'
-	],
+  ],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:react-hooks/recommended',
+    'plugin:react-hooks/recommended'
     // 'plugin:@typescript-eslint/recommended-requiring-type-checking'
   ],
-  'rules': {
+  rules: {
     'react-native/no-unused-styles': 'error',
     'react-native/no-inline-styles': 'error',
-    'react-native/no-color-literals': 'error',
+    'react-native/no-color-literals': 'error'
   },
-  // "parserOptions": {
-  //     "ecmaFeatures": {
-  //         "jsx": true
+  // 'parserOptions': {
+  //     'ecmaFeatures': {
+  //         'jsx': true
   //     },
-  //     "project": "./tsconfig.json"
+  //     'project': './tsconfig.json'
   // },
-  "env": {
-    "react-native/react-native": true
-  },
+  env: {
+    'react-native/react-native': true
+  }
 };

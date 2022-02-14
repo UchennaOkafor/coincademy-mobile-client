@@ -4,5 +4,5 @@ export const Radius = {
   small: 4,
   normal: 8,
   large: 12,
-  extraLarge: 16,
+  extraLarge: 16
 };

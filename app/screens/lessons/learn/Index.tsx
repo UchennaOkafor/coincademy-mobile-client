@@ -6,21 +6,21 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
-import { Volume2, VolumeX, X } from 'react-native-feather';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Carousel } from 'react-native-snap-carousel';
+import {Volume2, VolumeX, X} from 'react-native-feather';
+import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
+import {Carousel} from 'react-native-snap-carousel';
 import GenericContent from 'components/lessons/types/GenericContent';
 import MultipleChoiceQuestion from 'components/lessons/types/MultipleChoiceQuestion';
 import PrimaryButton from 'components/buttons/PrimaryButton';
 import ProgressBar from 'components/ProgressBar';
-import { Lesson } from 'codegen/models/Lesson';
-import { BaseSlide } from 'codegen/models/BaseSlide';
-import { ContentSlide, MultipleChoiceQuestionSlide } from 'codegen';
-import { Theme } from 'styles/Index';
-import { useUserStore } from 'state/useUserStore';
-import { Audio } from 'expo-av';
+import {Lesson} from 'codegen/models/Lesson';
+import {BaseSlide} from 'codegen/models/BaseSlide';
+import {ContentSlide, MultipleChoiceQuestionSlide} from 'codegen';
+import {Theme} from 'styles/Index';
+import {useUserStore} from 'state/useUserStore';
+import {Audio} from 'expo-av';
 const FeedbackWrong = require('@assets/sounds/feedback_wrong.mp3');
 const FeedbackCorrect = require('@assets/sounds/feedback_correct.mp3');
 
@@ -53,17 +53,17 @@ const LessonOverview = (): JSX.Element => {
   const pauseSound = useCallback(() => {
     networkSound?.pauseAsync();
     localSound?.pauseAsync();
-  }, [networkSound, localSound]); 
+  }, [networkSound, localSound]);
 
   const playSound = useCallback(() => {
     networkSound?.playAsync();
     localSound?.playAsync();
-  }, [networkSound, localSound]); 
+  }, [networkSound, localSound]);
 
   const disposeSound = useCallback(() => {
     networkSound?.unloadAsync();
     localSound?.unloadAsync();
-  }, [networkSound, localSound]); 
+  }, [networkSound, localSound]);
 
   useEffect(() => {
     setHasReachedEnd(carouselIndex === slides.length - 1);
@@ -77,20 +77,20 @@ const LessonOverview = (): JSX.Element => {
   }, [carouselIndex]);
 
   useEffect(() => {
-		slides
-			.filter(e => e.imageUrl != null)
-			.forEach(e => Image.prefetch(e.imageUrl!!));
+    slides
+      .filter((e) => e.imageUrl != null)
+      .forEach((e) => Image.prefetch(e.imageUrl!!));
   }, []);
 
   useEffect(() => {
     return () => {
       disposeSound();
-    }
+    };
   }, [disposeSound]);
 
   useEffect(() => {
     userStore.setSoundMuted(soundMuted);
-    
+
     if (soundMuted) {
       pauseSound();
     } else {
@@ -110,21 +110,12 @@ const LessonOverview = (): JSX.Element => {
             strokeWidth={3}
           />
         </TouchableOpacity>
-        <ProgressBar 
-          value={carouselIndex + 1} 
-          max={slides.length} 
-        />
-        <TouchableOpacity onPress={() => setSoundMuted(! soundMuted)}>
+        <ProgressBar value={carouselIndex + 1} max={slides.length} />
+        <TouchableOpacity onPress={() => setSoundMuted(!soundMuted)}>
           {soundMuted ? (
-            <VolumeX
-              stroke={Theme.colors.black}
-              fill={Theme.colors.white}
-            />
+            <VolumeX stroke={Theme.colors.black} fill={Theme.colors.white} />
           ) : (
-            <Volume2 
-              stroke={Theme.colors.black}
-              fill={Theme.colors.white}
-            />
+            <Volume2 stroke={Theme.colors.black} fill={Theme.colors.white} />
           )}
         </TouchableOpacity>
       </View>
@@ -141,15 +132,19 @@ const LessonOverview = (): JSX.Element => {
           loop={false}
         />
 
-        <View style={[styles.buttonContainer, { paddingBottom: Theme.spacing.spacingXL + insets.bottom}]}>
+        <View
+          style={[
+            styles.buttonContainer,
+            {paddingBottom: Theme.spacing.spacingXL + insets.bottom}
+          ]}>
           <PrimaryButton
             disabled={currentQuestionMultiChoice && selectedAnswerId == null}
             squircle={true}
-            title={!hasReachedEnd ? 'Continue' : 'Finish'} 
+            title={!hasReachedEnd ? 'Continue' : 'Finish'}
             onPress={() => {
               if (currentQuestionMultiChoice) {
                 setRevealMultiChoiceAnswer(true);
-                
+
                 const correctAnswer = (slides[carouselIndex] as MultipleChoiceQuestionSlide).correctAnswer?.id ?? '';
                 if (selectedAnswerId !== correctAnswer) {
                   playAudioFromFile(FeedbackWrong);
@@ -161,7 +156,7 @@ const LessonOverview = (): JSX.Element => {
 
               if (hasReachedEnd) {
                 disposeSound();
-                navigation.navigate('LessonComplete', { });
+                navigation.navigate('LessonComplete', {});
               } else {
                 setCurrentLessonSlides(slides.slice(0, carouselIndex + 2));
                 requestAnimationFrame(() => {
@@ -178,13 +173,11 @@ const LessonOverview = (): JSX.Element => {
   function renderCarouselItem({item}: {item: BaseSlide}): JSX.Element {
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
-        {item.type === 'Content' && (
-          <GenericContent item={item} />
-        )}
+        {item.type === 'Content' && <GenericContent item={item} />}
 
         {item.type === 'MultiChoiceQuestion' && (
-          <MultipleChoiceQuestion 
-            item={item} 
+          <MultipleChoiceQuestion
+            item={item}
             onSelectionChanged={(id: string) => setSelectedAnswerId(id)}
             revealAnswer={revealMultiChoiceAnswer}
           />
@@ -197,13 +190,13 @@ const LessonOverview = (): JSX.Element => {
     if (soundFile == null) {
       return;
     }
-    
-		await localSound?.unloadAsync();
-		const { sound } = await Audio.Sound.createAsync(soundFile);
 
-		if (! soundMuted) {
-			sound.playAsync();
-		}
+    await localSound?.unloadAsync();
+    const {sound} = await Audio.Sound.createAsync(soundFile);
+
+    if (!soundMuted) {
+      sound.playAsync();
+    }
 
     setLocalSound(sound);
   }
@@ -213,39 +206,37 @@ const LessonOverview = (): JSX.Element => {
       return;
     }
 
-		await networkSound?.unloadAsync();
-		const { sound } = await Audio.Sound.createAsync(
-			{uri: soundUrl}
-	 	);
+    await networkSound?.unloadAsync();
+    const {sound} = await Audio.Sound.createAsync({uri: soundUrl});
 
-		if (! soundMuted) {
-			sound.playAsync();
-		}
+    if (!soundMuted) {
+      sound.playAsync();
+    }
 
     setNetworkSound(sound);
-	}
-}
+  }
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Theme.colors.backgroundGray,
+    backgroundColor: Theme.colors.backgroundGray
   },
   rootContainer: {
     flex: 1,
     justifyContent: 'space-between'
   },
   headerContainer: {
-    marginTop: Theme.spacing.spacingL, 
-    marginBottom: Theme.spacing.spacing3XL, 
-    flexDirection: 'row', 
-    alignItems: 'center', 
+    marginTop: Theme.spacing.spacingL,
+    marginBottom: Theme.spacing.spacing3XL,
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: Theme.spacing.spacingM
   },
   buttonContainer: {
-    backgroundColor: Theme.colors.white, 
-    paddingTop: Theme.spacing.spacingXL, 
-    paddingHorizontal: Theme.spacing.spacingM,
+    backgroundColor: Theme.colors.white,
+    paddingTop: Theme.spacing.spacingXL,
+    paddingHorizontal: Theme.spacing.spacingM
   }
 });
 

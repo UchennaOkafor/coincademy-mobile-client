@@ -5,9 +5,9 @@ import {
   Text,
   TouchableOpacity,
   View,
-  ViewStyle,
+  ViewStyle
 } from 'react-native';
-import { Theme } from 'styles/Index';
+import {Theme} from 'styles/Index';
 
 interface Props {
   title: string;
@@ -22,8 +22,7 @@ const TitleSectionHeader = (props: Props): JSX.Element => {
       <View style={styles.innerContainer}>
         <Text style={styles.title}>{props.title}</Text>
         {props.titleIcon}
-        <TouchableOpacity
-          style={styles.rightTextContainer}>
+        <TouchableOpacity style={styles.rightTextContainer}>
           <Text style={styles.rightText}>{props.rightText}</Text>
         </TouchableOpacity>
       </View>
@@ -33,7 +32,7 @@ const TitleSectionHeader = (props: Props): JSX.Element => {
 
 const styles = StyleSheet.create({
   innerContainer: {
-    flexDirection: 'row', 
+    flexDirection: 'row',
     alignItems: 'center'
   },
   title: {
@@ -42,15 +41,15 @@ const styles = StyleSheet.create({
     textAlign: 'left'
   },
   rightTextContainer: {
-    marginLeft: 'auto', 
+    marginLeft: 'auto',
     marginRight: Theme.spacing.spacing3XS
   },
   rightText: {
     ...Theme.typography.text.h6,
     ...Theme.typography.weight.medium,
     color: Theme.colors.purple,
-    alignSelf: 'flex-end',
-  },
+    alignSelf: 'flex-end'
+  }
 });
 
 export default TitleSectionHeader;

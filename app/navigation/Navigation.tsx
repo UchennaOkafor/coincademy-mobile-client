@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
@@ -18,7 +18,7 @@ import Settings from 'screens/settings/Settings';
 
 import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Home, User} from 'react-native-feather';
-import { Theme } from 'styles/Index';
+import {Theme} from 'styles/Index';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -30,10 +30,8 @@ interface StateProps {
 }
 
 const Blank = () => {
-  return (
-    <Text>Loading...</Text>
-  )
-}
+  return <Text>Loading...</Text>;
+};
 
 const Tabs = () => {
   const insets = useSafeAreaInsets();
@@ -47,22 +45,22 @@ const Tabs = () => {
         screenOptions={{
           headerShown: false,
           tabBarStyle: {
-            height: 58 + insets.bottom,
+            height: 58 + insets.bottom
           },
           tabBarLabelStyle: {
             marginBottom: 5,
-            ...Theme.typography.text.tabBarFooter,
+            ...Theme.typography.text.tabBarFooter
           },
           tabBarIconStyle: {
-            marginTop: 5,
+            marginTop: 5
           },
           tabBarBadgeStyle: {
             ...Theme.typography.text.h6,
             ...Theme.typography.weight.normal,
             color: Theme.colors.white,
-            backgroundColor: Theme.colors.purple,
+            backgroundColor: Theme.colors.purple
           },
-          tabBarActiveTintColor: Theme.colors.purple,
+          tabBarActiveTintColor: Theme.colors.purple
         }}>
         <Tab.Screen
           name="Home"
@@ -76,7 +74,7 @@ const Tabs = () => {
                 width={iconSize}
                 height={iconSize}
               />
-            ),
+            )
           }}
         />
         <Tab.Screen
@@ -90,7 +88,7 @@ const Tabs = () => {
                 width={iconSize}
                 height={iconSize}
               />
-            ),
+            )
           }}
         />
       </Tab.Navigator>
@@ -106,35 +104,35 @@ const RootNavigation = (props: StateProps) => {
         screenOptions={{
           // animation: "fade",
           headerTitleStyle: {
-            ...Theme.typography.text.tabBarHeader,
-          },
+            ...Theme.typography.text.tabBarHeader
+          }
         }}>
         {props.authenticated ? (
           <>
-            <Stack.Screen 
-              name="Blank" 
+            <Stack.Screen
+              name="Blank"
               component={Blank}
-              options={{ headerShown: false }}
+              options={{headerShown: false}}
             />
-            <Stack.Screen 
-              name="Lesson" 
+            <Stack.Screen
+              name="Lesson"
               component={Lesson}
-              options={{ headerShown: false }}
+              options={{headerShown: false}}
             />
-            <Stack.Screen 
-              name="LessonComplete" 
+            <Stack.Screen
+              name="LessonComplete"
               component={LessonComplete}
-              options={{ 
-                headerShown: false, 
-                gestureEnabled: false 
+              options={{
+                headerShown: false,
+                gestureEnabled: false
               }}
             />
-            <Stack.Screen 
-              name="Settings" 
+            <Stack.Screen
+              name="Settings"
               component={Settings}
-              options={{ 
-                headerShown: true, 
-                gestureEnabled: false 
+              options={{
+                headerShown: true,
+                gestureEnabled: false
               }}
             />
             <Stack.Screen
@@ -158,7 +156,7 @@ const RootNavigation = (props: StateProps) => {
             <Stack.Screen
               name="Register"
               component={Register}
-              options={{ headerTitle: 'Create an account' }}
+              options={{headerTitle: 'Create an account'}}
             />
           </>
         )}
@@ -169,9 +167,8 @@ const RootNavigation = (props: StateProps) => {
 
 const styles = StyleSheet.create({
   bottomTabContainer: {
-    flex: 1,
-  },
+    flex: 1
+  }
 });
-
 
 export default RootNavigation;

@@ -1,19 +1,15 @@
 import 'react-native-gesture-handler';
-import '@locales/Localization'
-import { StatusBar } from 'expo-status-bar';
-import { useFonts } from 'expo-font';
+import '@locales/Localization';
+import {StatusBar} from 'expo-status-bar';
+import {useFonts} from 'expo-font';
 import React from 'react';
-import {
-  StyleProp,
-  useColorScheme,
-  ViewStyle,
-} from 'react-native';
+import {StyleProp, useColorScheme, ViewStyle} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import RootNavigation from '@app/navigation/Navigation';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { useUserStore } from 'state/useUserStore';
-import { Theme } from '@styles/Index';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {useUserStore} from 'state/useUserStore';
+import {Theme} from '@styles/Index';
 
 export default function App() {
   const [loaded] = useFonts({
@@ -25,12 +21,12 @@ export default function App() {
     'Inter-Medium': require('@assets/fonts/Inter/Inter-Medium.ttf'),
     'Inter-Regular': require('@assets/fonts/Inter/Inter-Regular.ttf'),
     'Inter-SemiBold': require('@assets/fonts/Inter/Inter-SemiBold.ttf'),
-    'Inter-Thin': require('@assets/fonts/Inter/Inter-Thin.ttf'),
+    'Inter-Thin': require('@assets/fonts/Inter/Inter-Thin.ttf')
   });
 
   const userStore = useUserStore();
   const isDarkMode = useColorScheme() === 'dark';
-  
+
   if (!loaded) {
     return null;
   }
@@ -38,13 +34,13 @@ export default function App() {
   //Colors.lighter
   const backgroundStyle: StyleProp<ViewStyle> = {
     backgroundColor: isDarkMode ? Colors.darker : Theme.colors.backgroundGray,
-    flex: 1,
+    flex: 1
   };
 
   return (
     <SafeAreaProvider style={backgroundStyle}>
       <StatusBar style="dark" backgroundColor={Theme.colors.backgroundGray} />
-      <RootNavigation 
+      <RootNavigation
         onboarded={userStore.misc.onboarded}
         authenticated={userStore.misc.signedIn}
         authToken="EMTPY_TOKEN"

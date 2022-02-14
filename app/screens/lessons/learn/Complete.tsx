@@ -1,18 +1,13 @@
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
-import { Lesson } from 'codegen/models/Lesson';
+import {Lesson} from 'codegen/models/Lesson';
 import PrimaryButton from 'components/buttons/PrimaryButton';
 import React, {useEffect, useRef, useState} from 'react';
-import {
-  Dimensions,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 import ConfettiCannon from 'react-native-confetti-cannon';
-import { Theme } from 'styles/Index';
-import { Audio } from 'expo-av';
-import { useUserStore } from 'state/useUserStore';
+import {Theme} from 'styles/Index';
+import {Audio} from 'expo-av';
+import {useUserStore} from 'state/useUserStore';
 import LottieView from 'components/lottie/LottieView';
 
 interface LessonRouteProps {
@@ -35,7 +30,7 @@ const LessonOverview = (): JSX.Element => {
 
     return () => {
       sound?.unloadAsync();
-    }
+    };
   }, []);
 
   return (
@@ -50,13 +45,17 @@ const LessonOverview = (): JSX.Element => {
             resizeMode="center"
             style={[styles.animation, {width: viewportWidth}]}
           />
-          
+
           <View style={styles.textContainer}>
             <Text style={styles.title}>You have completed your lesson</Text>
             <Text style={styles.subtitle}>Keep up the good work!</Text>
           </View>
         </View>
-        <View style={[styles.buttonContainer, {paddingBottom: Theme.spacing.spacingXL + insets.bottom}]}>
+        <View
+          style={[
+            styles.buttonContainer,
+            {paddingBottom: Theme.spacing.spacingXL + insets.bottom}
+          ]}>
           <PrimaryButton
             squircle={true}
             title="Complete"
@@ -79,53 +78,53 @@ const LessonOverview = (): JSX.Element => {
   );
 
   async function playDingSound() {
-		const { sound: ding } = await Audio.Sound.createAsync(
-			require('@assets/sounds/positive_ding.mp3'),
-      { shouldPlay: true, isMuted: soundMuted }
-		);
+    const {sound: ding} = await Audio.Sound.createAsync(
+      require('@assets/sounds/positive_ding.mp3'),
+      {shouldPlay: true, isMuted: soundMuted}
+    );
 
-		setSound(ding);
-		await ding.playAsync();
+    setSound(ding);
+    await ding.playAsync();
   }
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Theme.colors.backgroundGray,
+    backgroundColor: Theme.colors.backgroundGray
   },
   innerContainer: {
-    flex: 1, 
+    flex: 1,
     justifyContent: 'space-between'
   },
   contentContainer: {
     flex: 1,
-    justifyContent: 'center', 
+    justifyContent: 'center'
   },
   animation: {
-    aspectRatio: 200 / 100, 
-    transform: [{ scale: 1.35 }]
+    aspectRatio: 200 / 100,
+    transform: [{scale: 1.35}]
   },
   textContainer: {
     padding: Theme.spacing.spacingM
   },
   title: {
-    ...Theme.typography.text.h3, 
-    ...Theme.typography.weight.semiBold, 
-    marginTop: -Theme.spacing.spacingXL, 
+    ...Theme.typography.text.h3,
+    ...Theme.typography.weight.semiBold,
+    marginTop: -Theme.spacing.spacingXL,
     marginBottom: Theme.spacing.spacingS,
-    textAlign: 'center', 
+    textAlign: 'center'
   },
   subtitle: {
-    ...Theme.typography.text.h4, 
-    ...Theme.typography.weight.medium, 
+    ...Theme.typography.text.h4,
+    ...Theme.typography.weight.medium,
     color: Theme.colors.grayDark,
-    textAlign: 'center', 
+    textAlign: 'center'
   },
   buttonContainer: {
-    backgroundColor: Theme.colors.white, 
+    backgroundColor: Theme.colors.white,
     paddingHorizontal: Theme.spacing.spacingM,
-    paddingTop: Theme.spacing.spacingXL,
+    paddingTop: Theme.spacing.spacingXL
   }
 });
 

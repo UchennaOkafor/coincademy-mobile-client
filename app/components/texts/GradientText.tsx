@@ -2,7 +2,7 @@ import MaskedView from '@react-native-masked-view/masked-view';
 import React from 'react';
 import {Text, TextProps, StyleSheet} from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
-import { Theme } from 'styles/Index';
+import {Theme} from 'styles/Index';
 
 const GradientText = (props: TextProps) => {
   return (
@@ -20,7 +20,7 @@ const GradientText = (props: TextProps) => {
 const styles = StyleSheet.create({
   text: {
     opacity: 0
-  },
+  }
 });
 
 export default GradientText;

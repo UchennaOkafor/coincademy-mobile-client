@@ -2,17 +2,19 @@ import PrimaryButton from 'components/buttons/PrimaryButton';
 import IconTextInput from 'components/inputs/IconTextInput';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import { Lock, Mail, User } from 'react-native-feather';
-import { Theme } from 'styles/Index';
+import {Lock, Mail, User} from 'react-native-feather';
+import {Theme} from 'styles/Index';
 
 const Register = (): JSX.Element => {
   return (
     <View style={styles.container}>
       <View>
-        <Text style={styles.registerTitle}>Please fill in the form below to continue</Text>
+        <Text style={styles.registerTitle}>
+          Please fill in the form below to continue
+        </Text>
         <View style={styles.textInputContainer}>
           <IconTextInput
-            autoCapitalize='none'
+            autoCapitalize="none"
             keyboardType="default"
             icon={
               <User
@@ -28,7 +30,7 @@ const Register = (): JSX.Element => {
 
         <View style={styles.textInputContainer}>
           <IconTextInput
-            autoCapitalize='none'
+            autoCapitalize="none"
             keyboardType="email-address"
             icon={
               <Mail
@@ -44,7 +46,7 @@ const Register = (): JSX.Element => {
 
         <View style={styles.textInputContainer}>
           <IconTextInput
-            autoCapitalize='none'
+            autoCapitalize="none"
             keyboardType="default"
             secureTextEntry={true}
             icon={
@@ -60,17 +62,16 @@ const Register = (): JSX.Element => {
         </View>
 
         <Text style={styles.legalText}>
-          By signing up you agree to our 
+          By signing up you agree to our
           <Text style={styles.legalTextLink}> Terms & Conditions </Text>
           and
           <Text style={styles.legalTextLink}> Privacy Policy </Text>
         </Text>
       </View>
 
-
       <View style={styles.registerButtonContainer}>
         <PrimaryButton
-          title='Create account'
+          title="Create account"
           onPress={() => {}}
           squircle={true}
         />
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   textInputContainer: {
-    marginBottom: Theme.spacing.spacingL,
+    marginBottom: Theme.spacing.spacingL
   },
   registerTitle: {
     ...Theme.typography.text.h6,
@@ -100,17 +101,17 @@ const styles = StyleSheet.create({
     marginBottom: Theme.spacing.spacing2XL
   },
   legalText: {
-    ...Theme.typography.text.h7, 
-    ...Theme.typography.weight.normal, 
-    paddingHorizontal: Theme.spacing.spacing2XS, 
-    marginTop: Theme.spacing.spacingM, 
-    lineHeight: 20, 
+    ...Theme.typography.text.h7,
+    ...Theme.typography.weight.normal,
+    paddingHorizontal: Theme.spacing.spacing2XS,
+    marginTop: Theme.spacing.spacingM,
+    lineHeight: 20,
     color: Theme.colors.grayDark,
     textAlign: 'left'
   },
   legalTextLink: {
     ...Theme.typography.weight.medium,
-    color: Theme.colors.purple, 
+    color: Theme.colors.purple
   }
 });
 

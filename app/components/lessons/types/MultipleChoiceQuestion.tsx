@@ -1,15 +1,11 @@
 import React, {memo, useEffect, useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import equals from 'react-fast-compare';
-import { Check, X } from 'react-native-feather';
+import {Check, X} from 'react-native-feather';
 import TouchableSurface from 'components/TouchableSurface';
-import { MultipleChoiceQuestionSlide } from 'codegen/models/MultipleChoiceQuestionSlide';
-import { Choice } from 'codegen/models/Choice';
-import { Theme } from 'styles/Index';
+import {MultipleChoiceQuestionSlide} from 'codegen/models/MultipleChoiceQuestionSlide';
+import {Choice} from 'codegen/models/Choice';
+import {Theme} from 'styles/Index';
 
 interface Props {
   item: MultipleChoiceQuestionSlide;
@@ -18,23 +14,27 @@ interface Props {
 }
 
 interface HighlightedChoiceProps {
-  id: string, 
-  action: 'correct' | 'wrong'
+  id: string;
+  action: 'correct' | 'wrong';
 }
 
 const MultipleChoiceQuestion = (props: Props): JSX.Element => {
-  const [randomizedChoices] = useState(randomizeChoices(props.item.correctAnswer, props.item.falseAnswers));
+  const [randomizedChoices] = useState(
+    randomizeChoices(props.item.correctAnswer, props.item.falseAnswers)
+  );
   const [checkedIndex, setCheckedIndex] = useState(-1);
   const [selectedAnswerId, setSelectedAnswerId] = useState('');
-  const [highlightedChoices, setHighlightedChoices] = useState<HighlightedChoiceProps[]>([]);
+  const [highlightedChoices, setHighlightedChoices] = useState<
+    HighlightedChoiceProps[]
+  >([]);
 
   useEffect(() => {
-    if (! props.revealAnswer) {
+    if (!props.revealAnswer) {
       setHighlightedChoices([]);
       return;
     }
 
-    const choices = [{ id: props.item.correctAnswer.id, action: 'correct' }];
+    const choices = [{id: props.item.correctAnswer.id, action: 'correct'}];
     if (selectedAnswerId !== props.item.correctAnswer?.id) {
       choices.push({id: selectedAnswerId, action: 'wrong'});
     }
@@ -47,22 +47,30 @@ const MultipleChoiceQuestion = (props: Props): JSX.Element => {
       <Text style={styles.title}>{props.item.title}</Text>
       <Text style={styles.interactionHint}>Tap the correct answer</Text>
       {randomizedChoices.map((choice: Choice, index: number) => {
-        const options = { 
+        const options = {
           backgroundColor: getIconBackgroundColor(choice),
           borderColor: getBorderColor(choice, index)
         };
 
         return (
-          <View key={choice.id} style={[styles.outerContainer, { borderColor: options.borderColor }]}>
-            <TouchableSurface disabled={props.revealAnswer} onPress={() => {
-              setCheckedIndex(index);
-              props.onSelectionChanged(choice.id);
-              setSelectedAnswerId(choice.id);
-            }}>
+          <View
+            key={choice.id}
+            style={[styles.outerContainer, {borderColor: options.borderColor}]}>
+            <TouchableSurface
+              disabled={props.revealAnswer}
+              onPress={() => {
+                setCheckedIndex(index);
+                props.onSelectionChanged(choice.id);
+                setSelectedAnswerId(choice.id);
+              }}>
               <View style={styles.innerContainer}>
                 <Text style={styles.choiceTitle}>{choice.title}</Text>
                 {isSelected(choice) && (
-                  <View style={[styles.iconContainer, { backgroundColor: options.backgroundColor }]}>
+                  <View
+                    style={[
+                      styles.iconContainer,
+                      {backgroundColor: options.backgroundColor}
+                    ]}>
                     {renderChoiceIcon(choice)}
                   </View>
                 )}
@@ -125,9 +133,12 @@ const MultipleChoiceQuestion = (props: Props): JSX.Element => {
   }
 
   function randomizeChoices(correctChoice?: Choice, falseChoices?: Choice[]) {
-    return [correctChoice, ...falseChoices ?? []].sort(() => Math.random() - 0.5);
+    return [
+      correctChoice, 
+      ...(falseChoices ?? [])
+    ].sort(() => Math.random() - 0.5);
   }
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -137,22 +148,22 @@ const styles = StyleSheet.create({
     ...Theme.typography.text.h4
   },
   interactionHint: {
-    ...Theme.typography.text.h7, 
-    ...Theme.typography.weight.normal, 
-    color: Theme.colors.grayDark, 
-    marginTop: Theme.spacing.spacingL, 
-    marginBottom: Theme.spacing.spacingM, 
+    ...Theme.typography.text.h7,
+    ...Theme.typography.weight.normal,
+    color: Theme.colors.grayDark,
+    marginTop: Theme.spacing.spacingL,
+    marginBottom: Theme.spacing.spacingM
   },
   choiceTitle: {
-    ...Theme.typography.text.h6, 
-    ...Theme.typography.weight.medium 
+    ...Theme.typography.text.h6,
+    ...Theme.typography.weight.medium
   },
   outerContainer: {
-    overflow: 'hidden', 
+    overflow: 'hidden',
     borderRadius: Theme.radius.normal,
     backgroundColor: Theme.colors.transparent,
     marginVertical: Theme.spacing.spacing2XS + Theme.spacing.spacing3XS,
-    borderWidth: 1.8,
+    borderWidth: 1.8
   },
   innerContainer: {
     flexDirection: 'row',
@@ -161,14 +172,14 @@ const styles = StyleSheet.create({
     paddingVertical: Theme.spacing.spacingXS,
     paddingHorizontal: Theme.spacing.spacingL,
     backgroundColor: Theme.colors.white,
-    height: 48,
+    height: 48
   },
   iconContainer: {
-    width: 28, 
+    width: 28,
     height: 28,
-    borderRadius: 28 / 2, 
-    justifyContent: 'center', 
-    alignItems: 'center' 
+    borderRadius: 28 / 2,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 

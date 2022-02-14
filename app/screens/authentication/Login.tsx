@@ -1,24 +1,18 @@
 import {
   BottomSheetBackdrop,
   BottomSheetModal,
-  BottomSheetModalProvider,
+  BottomSheetModalProvider
 } from '@gorhom/bottom-sheet';
 import {useNavigation} from '@react-navigation/core';
 import React, {useCallback, useMemo, useRef, useState} from 'react';
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import PrimaryButton from '@components/buttons/PrimaryButton';
 import IconTextInput from 'components/inputs/IconTextInput';
 import {Lock, Mail} from 'react-native-feather';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Theme } from 'styles/Index';
-import { useUserStore } from 'state/useUserStore';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {Theme} from 'styles/Index';
+import {useUserStore} from 'state/useUserStore';
 import GradientText from 'components/texts/GradientText';
 import ForgotPassword from 'components/authentication/ForgotPassword';
 
@@ -53,12 +47,14 @@ const Login = (): JSX.Element => {
                 <GradientText style={styles.logoText}>Eko</GradientText>
               </View>
               <Text style={styles.loginText}>Login</Text>
-              <Text style={styles.loginSubText}>Please sign in to continue</Text>
+              <Text style={styles.loginSubText}>
+                Please sign in to continue
+              </Text>
 
               <View style={styles.textInputContainer}>
                 <IconTextInput
-                  value='test@test.com'
-                  autoCapitalize='none'
+                  value="test@test.com"
+                  autoCapitalize="none"
                   keyboardType="email-address"
                   icon={
                     <Mail
@@ -74,8 +70,8 @@ const Login = (): JSX.Element => {
 
               <View style={styles.textInputContainer}>
                 <IconTextInput
-                  value='password'
-                  autoCapitalize='none'
+                  value="password"
+                  autoCapitalize="none"
                   icon={
                     <Lock
                       stroke="gray"
@@ -118,7 +114,7 @@ const Login = (): JSX.Element => {
                 ref={bottomSheetModalRef}
                 index={0}
                 snapPoints={snapPoints}
-                backdropComponent={backdropProps => (
+                backdropComponent={(backdropProps) => (
                   <BottomSheetBackdrop
                     {...backdropProps}
                     disappearsOnIndex={-1}
@@ -152,28 +148,28 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     paddingHorizontal: Theme.spacing.spacingM,
-    backgroundColor: Theme.colors.backgroundGray,
+    backgroundColor: Theme.colors.backgroundGray
   },
   loginContainer: {
-    flexGrow: 1, 
+    flexGrow: 1,
     justifyContent: 'center'
   },
   innerLoginContainer: {
     marginBottom: Theme.spacing.spacing3XL * 2
   },
   logoContainer: {
-    marginBottom: Theme.spacing.spacing3XL * 2, 
-    flexDirection: 'row', 
-    justifyContent: 'center', 
+    marginBottom: Theme.spacing.spacing3XL * 2,
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center'
   },
   logoText: {
-    ...Theme.typography.text.h3, 
+    ...Theme.typography.text.h3,
     marginLeft: Theme.spacing.spacingXS
   },
   logoIcon: {
-    width: 40, 
-    height: 40, 
+    width: 40,
+    height: 40,
     alignSelf: 'center'
   },
   loginText: {
@@ -189,7 +185,7 @@ const styles = StyleSheet.create({
     textAlign: 'left'
   },
   textInputContainer: {
-    marginBottom: Theme.spacing.spacingL,
+    marginBottom: Theme.spacing.spacingL
   },
   textInput: {
     ...Theme.typography.text.h5,
@@ -197,34 +193,34 @@ const styles = StyleSheet.create({
     borderRadius: Theme.radius.extraSmall + Theme.radius.small,
     borderWidth: 1.5,
     paddingVertical: Theme.spacing.spacingS,
-    paddingHorizontal: Theme.spacing.spacingM,
+    paddingHorizontal: Theme.spacing.spacingM
   },
   loginButton: {
-    marginVertical: Theme.spacing.spacing3XS,
+    marginVertical: Theme.spacing.spacing3XS
   },
   forgotPasswordContainer: {
     alignItems: 'center',
     marginTop: Theme.spacing.spacingXS + Theme.spacing.spacing3XS,
-    marginBottom: Theme.spacing.spacingM,
+    marginBottom: Theme.spacing.spacingM
   },
   forgotPasswordText: {
     ...Theme.typography.text.h6,
     ...Theme.typography.weight.normal,
-    color: Theme.colors.purple,
+    color: Theme.colors.purple
   },
   signupPrefixText: {
     ...Theme.typography.text.h6,
-    ...Theme.typography.weight.normal,
+    ...Theme.typography.weight.normal
   },
   signupText: {
     ...Theme.typography.text.h6,
     ...Theme.typography.weight.bold,
-    color: Theme.colors.purple,
+    color: Theme.colors.purple
   },
-  registerTouchable: { 
-    position: 'absolute', 
+  registerTouchable: {
+    position: 'absolute',
     alignSelf: 'center',
-    bottom: Theme.spacing.spacingM, 
+    bottom: Theme.spacing.spacingM
   }
 });
 

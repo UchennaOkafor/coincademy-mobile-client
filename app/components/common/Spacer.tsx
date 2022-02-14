@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleProp, View, ViewStyle} from 'react-native';
-import { Theme } from 'styles/Index';
+import {Theme} from 'styles/Index';
 
 interface Props {
   vertical?: number;
@@ -14,9 +14,7 @@ const Spacer = (props: Props): JSX.Element => {
     marginVertical: verticalSpacing
   };
 
-  return (
-    <View style={spacingStyle} />
-  );
+  return <View style={spacingStyle} />;
 };
 
 export default Spacer;

@@ -7,9 +7,9 @@ import {
   StyleSheet,
   Text,
   View,
-  ViewStyle,
+  ViewStyle
 } from 'react-native';
-import { Theme } from 'styles/Index';
+import {Theme} from 'styles/Index';
 import MaskedSquircleView from '../MaskedSquircleView';
 
 interface Props {
@@ -23,20 +23,21 @@ interface Props {
 }
 
 const PrimaryButton = (props: Props): JSX.Element => {
-  const textColor = props.disabled === true ? Theme.colors.white :
-    props.type === 'default' || props.type === undefined
+  const textColor = props.disabled === true ? Theme.colors.white
+      : props.type === 'default' || props.type === undefined
       ? Theme.colors.white
       : Theme.colors.purple;
-  const bgColor = props.disabled === true ? Theme.colors.backgroundGrayDark :
-    props.type === 'default' || props.type === undefined
+      
+  const bgColor = props.disabled === true
+      ? Theme.colors.backgroundGrayDark
+      : props.type === 'default' || props.type === undefined
       ? Theme.colors.purple
       : Theme.colors.purpleBorder;
 
   const ButtonContainer = props.squircle === true && Platform.OS === 'ios' ? MaskedSquircleView : View;
 
   return (
-    <ButtonContainer
-      style={[styles.buttonContainer, props.style]}>
+    <ButtonContainer style={[styles.buttonContainer, props.style]}>
       <TouchableSurface disabled={props.disabled ?? false} onPress={onPress}>
         <View style={[styles.innerButtonContainer, {backgroundColor: bgColor}]}>
           {props.loading === true ? (
@@ -62,18 +63,18 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     overflow: 'hidden',
-    borderRadius: Theme.radius.large + Theme.radius.extraSmall,
+    borderRadius: Theme.radius.large + Theme.radius.extraSmall
   },
   innerButtonContainer: {
     flexGrow: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     paddingHorizontal: Theme.spacing.spacingM,
-    paddingVertical: Theme.spacing.spacingS + Theme.spacing.spacing2XS,
+    paddingVertical: Theme.spacing.spacingS + Theme.spacing.spacing2XS
   },
   title: {
-    ...Theme.typography.text.h5,
-  },
+    ...Theme.typography.text.h5
+  }
 });
 
 export default PrimaryButton;
