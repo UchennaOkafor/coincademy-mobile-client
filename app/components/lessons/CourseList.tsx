@@ -1,5 +1,5 @@
 import React, {memo} from 'react';
-import {StyleSheet, View, ScrollView} from 'react-native';
+import {StyleSheet, View, ScrollView, RefreshControlProps} from 'react-native';
 import equals from 'react-fast-compare';
 import {Course} from 'codegen/models/Course';
 import TitleSectionHeader from 'components/headers/TitleSectionHeader';
@@ -10,17 +10,18 @@ import {Lesson} from 'codegen';
 interface Props {
   courses: Course[];
   onLessonPressed: (lesson: Lesson) => void;
+  refreshControl?: React.ReactElement<RefreshControlProps>;
 }
 
 const CourseList = (props: Props): JSX.Element => {
   return (
-    <ScrollView>
+    <ScrollView
+      refreshControl={props.refreshControl}>
       {props.courses.map((course) => {
         return (
           <View key={`course_${course.id}`}>
             <TitleSectionHeader
               title={course.title}
-              rightText="See all"
               style={styles.sectionHeader}
             />
 

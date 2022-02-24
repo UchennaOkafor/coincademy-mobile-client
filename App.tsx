@@ -1,5 +1,7 @@
 import 'react-native-gesture-handler';
 import '@locales/Localization';
+import 'config/FirebaseSetup';
+
 import {StatusBar} from 'expo-status-bar';
 import {useFonts} from 'expo-font';
 import React from 'react';
@@ -10,6 +12,7 @@ import RootNavigation from '@app/navigation/Navigation';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {useUserStore} from 'state/useUserStore';
 import {Theme} from '@styles/Index';
+import { getAuth } from 'firebase/auth';
 
 export default function App() {
   const [loaded] = useFonts({
@@ -37,9 +40,17 @@ export default function App() {
     flex: 1
   };
 
+  if (userStore.misc.signedIn && !getAuth().currentUser) {
+    userStore.setAuthenticated(false);
+  }
+
   return (
     <SafeAreaProvider style={backgroundStyle}>
-      <StatusBar style="dark" backgroundColor={Theme.colors.backgroundGray} />
+      <StatusBar 
+        style="dark"
+        animated={true}
+        backgroundColor={Theme.colors.backgroundGray} 
+      />
       <RootNavigation
         onboarded={userStore.misc.onboarded}
         authenticated={userStore.misc.signedIn}

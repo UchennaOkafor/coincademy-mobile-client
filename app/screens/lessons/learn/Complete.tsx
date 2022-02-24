@@ -2,7 +2,7 @@ import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {Lesson} from 'codegen/models/Lesson';
 import PrimaryButton from 'components/buttons/PrimaryButton';
 import React, {useEffect, useRef, useState} from 'react';
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import {Theme} from 'styles/Index';
@@ -16,7 +16,7 @@ interface LessonRouteProps {
 
 const LessonOverview = (): JSX.Element => {
   const navigation = useNavigation();
-  const insets = useSafeAreaInsets();
+  const safeAreaInsets = useSafeAreaInsets();
   const route = useRoute<RouteProp<{params: LessonRouteProps}, 'params'>>();
   const confettiCannon = useRef<ConfettiCannon>(null);
   const {width: viewportWidth} = Dimensions.get('window');
@@ -32,6 +32,12 @@ const LessonOverview = (): JSX.Element => {
       sound?.unloadAsync();
     };
   }, []);
+
+  const buttonPadding: StyleProp<ViewStyle> = {
+    paddingBottom: safeAreaInsets.bottom > 0
+      ? Theme.spacing.spacingS + safeAreaInsets.bottom
+      : Theme.spacing.spacing2XL
+  };
 
   return (
     <SafeAreaView edges={['top']} style={styles.container}>
@@ -51,11 +57,7 @@ const LessonOverview = (): JSX.Element => {
             <Text style={styles.subtitle}>Keep up the good work!</Text>
           </View>
         </View>
-        <View
-          style={[
-            styles.buttonContainer,
-            {paddingBottom: Theme.spacing.spacingXL + insets.bottom}
-          ]}>
+        <View style={[styles.buttonContainer, buttonPadding]}>
           <PrimaryButton
             squircle={true}
             title="Complete"

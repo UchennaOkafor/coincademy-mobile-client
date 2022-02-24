@@ -3,8 +3,8 @@ import {
   BottomSheetModal,
   BottomSheetModalProvider
 } from '@gorhom/bottom-sheet';
-import {useNavigation} from '@react-navigation/core';
-import React, {useCallback, useMemo, useRef, useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import PrimaryButton from '@components/buttons/PrimaryButton';
@@ -15,6 +15,7 @@ import {Theme} from 'styles/Index';
 import {useUserStore} from 'state/useUserStore';
 import GradientText from 'components/texts/GradientText';
 import ForgotPassword from 'components/authentication/ForgotPassword';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const Login = (): JSX.Element => {
   const navigation = useNavigation();
@@ -23,14 +24,33 @@ const Login = (): JSX.Element => {
   const [authenticating, setAuthenticating] = useState(false);
   const userStore = useUserStore();
 
+  const [email, setEmail] = useState<string>();
+  const [password, setPassword] = useState<string>();
+  const [errorMessage, setErrorMessage] = useState<string>();
+
   // callbacks
   const handlePresentModalPress = useCallback(() => {
     bottomSheetModalRef.current?.present();
   }, []);
 
   const handleSheetChanges = useCallback((index: number) => {
-    //console.log('HandleSheetChanges', index);
   }, []);
+
+  useEffect(() => {
+    const authSubscription = getAuth().onAuthStateChanged((user) => {
+      if (user) {
+        userStore.setAuthenticated(true);
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Tabs' }]
+        });
+      }
+    });
+
+    return () => {
+      authSubscription();
+    }
+  });
 
   return (
     <SafeAreaView style={styles.root}>
@@ -53,7 +73,7 @@ const Login = (): JSX.Element => {
 
               <View style={styles.textInputContainer}>
                 <IconTextInput
-                  value="test@test.com"
+                  autoCorrect={false}
                   autoCapitalize="none"
                   keyboardType="email-address"
                   icon={
@@ -65,12 +85,12 @@ const Login = (): JSX.Element => {
                     />
                   }
                   placeholder="Email Address"
+                  onChangeText={(text: string) => setEmail(text.trim())}
                 />
               </View>
 
               <View style={styles.textInputContainer}>
                 <IconTextInput
-                  value="password"
                   autoCapitalize="none"
                   icon={
                     <Lock
@@ -82,22 +102,22 @@ const Login = (): JSX.Element => {
                   }
                   secureTextEntry={true}
                   placeholder="Password"
+                  onChangeText={(text: string) => setPassword(text)}
                 />
               </View>
+
+              {(!authenticating && errorMessage) && (
+                <Text style={styles.errorMessage}>
+                  {errorMessage}
+                </Text>
+              )}
 
               <PrimaryButton
                 squircle={true}
                 title="Login"
                 loading={authenticating}
                 onPress={() => {
-                  setAuthenticating(true);
-                  setTimeout(() => {
-                    userStore.setAuthenticated(true);
-                    navigation.reset({
-                      index: 0,
-                      routes: [{name: 'Tabs'}]
-                    });
-                  }, 1000);
+                  login();
                 }}
                 style={styles.loginButton}
               />
@@ -139,6 +159,27 @@ const Login = (): JSX.Element => {
       </GestureHandlerRootView>
     </SafeAreaView>
   );
+
+  async function login() {
+    if (!email && !password) {
+      setErrorMessage('Email or password cannot be left empty');
+      return;
+    }
+
+    setAuthenticating(true);
+    signInWithEmailAndPassword(getAuth(), email?.trim()!, password!)
+      .then((userCredential) => {
+        setErrorMessage('');
+        const user = userCredential.user;
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(error);
+        setAuthenticating(false);
+        setErrorMessage('Your email or password is incorrect');
+      });
+  }
 };
 
 const styles = StyleSheet.create({
@@ -221,6 +262,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignSelf: 'center',
     bottom: Theme.spacing.spacingM
+  },
+  errorMessage: {
+    ...Theme.typography.text.h7, 
+    ...Theme.typography.weight.medium, 
+    color: Theme.colors.red,
+    alignSelf: 'center',
+    marginBottom: Theme.spacing.spacingS, 
   }
 });
 

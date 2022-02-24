@@ -1,16 +1,22 @@
+import { User } from 'firebase/auth';
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Clock} from 'react-native-feather';
 import {Theme} from 'styles/Index';
 import Avatar from './Avatar';
+import * as timeago from 'timeago.js';
 
-interface Props {}
+interface Props {
+  user: User | null;
+}
 
 const ProfileCard = (props: Props): JSX.Element => {
+  const dateCreated = timeago.format(props.user?.metadata.creationTime ?? new Date());
+
   return (
     <View style={styles.profileContainer}>
       <View>
-        <Text style={styles.name}>Timmy Thick</Text>
+        <Text style={styles.name}>{props.user?.displayName}</Text>
         <View style={styles.joinedContainer}>
           <Clock
             stroke={Theme.colors.grayDark}
@@ -18,12 +24,11 @@ const ProfileCard = (props: Props): JSX.Element => {
             width={16}
             height={16}
           />
-          <Text style={styles.joinedText}>Joined Yesterday</Text>
+          <Text style={styles.joinedText}>Joined {dateCreated}</Text>
         </View>
       </View>
-      <Avatar
-        url="https://styles.redditmedia.com/t5_2th52/styles/communityIcon_wzrl8s0hx8a81.png"
-        initials="UO"
+      <Avatar 
+        user={props.user} 
         size={50}
       />
     </View>

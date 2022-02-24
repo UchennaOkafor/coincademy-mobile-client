@@ -4,9 +4,11 @@ import {
   Dimensions,
   Image,
   ScrollView,
+  StyleProp,
   StyleSheet,
   TouchableOpacity,
-  View
+  View,
+  ViewStyle
 } from 'react-native';
 import {Volume2, VolumeX, X} from 'react-native-feather';
 import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -30,7 +32,7 @@ interface LessonRouteProps {
 
 const LessonOverview = (): JSX.Element => {
   const navigation = useNavigation();
-  const insets = useSafeAreaInsets();
+  const safeAreaInsets = useSafeAreaInsets();
   const route = useRoute<RouteProp<{params: LessonRouteProps}, 'params'>>();
 
   const slides: ContentSlide[] = route.params.lesson.slides;
@@ -98,6 +100,12 @@ const LessonOverview = (): JSX.Element => {
     }
   }, [soundMuted, pauseSound, playSound]);
 
+  const buttonPadding: StyleProp<ViewStyle> = {
+    paddingBottom: safeAreaInsets.bottom > 0 
+      ? Theme.spacing.spacingS + safeAreaInsets.bottom 
+      : Theme.spacing.spacing2XL
+  };
+
   return (
     <SafeAreaView edges={['top']} style={styles.container}>
       <View style={styles.headerContainer}>
@@ -133,10 +141,7 @@ const LessonOverview = (): JSX.Element => {
         />
 
         <View
-          style={[
-            styles.buttonContainer,
-            {paddingBottom: Theme.spacing.spacingXL + insets.bottom}
-          ]}>
+          style={[styles.buttonContainer, buttonPadding]}>
           <PrimaryButton
             disabled={currentQuestionMultiChoice && selectedAnswerId == null}
             squircle={true}

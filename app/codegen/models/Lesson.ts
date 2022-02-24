@@ -17,5 +17,7 @@ export type Lesson = {
     readonly durationText?: string | null;
     smallPosterUrl?: string | null;
     largePosterUrl?: string | null;
+    order?: number;
+    contentSlides?: Array<ContentSlide> | null;
     readonly slides: Array<(BaseSlide | ContentSlide | MultipleChoiceQuestionSlide)>;
 };

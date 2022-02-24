@@ -3,11 +3,14 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
 import {Theme} from 'styles/Index';
 import ProfileCard from 'components/profile/ProfileCard';
+import { getAuth } from 'firebase/auth';
 
 const Profile = (): JSX.Element => {
+  const user = getAuth().currentUser;
+
   return (
     <View style={styles.container}>
-      <ProfileCard />
+      <ProfileCard user={user} />
       <LinearGradient
         style={styles.profileDivider}
         colors={[Theme.colors.orange, Theme.colors.blue]}

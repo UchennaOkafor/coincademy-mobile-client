@@ -9,6 +9,7 @@ export type MultipleChoiceQuestionSlide = {
     id: string;
     title?: string | null;
     narrationAudioUrl?: string | null;
+    order?: number;
     type: SlideType;
     createdAt: string;
     updatedAt?: string | null;

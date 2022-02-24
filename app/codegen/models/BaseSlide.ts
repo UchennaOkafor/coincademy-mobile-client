@@ -9,6 +9,7 @@ export type BaseSlide = {
     id: string;
     title?: string | null;
     narrationAudioUrl?: string | null;
+    order?: number;
     createdAt: string;
     updatedAt?: string | null;
 };

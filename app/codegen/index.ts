@@ -17,4 +17,3 @@ export type { TimeSpan } from './models/TimeSpan';
 
 export { CoursesService } from './services/CoursesService';
 export { LessonsService } from './services/LessonsService';
-export { SeedService } from './services/SeedService';

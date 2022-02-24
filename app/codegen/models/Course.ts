@@ -12,6 +12,7 @@ export type Course = {
     title?: string | null;
     description?: string | null;
     duration?: TimeSpan;
+    order?: number;
     readonly durationText?: string | null;
     lessons: Array<Lesson>;
 };

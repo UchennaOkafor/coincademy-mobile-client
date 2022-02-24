@@ -19,7 +19,7 @@ export type OpenAPIConfig = {
 };
 
 export const OpenAPI: OpenAPIConfig = {
-    BASE: 'https://eko-learn-api-staging.azurewebsites.net',
+    BASE: 'http://localhost:5000',
     VERSION: '1',
     WITH_CREDENTIALS: false,
     CREDENTIALS: 'include',

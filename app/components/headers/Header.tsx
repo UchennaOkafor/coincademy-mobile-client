@@ -1,10 +1,12 @@
+import Avatar from 'components/profile/Avatar';
+import { User } from 'firebase/auth';
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
 import {Settings} from 'react-native-feather';
 import {Theme} from 'styles/Index';
 
 interface Props {
-  title: string;
+  user: User | null;
   onSettingsPress: () => void;
   onProfilePress: () => void;
 }
@@ -12,17 +14,13 @@ interface Props {
 const Header = (props: Props): JSX.Element => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{props.title}</Text>
+      <Text style={styles.title}>{`Hi, ${props.user?.displayName?.split(' ')[0] ?? ''}  👋`}</Text>
+
       <View style={styles.iconsContainer}>
         <TouchableOpacity
           style={styles.secondIconContainer}
           onPress={props.onProfilePress}>
-          <Image
-            source={{
-              uri: 'https://styles.redditmedia.com/t5_2th52/styles/communityIcon_wzrl8s0hx8a81.png'
-            }}
-            style={styles.avatar}
-          />
+          <Avatar user={props.user} size={28}/>
         </TouchableOpacity>
         <TouchableOpacity onPress={props.onSettingsPress}>
           <Settings
@@ -50,16 +48,10 @@ const styles = StyleSheet.create({
   },
   iconsContainer: {
     flexDirection: 'row',
-    alignItems: 'center'
+    marginRight: Theme.spacing.spacing3XS
   },
   secondIconContainer: {
-    marginRight: Theme.spacing.spacingM,
-    marginLeft: Theme.spacing.spacing2XS
-  },
-  avatar: {
-    width: 28,
-    height: 28,
-    borderRadius: 28 / 2
+    marginRight: Theme.spacing.spacingS,
   },
   settingsIcon: {
     marginTop: Theme.spacing.spacing2XS

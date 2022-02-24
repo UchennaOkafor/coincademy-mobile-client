@@ -1,7 +1,8 @@
-import {useNavigation} from '@react-navigation/core';
+import {useNavigation} from '@react-navigation/native';
 import React, {useCallback, useEffect, useState} from 'react';
 import {
   ActivityIndicator,
+  RefreshControl,
   ScrollView,
   StyleSheet,
   Text,
@@ -12,12 +13,14 @@ import {Course, CoursesService, Lesson} from 'codegen';
 import {Theme} from 'styles/Index';
 import CourseList from 'components/lessons/CourseList';
 import FeaturedLessonCardCarousel from 'components/lessons/FeaturedLessonCardCarousel';
+import { getAuth } from 'firebase/auth';
 
 const Index = (): JSX.Element => {
   const navigation = useNavigation();
   const [courses, setCourses] = useState<Course[]>([]);
   const [loadingFailed, setLoadingFailed] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const onLessonPressed = useCallback(
     (lesson: Lesson) => navigation.navigate('Lesson', {lesson}),
@@ -43,13 +46,23 @@ const Index = (): JSX.Element => {
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
-      showsVerticalScrollIndicator={false}>
+      refreshControl={
+        <RefreshControl
+          refreshing={isRefreshing}
+          onRefresh={async () => {
+            setIsRefreshing(true);
+            await initialize();
+            setIsRefreshing(false);
+          }}
+        />
+      }
+      showsVerticalScrollIndicator={false}
+      >
       <Header
-        title="Hi, Timmy 👋"
+        user={getAuth().currentUser}
         onProfilePress={() => navigation.navigate('Profile')}
         onSettingsPress={() => navigation.navigate('Settings')}
       />
-
       {loadingFailed ? (
         <View style={styles.loadingFailedContainer}>
           <Text style={styles.loadingFailedTitle}>
@@ -76,7 +89,10 @@ const Index = (): JSX.Element => {
             </>
           )}
 
-          <CourseList courses={courses} onLessonPressed={onLessonPressed} />
+          <CourseList
+            courses={courses} 
+            onLessonPressed={onLessonPressed} 
+          />
         </>
       )}
     </ScrollView>

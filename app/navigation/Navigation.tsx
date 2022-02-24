@@ -66,7 +66,6 @@ const Tabs = () => {
           name="Home"
           component={Lessons}
           options={{
-            tabBarBadge: '9+',
             tabBarIcon: ({color, size}) => (
               <Home
                 stroke={color}
@@ -81,6 +80,7 @@ const Tabs = () => {
           name="Profile"
           component={Profile}
           options={{
+            // tabBarBadge: '3',
             tabBarIcon: ({color, size}) => (
               <User
                 stroke={color}

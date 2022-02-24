@@ -1,11 +1,21 @@
 import PrimaryButton from 'components/buttons/PrimaryButton';
 import IconTextInput from 'components/inputs/IconTextInput';
-import React from 'react';
+import React, { useState } from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Lock, Mail, User} from 'react-native-feather';
 import {Theme} from 'styles/Index';
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { useNavigation } from '@react-navigation/native';
+import { useUserStore } from 'state/useUserStore';
 
 const Register = (): JSX.Element => {
+  const navigation = useNavigation();
+  const useStore = useUserStore();
+  
+  const [displayName, setDisplayName] = useState<string>();
+  const [email, setEmail] = useState<string>();
+  const [password, setPassword] = useState<string>();
+
   return (
     <View style={styles.container}>
       <View>
@@ -24,13 +34,15 @@ const Register = (): JSX.Element => {
                 height={21}
               />
             }
-            placeholder="Fullname"
+            placeholder="Name"
+            onChangeText={(text: string) => setDisplayName(text)}
           />
         </View>
 
         <View style={styles.textInputContainer}>
           <IconTextInput
             autoCapitalize="none"
+            autoCorrect={false}
             keyboardType="email-address"
             icon={
               <Mail
@@ -41,6 +53,7 @@ const Register = (): JSX.Element => {
               />
             }
             placeholder="Email"
+            onChangeText={(text: string) => setEmail(text.trim())}
           />
         </View>
 
@@ -58,6 +71,7 @@ const Register = (): JSX.Element => {
               />
             }
             placeholder="Password"
+            onChangeText={(text: string) => setPassword(text)}
           />
         </View>
 
@@ -72,12 +86,51 @@ const Register = (): JSX.Element => {
       <View style={styles.registerButtonContainer}>
         <PrimaryButton
           title="Create account"
-          onPress={() => {}}
+          onPress={createAccount}
           squircle={true}
+          disabled={!validateEmail(email) || !validatePassword(password)}
         />
       </View>
     </View>
   );
+
+  function validateEmail(email?: string): boolean {
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    return email == null ? false : emailRegex.test(email ?? '');
+  }
+
+  function validatePassword(password?: string): boolean {
+    return (password?.length ?? 0) > 5;
+  }
+
+  function validateName(name: string): boolean {
+    return name.length > 2;
+  }
+
+  async function createAccount() {
+    const auth = getAuth();
+
+    createUserWithEmailAndPassword(auth, email!, password!)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+
+        updateProfile(user, {
+          displayName: displayName,
+        }).then(() => {
+          useStore.setAuthenticated(true);
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'Tabs' }]
+          });
+        });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(error);
+      });
+  }
 };
 
 const styles = StyleSheet.create({

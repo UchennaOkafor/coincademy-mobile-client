@@ -1,3 +1,4 @@
+import { User } from 'firebase/auth';
 import React from 'react';
 import {
   View,
@@ -5,13 +6,13 @@ import {
   Image,
   StyleSheet,
   StyleProp,
-  ImageStyle
+  ImageStyle,
+  TextStyle
 } from 'react-native';
 import {Theme} from 'styles/Index';
 
 interface Props {
-  url?: string;
-  initials?: string;
+  user: User | null;
   size: number;
 }
 
@@ -22,17 +23,25 @@ const Avatar = (props: Props): JSX.Element => {
     borderRadius: props.size / 2
   };
 
+  const initialsStyle: StyleProp<TextStyle> = {
+    fontSize: props.size / 2.3
+  };
+
   return (
     <>
-      {props.url ? (
-        <Image source={{uri: props.url}} style={avatarStyle} />
-      ) : (
+      {props.user?.photoURL == null ? (
         <View style={[styles.initialsContainer, avatarStyle]}>
-          <Text style={styles.initialsText}>{props.initials}</Text>
+          <Text style={[styles.initialsText, initialsStyle]}>{getInitials(props.user?.displayName)}</Text>
         </View>
+      ) : (
+        <Image source={{ uri: props.user?.photoURL }} style={avatarStyle} />
       )}
     </>
   );
+
+  function getInitials(name?: string | null): string {
+    return name?.split('')[0]?.charAt(0) ?? '?';
+  }
 };
 
 const styles = StyleSheet.create({
@@ -40,8 +49,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 2,
-    borderStyle: 'dashed',
-    borderColor: Theme.colors.purple
+    borderColor: Theme.colors.purpleLight
   },
   initialsText: {
     ...Theme.typography.text.h3
