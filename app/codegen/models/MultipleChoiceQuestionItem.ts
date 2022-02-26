@@ -3,14 +3,14 @@
 /* eslint-disable */
 
 import type { Choice } from './Choice';
-import type { SlideType } from './SlideType';
+import type { ItemType } from './ItemType';
 
-export type MultipleChoiceQuestionSlide = {
-    id: string;
+export type MultipleChoiceQuestionItem = {
+    id?: string | null;
     title?: string | null;
     narrationAudioUrl?: string | null;
     order?: number;
-    type: SlideType;
+    type: ItemType;
     createdAt: string;
     updatedAt?: string | null;
     content?: string | null;

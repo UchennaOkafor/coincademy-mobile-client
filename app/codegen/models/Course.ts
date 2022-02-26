@@ -6,9 +6,7 @@ import type { Lesson } from './Lesson';
 import type { TimeSpan } from './TimeSpan';
 
 export type Course = {
-    id?: string;
-    createdAt?: string;
-    updatedAt?: string;
+    id?: string | null;
     title?: string | null;
     description?: string | null;
     duration?: TimeSpan;

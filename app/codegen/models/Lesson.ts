@@ -2,15 +2,13 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { BaseSlide } from './BaseSlide';
-import type { ContentSlide } from './ContentSlide';
-import type { MultipleChoiceQuestionSlide } from './MultipleChoiceQuestionSlide';
+import type { BaseLessonItem } from './BaseLessonItem';
+import type { ContentItem } from './ContentItem';
+import type { MultipleChoiceQuestionItem } from './MultipleChoiceQuestionItem';
 import type { TimeSpan } from './TimeSpan';
 
 export type Lesson = {
-    id?: string;
-    createdAt?: string;
-    updatedAt?: string;
+    id?: string | null;
     title?: string | null;
     description?: string | null;
     duration?: TimeSpan;
@@ -18,6 +16,5 @@ export type Lesson = {
     smallPosterUrl?: string | null;
     largePosterUrl?: string | null;
     order?: number;
-    contentSlides?: Array<ContentSlide> | null;
-    readonly slides: Array<(BaseSlide | ContentSlide | MultipleChoiceQuestionSlide)>;
+    items: Array<(BaseLessonItem | ContentItem | MultipleChoiceQuestionItem)>;
 };

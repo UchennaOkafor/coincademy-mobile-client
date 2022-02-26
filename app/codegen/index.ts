@@ -6,13 +6,13 @@ export { CancelablePromise, CancelError } from './core/CancelablePromise';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
-export type { BaseSlide } from './models/BaseSlide';
+export type { BaseLessonItem } from './models/BaseLessonItem';
 export type { Choice } from './models/Choice';
-export type { ContentSlide } from './models/ContentSlide';
+export type { ContentItem } from './models/ContentItem';
 export type { Course } from './models/Course';
+export { ItemType } from './models/ItemType';
 export type { Lesson } from './models/Lesson';
-export type { MultipleChoiceQuestionSlide } from './models/MultipleChoiceQuestionSlide';
-export { SlideType } from './models/SlideType';
+export type { MultipleChoiceQuestionItem } from './models/MultipleChoiceQuestionItem';
 export type { TimeSpan } from './models/TimeSpan';
 
 export { CoursesService } from './services/CoursesService';

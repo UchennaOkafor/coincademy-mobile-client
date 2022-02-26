@@ -18,8 +18,8 @@ import MultipleChoiceQuestion from 'components/lessons/types/MultipleChoiceQuest
 import PrimaryButton from 'components/buttons/PrimaryButton';
 import ProgressBar from 'components/ProgressBar';
 import {Lesson} from 'codegen/models/Lesson';
-import {BaseSlide} from 'codegen/models/BaseSlide';
-import {ContentSlide, MultipleChoiceQuestionSlide} from 'codegen';
+import {BaseLessonItem} from 'codegen/models/BaseLessonItem';
+import {ContentItem, MultipleChoiceQuestionItem} from 'codegen';
 import {Theme} from 'styles/Index';
 import {useUserStore} from 'state/useUserStore';
 import {Audio} from 'expo-av';
@@ -35,16 +35,16 @@ const LessonOverview = (): JSX.Element => {
   const safeAreaInsets = useSafeAreaInsets();
   const route = useRoute<RouteProp<{params: LessonRouteProps}, 'params'>>();
 
-  const slides: ContentSlide[] = route.params.lesson.slides;
+  const lessonItems: ContentItem[] = route.params.lesson.items;
   const {width: viewportWidth} = Dimensions.get('window');
 
   const userStore = useUserStore();
-  const carousel = useRef<Carousel<BaseSlide>>(null);
+  const carousel = useRef<Carousel<BaseLessonItem>>(null);
 
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [hasReachedEnd, setHasReachedEnd] = useState(false);
   const [selectedAnswerId, setSelectedAnswerId] = useState<string | null>();
-  const [currentLessonSlides, setCurrentLessonSlides] = useState(slides.slice(0, 1));
+  const [currentLessonItems, setCurrentLessonItems] = useState(lessonItems.slice(0, 1));
   const [currentQuestionMultiChoice, setCurrentQuestionMultiChoice] = useState(false);
   const [revealMultiChoiceAnswer, setRevealMultiChoiceAnswer] = useState(false);
 
@@ -68,18 +68,18 @@ const LessonOverview = (): JSX.Element => {
   }, [networkSound, localSound]);
 
   useEffect(() => {
-    setHasReachedEnd(carouselIndex === slides.length - 1);
-    const isCurrentQuestionMultiChoice = slides[carouselIndex].type === 'MultiChoiceQuestion';
+    setHasReachedEnd(carouselIndex === lessonItems.length - 1);
+    const isCurrentQuestionMultiChoice = lessonItems[carouselIndex].type === 'MultiChoiceQuestion';
     setCurrentQuestionMultiChoice(isCurrentQuestionMultiChoice);
     if (isCurrentQuestionMultiChoice) {
       setSelectedAnswerId(null);
     }
 
-    playAudioFromUrl(slides[carouselIndex].narrationAudioUrl);
+    playAudioFromUrl(lessonItems[carouselIndex].narrationAudioUrl);
   }, [carouselIndex]);
 
   useEffect(() => {
-    slides
+    lessonItems
       .filter((e) => e.imageUrl != null)
       .forEach((e) => Image.prefetch(e.imageUrl!!));
   }, []);
@@ -118,7 +118,7 @@ const LessonOverview = (): JSX.Element => {
             strokeWidth={3}
           />
         </TouchableOpacity>
-        <ProgressBar value={carouselIndex + 1} max={slides.length} />
+        <ProgressBar value={carouselIndex + 1} max={lessonItems.length} />
         <TouchableOpacity onPress={() => setSoundMuted(!soundMuted)}>
           {soundMuted ? (
             <VolumeX stroke={Theme.colors.black} fill={Theme.colors.white} />
@@ -131,7 +131,7 @@ const LessonOverview = (): JSX.Element => {
         <Carousel
           vertical={false}
           ref={carousel}
-          data={currentLessonSlides}
+          data={currentLessonItems}
           renderItem={renderCarouselItem}
           sliderWidth={viewportWidth}
           itemWidth={viewportWidth}
@@ -150,7 +150,7 @@ const LessonOverview = (): JSX.Element => {
               if (currentQuestionMultiChoice) {
                 setRevealMultiChoiceAnswer(true);
 
-                const correctAnswer = (slides[carouselIndex] as MultipleChoiceQuestionSlide).correctAnswer?.id ?? '';
+                const correctAnswer = (lessonItems[carouselIndex] as MultipleChoiceQuestionItem).correctAnswer?.id ?? '';
                 if (selectedAnswerId !== correctAnswer) {
                   playAudioFromFile(FeedbackWrong);
                   return;
@@ -163,7 +163,7 @@ const LessonOverview = (): JSX.Element => {
                 disposeSound();
                 navigation.navigate('LessonComplete', {});
               } else {
-                setCurrentLessonSlides(slides.slice(0, carouselIndex + 2));
+                setCurrentLessonItems(lessonItems.slice(0, carouselIndex + 2));
                 requestAnimationFrame(() => {
                   carousel.current?.snapToNext(true);
                 });
@@ -175,7 +175,7 @@ const LessonOverview = (): JSX.Element => {
     </SafeAreaView>
   );
 
-  function renderCarouselItem({item}: {item: BaseSlide}): JSX.Element {
+  function renderCarouselItem({item}: {item: BaseLessonItem}): JSX.Element {
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
         {item.type === 'Content' && <GenericContent item={item} />}

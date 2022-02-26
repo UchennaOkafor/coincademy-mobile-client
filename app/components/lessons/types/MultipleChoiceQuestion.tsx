@@ -3,12 +3,12 @@ import {StyleSheet, Text, View} from 'react-native';
 import equals from 'react-fast-compare';
 import {Check, X} from 'react-native-feather';
 import TouchableSurface from 'components/TouchableSurface';
-import {MultipleChoiceQuestionSlide} from 'codegen/models/MultipleChoiceQuestionSlide';
+import {MultipleChoiceQuestionItem} from 'codegen/models/MultipleChoiceQuestionItem';
 import {Choice} from 'codegen/models/Choice';
 import {Theme} from 'styles/Index';
 
 interface Props {
-  item: MultipleChoiceQuestionSlide;
+  item: MultipleChoiceQuestionItem;
   onSelectionChanged: (id: string) => void;
   revealAnswer: boolean;
 }

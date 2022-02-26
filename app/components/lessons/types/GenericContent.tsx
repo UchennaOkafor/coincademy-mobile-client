@@ -2,12 +2,12 @@ import React, {memo} from 'react';
 import {Platform, StyleSheet, Text, View, Image} from 'react-native';
 import equals from 'react-fast-compare';
 import {Theme} from 'styles/Index';
-import {ContentSlide} from 'codegen/models/ContentSlide';
+import { ContentItem} from 'codegen/models/ContentItem';
 import {Video} from 'expo-av';
 import LottieView from 'components/lottie/LottieView';
 
 interface Props {
-  item: ContentSlide;
+  item: ContentItem;
 }
 
 const GenericContent = (props: Props): JSX.Element => {

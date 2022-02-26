@@ -2,11 +2,11 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { SlideType } from './SlideType';
+import type { ItemType } from './ItemType';
 
-export type BaseSlide = {
-    type: SlideType;
-    id: string;
+export type BaseLessonItem = {
+    type: ItemType;
+    id?: string | null;
     title?: string | null;
     narrationAudioUrl?: string | null;
     order?: number;
