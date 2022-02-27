@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   pagination: {
     paddingTop: Theme.spacing.spacingXL,
-    paddingBottom: Theme.spacing.spacingM
+    paddingBottom: Theme.spacing.spacingXS
   }
 });
 

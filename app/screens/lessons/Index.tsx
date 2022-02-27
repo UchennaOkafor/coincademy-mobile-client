@@ -14,6 +14,7 @@ import {Theme} from 'styles/Index';
 import CourseList from 'components/lessons/CourseList';
 import FeaturedLessonCardCarousel from 'components/lessons/FeaturedLessonCardCarousel';
 import { getAuth } from 'firebase/auth';
+import Spacer from 'components/common/Spacer';
 
 const Index = (): JSX.Element => {
   const navigation = useNavigation();
@@ -93,6 +94,7 @@ const Index = (): JSX.Element => {
             courses={courses} 
             onLessonPressed={onLessonPressed} 
           />
+          <Spacer vertical={Theme.spacing.spacingM} />
         </>
       )}
     </ScrollView>

@@ -11,6 +11,7 @@ import equals from 'react-fast-compare';
 import TouchableSurface from 'components/TouchableSurface';
 import {Lesson} from 'codegen/models/Lesson';
 import {Theme} from 'styles/Index';
+import Badge from 'components/badges/Badge';
 
 interface Props {
   lesson: Lesson;
@@ -26,17 +27,25 @@ const FeaturedLessonCard = (props: Props): JSX.Element => {
           <Image
             resizeMode="contain"
             source={{
-              uri: props.lesson.largePosterUrl ?? props.lesson.smallPosterUrl
+              uri: props.lesson.coverUrl ?? props.lesson.iconUrl
             }}
             style={styles.image}
           />
           <View style={styles.contentContainer}>
-            <Text style={styles.title} numberOfLines={1}>
-              {props.lesson.title}
-            </Text>
-            <Text style={styles.subtitle}>
-              {props.lesson.durationText} • Earn 3.5 EKO
-            </Text>
+            <View>
+              <Text style={styles.title} numberOfLines={1}>
+                {props.lesson.title}
+              </Text>
+              <Text style={styles.subtitle}>
+                {props.lesson.durationText} • Earn 3.5 EKO
+              </Text>
+            </View>
+            {/* <View style={styles.rightContentContainer}>
+              <Badge 
+                title="Promoted" 
+                primaryColor={Theme.colors.purpleLight} 
+              />
+            </View> */}
           </View>
         </View>
       </TouchableSurface>
@@ -53,8 +62,13 @@ const styles = StyleSheet.create({
     backgroundColor: Theme.colors.white
   },
   contentContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     paddingHorizontal: Theme.spacing.spacingM,
-    padding: Theme.spacing.spacingS + Theme.spacing.spacing3XS
+    paddingVertical: Theme.spacing.spacingS + Theme.spacing.spacing3XS
+  },
+  rightContentContainer: {
+    alignSelf: 'center'
   },
   image: {
     width: '100%',
@@ -64,17 +78,6 @@ const styles = StyleSheet.create({
     ...Theme.typography.text.h5,
     flexWrap: 'wrap',
     textAlign: 'left'
-  },
-  authorIcon: {
-    width: 24,
-    height: 24,
-    borderRadius: 24 / 2,
-    marginRight: Theme.spacing.spacingXS
-  },
-  author: {
-    ...Theme.typography.text.h7,
-    ...Theme.typography.weight.normal,
-    color: Theme.colors.grayDark
   },
   subtitle: {
     ...Theme.typography.text.h7,

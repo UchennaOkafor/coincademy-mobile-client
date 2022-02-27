@@ -15,9 +15,9 @@ const GenericContent = (props: Props): JSX.Element => {
     <>
       {props.item.lottieUrl && (
         <LottieView
-          source={{uri: props.item.lottieUrl}}
           loop
           autoPlay
+          source={{uri: props.item.lottieUrl}}
           style={styles.lottieContainer}
         />
       )}
@@ -37,10 +37,16 @@ const GenericContent = (props: Props): JSX.Element => {
           style={styles.video}
         />
       )}
-      <View style={styles.contentContainer}>
-        <Text style={styles.title}>{props.item.title}</Text>
-        <Text style={styles.content}>{props.item.content}</Text>
-      </View>
+      {(props.item.title || props.item.content) && (
+        <View style={styles.contentContainer}>
+          {props.item.title && (
+            <Text style={styles.title}>{props.item.title}</Text>
+          )}
+          {props.item.content && (
+            <Text style={styles.content}>{props.item.content}</Text>
+          )}
+        </View>
+      )}
     </>
   );
 };

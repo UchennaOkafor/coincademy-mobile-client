@@ -23,6 +23,7 @@ import {ContentItem, MultipleChoiceQuestionItem} from 'codegen';
 import {Theme} from 'styles/Index';
 import {useUserStore} from 'state/useUserStore';
 import {Audio} from 'expo-av';
+import ImageCard from 'components/common/ImageCard';
 const FeedbackWrong = require('@assets/sounds/feedback_wrong.mp3');
 const FeedbackCorrect = require('@assets/sounds/feedback_correct.mp3');
 
@@ -32,10 +33,24 @@ interface LessonRouteProps {
 
 const LessonOverview = (): JSX.Element => {
   const navigation = useNavigation();
-  const safeAreaInsets = useSafeAreaInsets();
   const route = useRoute<RouteProp<{params: LessonRouteProps}, 'params'>>();
+  const lessonItems: ContentItem[] = route.params.lesson.contents;
 
-  const lessonItems: ContentItem[] = route.params.lesson.items;
+  if (lessonItems.length == 0) {
+    requestAnimationFrame(() => {
+      navigation.setOptions({ headerShown: true, title: route.params.lesson.title });
+    });
+
+    return (
+      <ImageCard
+        title="Lesson contents are empty"
+        subtitle="This lesson hasn't been setup correctly"
+        source={require('@assets/images/ghost.png')}
+      />
+    )
+  }
+
+  const safeAreaInsets = useSafeAreaInsets();
   const {width: viewportWidth} = Dimensions.get('window');
 
   const userStore = useUserStore();
@@ -225,14 +240,14 @@ const LessonOverview = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Theme.colors.backgroundGray
+    backgroundColor: Theme.colors.backgroundGray,
   },
   rootContainer: {
     flex: 1,
     justifyContent: 'space-between'
   },
   headerContainer: {
-    marginTop: Theme.spacing.spacingL,
+    marginTop: Theme.spacing.spacingM,
     marginBottom: Theme.spacing.spacing3XL,
     flexDirection: 'row',
     alignItems: 'center',

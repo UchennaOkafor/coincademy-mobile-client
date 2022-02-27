@@ -13,8 +13,8 @@ export type Lesson = {
     description?: string | null;
     duration?: TimeSpan;
     readonly durationText?: string | null;
-    smallPosterUrl?: string | null;
-    largePosterUrl?: string | null;
+    iconUrl?: string | null;
+    coverUrl?: string | null;
     order?: number;
-    items: Array<(BaseLessonItem | ContentItem | MultipleChoiceQuestionItem)>;
+    contents: Array<(BaseLessonItem | ContentItem | MultipleChoiceQuestionItem)>;
 };

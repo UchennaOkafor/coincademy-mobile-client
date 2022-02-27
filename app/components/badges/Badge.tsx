@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View} from 'react-native';
 import {Theme} from 'styles/Index';
 
 interface Props {
@@ -18,14 +18,15 @@ const Badge = (props: Props): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     overflow: 'hidden',
-    borderRadius: Theme.radius.large,
+    borderRadius: Theme.radius.small + Theme.radius.extraSmall,
     paddingHorizontal: Theme.spacing.spacingXS + Theme.spacing.spacing3XS,
     paddingVertical: Theme.spacing.spacing3XS
   },
   title: {
     ...Theme.typography.text.h8,
     ...Theme.typography.weight.medium,
-    color: Theme.colors.white
+    color: Theme.colors.white,
+    lineHeight: Platform.select({ ios: null, android: 15 }) as number | undefined
   }
 });
 

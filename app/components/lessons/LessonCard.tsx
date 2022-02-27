@@ -45,7 +45,7 @@ const LessonCard = (props: Props): JSX.Element => {
         <View style={[styles.innerContainer, bgColor]}>
           <Image
             resizeMode="cover"
-            source={{uri: props.lesson.smallPosterUrl}}
+            source={{uri: props.lesson.iconUrl}}
             style={[styles.image, imageOpacity]}
           />
           <View style={styles.contentContainer}>
