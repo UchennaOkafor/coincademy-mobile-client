@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     textAlign: 'left'
   },
   registerButtonContainer: {
-    marginBottom: Theme.spacing.spacing2XL
+    marginBottom: Theme.spacing.spacingM
   },
   legalText: {
     ...Theme.typography.text.h7,

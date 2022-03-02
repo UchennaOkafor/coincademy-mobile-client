@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
   registerTouchable: {
     position: 'absolute',
     alignSelf: 'center',
-    bottom: Theme.spacing.spacingM
+    bottom: Theme.spacing.spacingXL
   },
   errorMessage: {
     ...Theme.typography.text.h7, 

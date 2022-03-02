@@ -43,11 +43,13 @@ const LessonCard = (props: Props): JSX.Element => {
     <View style={[styles.container, props.style]}>
       <TouchableSurface disabled={false} onPress={props.onPress}>
         <View style={[styles.innerContainer, bgColor]}>
-          <Image
-            resizeMode="cover"
-            source={{uri: props.lesson.iconUrl}}
-            style={[styles.image, imageOpacity]}
-          />
+          <View style={styles.image}>
+            <Image
+              resizeMode="cover"
+              source={{uri: props.lesson.iconUrl}}
+              style={[styles.image, imageOpacity]}
+            />
+          </View>
           <View style={styles.contentContainer}>
             <Text style={[styles.title, titleTextColor]} numberOfLines={1}>
               {props.lesson.title}
@@ -176,7 +178,8 @@ const styles = StyleSheet.create({
   image: {
     width: 50,
     height: 50,
-    borderRadius: Theme.radius.large
+    borderRadius: Theme.radius.large,
+    overflow: 'hidden'
   },
   title: {
     ...Theme.typography.text.h6,

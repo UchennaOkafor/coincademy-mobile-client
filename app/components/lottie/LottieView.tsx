@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {View} from 'react-native';
+import {ActivityIndicator, View, StyleSheet} from 'react-native';
 import DefaultLottieView, {AnimatedLottieViewProps} from 'lottie-react-native';
+import { Theme } from 'styles/Index';
 
 const LottieView = (props: AnimatedLottieViewProps): JSX.Element => {
   const [animationContent, setAnimationContent] = useState<any>();
@@ -39,10 +40,19 @@ const LottieView = (props: AnimatedLottieViewProps): JSX.Element => {
           ref={lottieRef}
           source={animationContent} />
       ) : (
-        <View style={props.style} />
+        <View style={[props.style, styles.loadingContainer]}>
+          <ActivityIndicator color={Theme.colors.backgroundGrayDark} />
+        </View>
       )}
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  loadingContainer: {
+    justifyContent: 'center', 
+    alignItems: 'center'
+  },
+});
 
 export default LottieView;
