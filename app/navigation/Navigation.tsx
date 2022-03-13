@@ -17,8 +17,9 @@ import LessonComplete from 'screens/lessons/learn/Complete';
 import Settings from 'screens/settings/Settings';
 
 import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Home, User} from 'react-native-feather';
+import {Home, TrendingUp, User} from 'react-native-feather';
 import {Theme} from 'styles/Index';
+import LoginAlt from 'screens/authentication/LoginAlt';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -45,10 +46,10 @@ const Tabs = () => {
         screenOptions={{
           headerShown: false,
           tabBarStyle: {
-            height: 58 + insets.bottom
+            height: 57 + insets.bottom
           },
           tabBarLabelStyle: {
-            marginBottom: 5,
+            marginBottom: 7,
             ...Theme.typography.text.tabBarFooter
           },
           tabBarIconStyle: {
@@ -76,6 +77,22 @@ const Tabs = () => {
             )
           }}
         />
+        {__DEV__ && (
+          <Tab.Screen
+            name="Discover"
+            component={Blank}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <TrendingUp
+                  stroke={color}
+                  fill={Theme.colors.transparent}
+                  width={iconSize}
+                  height={iconSize}
+                />
+              )
+            }}
+          />
+        )}
         <Tab.Screen
           name="Profile"
           component={Profile}
@@ -117,7 +134,10 @@ const RootNavigation = (props: StateProps) => {
             <Stack.Screen
               name="Lesson"
               component={Lesson}
-              options={{headerShown: false}}
+              options={{
+                headerShown: false,
+                gestureEnabled: false
+              }}
             />
             <Stack.Screen
               name="LessonComplete"

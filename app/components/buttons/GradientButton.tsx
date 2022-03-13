@@ -11,7 +11,7 @@ import {Theme} from 'styles/Index';
 import MaskedSquircleView from '../MaskedSquircleView';
 
 interface Props {
-  title: string;
+  text: string;
   onPress: () => void;
   squircle?: boolean;
 }
@@ -28,7 +28,7 @@ const GradientButton = (props: Props): JSX.Element => {
         style={styles.buttonContainer}>
         <TouchableNativeFeedback onPress={props.onPress}>
           <View style={styles.innerButtonContainer}>
-            <Text style={styles.title}>{props.title}</Text>
+            <Text style={styles.title}>{props.text}</Text>
           </View>
         </TouchableNativeFeedback>
       </LinearGradient>

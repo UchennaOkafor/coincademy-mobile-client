@@ -17,13 +17,14 @@ const LottieView = (props: AnimatedLottieViewProps): JSX.Element => {
         console.log(error);
       }
     } else {
-      setAnimationContent(props.source);
+      requestAnimationFrame(() => setAnimationContent(props.source));
     }
   }, [setAnimationContent]);
 
   //Autoplay doesn't work properly on Android, so this just plays it manually
   useEffect(() => {
     if (props.autoPlay) {
+      lottieRef.current?.reset();
       lottieRef.current?.play();
     }
   }, [animationContent]);

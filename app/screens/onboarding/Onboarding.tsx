@@ -12,7 +12,7 @@ import {useNavigation} from '@react-navigation/native';
 import OnboardingCarouselItem from '@models/OnboardingCarouselItem';
 import OnboardingData from 'resources/OnboardingData';
 import GradientButton from 'components/buttons/GradientButton';
-import PrimaryButton from 'components/buttons/PrimaryButton';
+import Button from 'components/buttons/Button';
 import {Theme} from 'styles/Index';
 import {useUserStore} from 'state/useUserStore';
 
@@ -58,14 +58,15 @@ const Onboarding = (): JSX.Element => {
       />
 
       {!hasReachedEnd ? (
-        <PrimaryButton
+        <Button
           squircle={true}
-          title="Next"
+          text="Next"
           onPress={() => carousel.current?.snapToNext()}
+          theme={Theme.buttons.primary}
         />
       ) : (
         <GradientButton
-          title="Get Started"
+          text="Get Started"
           onPress={navigateToLogin}
           squircle={true}
         />

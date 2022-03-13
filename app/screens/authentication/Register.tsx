@@ -1,4 +1,4 @@
-import PrimaryButton from 'components/buttons/PrimaryButton';
+import Button from 'components/buttons/Button';
 import IconTextInput from 'components/inputs/IconTextInput';
 import React, { useState } from 'react';
 import {StyleSheet, Text, View} from 'react-native';
@@ -84,10 +84,11 @@ const Register = (): JSX.Element => {
       </View>
 
       <View style={styles.registerButtonContainer}>
-        <PrimaryButton
-          title="Create account"
+        <Button
+          text="Create account"
           onPress={createAccount}
           squircle={true}
+          theme={Theme.buttons.primary}
           disabled={!validateEmail(email) || !validatePassword(password)}
         />
       </View>

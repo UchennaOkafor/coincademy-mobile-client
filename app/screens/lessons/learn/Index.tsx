@@ -15,7 +15,7 @@ import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Carousel} from 'react-native-snap-carousel';
 import GenericContent from 'components/lessons/types/GenericContent';
 import MultipleChoiceQuestion from 'components/lessons/types/MultipleChoiceQuestion';
-import PrimaryButton from 'components/buttons/PrimaryButton';
+import Button from 'components/buttons/Button';
 import ProgressBar from 'components/ProgressBar';
 import {Lesson} from 'codegen/models/Lesson';
 import {BaseLessonItem} from 'codegen/models/BaseLessonItem';
@@ -23,7 +23,8 @@ import {ContentItem, MultipleChoiceQuestionItem} from 'codegen';
 import {Theme} from 'styles/Index';
 import {useUserStore} from 'state/useUserStore';
 import {Audio} from 'expo-av';
-import ImageCard from 'components/common/ImageCard';
+import ImageContentCard from 'components/common/ImageContentCard';
+import AnimatedContentCard from '../../../components/common/AnimatedContentCard';
 const FeedbackWrong = require('@assets/sounds/feedback_wrong.mp3');
 const FeedbackCorrect = require('@assets/sounds/feedback_correct.mp3');
 
@@ -35,6 +36,7 @@ const LessonOverview = (): JSX.Element => {
   const navigation = useNavigation();
   const route = useRoute<RouteProp<{params: LessonRouteProps}, 'params'>>();
   const lessonItems: ContentItem[] = route.params.lesson.contents;
+  const [loading, setLoading] = useState(true);
 
   if (lessonItems.length == 0) {
     requestAnimationFrame(() => {
@@ -42,7 +44,7 @@ const LessonOverview = (): JSX.Element => {
     });
 
     return (
-      <ImageCard
+      <ImageContentCard
         title="Lesson contents are empty"
         subtitle="This lesson hasn't been setup correctly"
         source={require('@assets/images/ghost.png')}
@@ -83,20 +85,15 @@ const LessonOverview = (): JSX.Element => {
   }, [networkSound, localSound]);
 
   useEffect(() => {
-    setHasReachedEnd(carouselIndex === lessonItems.length - 1);
-    const isCurrentQuestionMultiChoice = lessonItems[carouselIndex].type === 'MultiChoiceQuestion';
-    setCurrentQuestionMultiChoice(isCurrentQuestionMultiChoice);
-    if (isCurrentQuestionMultiChoice) {
-      setSelectedAnswerId(null);
-    }
+    lessonItems.forEach((e) => {
+      if (e.imageUrl) {
+        Image.prefetch(e.imageUrl);
+      }
 
-    playAudioFromUrl(lessonItems[carouselIndex].narrationAudioUrl);
-  }, [carouselIndex]);
-
-  useEffect(() => {
-    lessonItems
-      .filter((e) => e.imageUrl != null)
-      .forEach((e) => Image.prefetch(e.imageUrl!!));
+      if (e.lottieUrl) {
+        fetch(e.lottieUrl);
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -106,6 +103,35 @@ const LessonOverview = (): JSX.Element => {
   }, [disposeSound]);
 
   useEffect(() => {
+    const loadingTimer = setTimeout(() => {
+      setLoading(false);
+    }, 1750);
+
+    return () => {
+      clearTimeout(loadingTimer);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (loading) {
+      return;
+    }
+
+    setHasReachedEnd(carouselIndex === lessonItems.length - 1);
+    const isCurrentQuestionMultiChoice = lessonItems[carouselIndex].type === 'MultiChoiceQuestion';
+    setCurrentQuestionMultiChoice(isCurrentQuestionMultiChoice);
+    if (isCurrentQuestionMultiChoice) {
+      setSelectedAnswerId(null);
+    }
+
+    playAudioFromUrl(lessonItems[carouselIndex].narrationAudioUrl);
+  }, [carouselIndex, loading]);
+
+  useEffect(() => {
+    if (loading) {
+      return;
+    }
+
     userStore.setSoundMuted(soundMuted);
 
     if (soundMuted) {
@@ -113,11 +139,22 @@ const LessonOverview = (): JSX.Element => {
     } else {
       playSound();
     }
-  }, [soundMuted, pauseSound, playSound]);
+  }, [soundMuted, loading, pauseSound, playSound]);
+
+  if (loading) {
+    return (
+      <AnimatedContentCard
+        loading={loading}
+        source={require('@assets/animations/lazydoge-rocket.json')}
+        title="Loading..."
+        subtitle="We're just getting things fired up"
+      />
+    );
+  }
 
   const buttonPadding: StyleProp<ViewStyle> = {
-    paddingBottom: safeAreaInsets.bottom > 0 
-      ? Theme.spacing.spacingS + safeAreaInsets.bottom 
+    paddingBottom: safeAreaInsets.bottom > 0
+      ? Theme.spacing.spacingS + safeAreaInsets.bottom
       : Theme.spacing.spacing2XL
   };
 
@@ -151,16 +188,17 @@ const LessonOverview = (): JSX.Element => {
           sliderWidth={viewportWidth}
           itemWidth={viewportWidth}
           onScrollIndexChanged={(index: number) => setCarouselIndex(index)}
-          useScrollView={true}
+          useScrollView={false}
           loop={false}
         />
 
         <View
           style={[styles.buttonContainer, buttonPadding]}>
-          <PrimaryButton
+          <Button
             disabled={currentQuestionMultiChoice && selectedAnswerId == null}
             squircle={true}
-            title={!hasReachedEnd ? 'Continue' : 'Finish'}
+            text={!hasReachedEnd ? 'Continue' : 'Finish'}
+            theme={Theme.buttons.primary}
             onPress={() => {
               if (currentQuestionMultiChoice) {
                 setRevealMultiChoiceAnswer(true);

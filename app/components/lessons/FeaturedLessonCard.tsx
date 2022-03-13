@@ -12,6 +12,7 @@ import TouchableSurface from 'components/TouchableSurface';
 import {Lesson} from 'codegen/models/Lesson';
 import {Theme} from 'styles/Index';
 import Badge from 'components/badges/Badge';
+import { Clock } from 'react-native-feather';
 
 interface Props {
   lesson: Lesson;
@@ -36,9 +37,18 @@ const FeaturedLessonCard = (props: Props): JSX.Element => {
               <Text style={styles.title} numberOfLines={1}>
                 {props.lesson.title}
               </Text>
-              <Text style={styles.subtitle}>
-                {props.lesson.durationText} • Earn 3.5 EKO
-              </Text>
+              <View style={styles.subtitleContainer}>
+                <Clock
+                  stroke={Theme.colors.gray}
+                  fill={Theme.colors.transparent}
+                  width={16}
+                  height={16}
+                />
+                <Text style={styles.subtitle}>
+                  {props.lesson.durationText}
+                  {/* {props.lesson.durationText} • Earn 3.5 EKO */}
+                </Text>
+              </View>
             </View>
             {/* <View style={styles.rightContentContainer}>
               <Badge 
@@ -79,12 +89,17 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     textAlign: 'left'
   },
+  subtitleContainer: {
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    marginTop: Theme.spacing.spacing2XS + Theme.spacing.spacing3XS
+  },
   subtitle: {
     ...Theme.typography.text.h7,
     ...Theme.typography.weight.normal,
     color: Theme.colors.grayDark,
     textAlign: 'left',
-    marginTop: Theme.spacing.spacing2XS + Theme.spacing.spacing3XS
+    marginLeft: Theme.spacing.spacing2XS + Theme.spacing.spacing3XS
   }
 });
 

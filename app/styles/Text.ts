@@ -76,8 +76,8 @@ export const text = StyleSheet.create({
     color: Colors.grayDark,
     fontSize: 16,
     fontFamily: 'Inter-Regular',
-    letterSpacing: 0.2,
-    lineHeight: 20
+    letterSpacing: 0.3,
+    lineHeight: 21
   },
   tabBarFooter: {
     fontSize: 11.5,

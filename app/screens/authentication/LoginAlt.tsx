@@ -5,19 +5,17 @@ import {
 } from '@gorhom/bottom-sheet';
 import {useNavigation} from '@react-navigation/native';
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import Button from '@components/buttons/Button';
-import IconTextInput from 'components/inputs/IconTextInput';
-import {Lock, Mail} from 'react-native-feather';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Theme} from 'styles/Index';
 import {useUserStore} from 'state/useUserStore';
 import GradientText from 'components/texts/GradientText';
-import ForgotPassword from 'components/authentication/ForgotPassword';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import Spacer from 'components/common/Spacer';
+import Button from 'components/buttons/Button';
 
-const Login = (): JSX.Element => {
+const LoginAlt = (): JSX.Element => {
   const navigation = useNavigation();
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const snapPoints = useMemo(() => ['42%', '55%'], []);
@@ -71,87 +69,38 @@ const Login = (): JSX.Element => {
                 Please sign in to continue
               </Text>
 
-              <View style={styles.textInputContainer}>
-                <IconTextInput
-                  autoCorrect={false}
-                  autoCapitalize="none"
-                  keyboardType="email-address"
-                  icon={
-                    <Mail
-                      stroke="gray"
-                      fill={Theme.colors.transparent}
-                      width={21}
-                      height={21}
-                    />
-                  }
-                  placeholder="Email Address"
-                  onChangeText={(text: string) => setEmail(text.trim())}
-                />
-              </View>
+              <Button
+                squircle={true}
+                text="Sign in with Apple"
+                loading={authenticating}
+                leadingIcon={
+                  <Image source={{ uri: 'https://cdn1.iconfinder.com/data/icons/logotypes/32/apple-256.png' }} style={{ tintColor: 'white', width: 20, height: 20, marginRight: 10}} />
+                }
+                onPress={login}
+                theme={Theme.buttons.black}
+              />
 
-              <View style={styles.textInputContainer}>
-                <IconTextInput
-                  autoCapitalize="none"
-                  icon={
-                    <Lock
-                      stroke="gray"
-                      fill={Theme.colors.transparent}
-                      width={21}
-                      height={21}
-                    />
-                  }
-                  secureTextEntry={true}
-                  placeholder="Password"
-                  onChangeText={(text: string) => setPassword(text)}
-                />
-              </View>
+              <Spacer />
 
+              <Button
+                squircle={true}
+                text="Sign in with Google"
+                loading={authenticating}
+                leadingIcon={
+                  <Image source={{ uri: 'https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Google-256.png' }} style={{ width: 20, height: 20, marginRight: 10 }} />
+                }
+                onPress={login}
+                theme={Theme.buttons.white}
+              />
+
+              <Spacer />
+              
               {(!authenticating && errorMessage) && (
                 <Text style={styles.errorMessage}>
                   {errorMessage}
                 </Text>
               )}
-
-              <Button
-                squircle={true}
-                text="Login"
-                loading={authenticating}
-                onPress={login}
-                theme={Theme.buttons.primary}
-              />
-
-              <TouchableOpacity
-                onPress={handlePresentModalPress}
-                style={styles.forgotPasswordContainer}>
-                <Text style={styles.forgotPasswordText}>
-                  Forgot your password?
-                </Text>
-              </TouchableOpacity>
-
-              <BottomSheetModal
-                ref={bottomSheetModalRef}
-                index={0}
-                snapPoints={snapPoints}
-                backdropComponent={(backdropProps) => (
-                  <BottomSheetBackdrop
-                    {...backdropProps}
-                    disappearsOnIndex={-1}
-                    enableTouchThrough={true}
-                  />
-                )}
-                onChange={handleSheetChanges}>
-                <ForgotPassword />
-              </BottomSheetModal>
             </View>
-
-            <TouchableOpacity
-              onPress={() => navigation.navigate('Register')}
-              style={styles.registerTouchable}>
-              <Text style={styles.signupPrefixText}>
-                Don't have an account?
-                <Text style={styles.signupText}> Register!</Text>
-              </Text>
-            </TouchableOpacity>
           </View>
         </BottomSheetModalProvider>
       </GestureHandlerRootView>
@@ -267,4 +216,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Login;
+export default LoginAlt;

@@ -1,51 +1,55 @@
 import TouchableSurface from 'components/TouchableSurface';
-import React from 'react';
+import React, { ReactElement } from 'react';
 import {
   ActivityIndicator,
   Platform,
-  StyleProp,
   StyleSheet,
   Text,
   View,
-  ViewStyle
+  ViewStyle,
+  StyleProp
 } from 'react-native';
+import { ButtonTheme } from 'styles/Buttons';
 import {Theme} from 'styles/Index';
 import MaskedSquircleView from '../MaskedSquircleView';
 
 interface Props {
-  title: string;
+  text: string;
   onPress: () => void;
-  type?: 'default' | 'soft';
-  style?: StyleProp<ViewStyle>;
   loading?: boolean;
   squircle?: boolean;
   disabled?: boolean;
+  leadingIcon?: ReactElement;
+  trailingIcon?: ReactElement;
+  theme: ButtonTheme;
 }
 
-const PrimaryButton = (props: Props): JSX.Element => {
-  const textColor = props.disabled === true ? Theme.colors.white
-      : props.type === 'default' || props.type === undefined
-      ? Theme.colors.white
-      : Theme.colors.purple;
-      
-  const bgColor = props.disabled === true
-      ? Theme.colors.backgroundGrayDark
-      : props.type === 'default' || props.type === undefined
-      ? Theme.colors.purple
-      : Theme.colors.purpleBorder;
+const Button = (props: Props): JSX.Element => {
+  const textColor = props.disabled === true ? props.theme.text.disabled : props.theme.text.enabled;
+  const bgColor = props.disabled === true ? props.theme.background.disabled : props.theme.background.enabled;
+  const border = props.disabled === true ? props.theme.border?.disabled : props.theme.border?.enabled;
+
+  const bgStyle: StyleProp<ViewStyle> = {
+    backgroundColor: bgColor,
+    borderColor: border
+  };
 
   const ButtonContainer = props.squircle === true && Platform.OS === 'ios' ? MaskedSquircleView : View;
 
   return (
-    <ButtonContainer style={[styles.buttonContainer, props.style]}>
+    <ButtonContainer style={styles.buttonContainer}>
       <TouchableSurface disabled={props.disabled ?? false} onPress={onPress}>
-        <View style={[styles.innerButtonContainer, {backgroundColor: bgColor}]}>
+        <View style={[styles.innerButtonContainer, bgStyle]}>
           {props.loading === true ? (
             <ActivityIndicator color={Theme.colors.white} />
           ) : (
-            <Text style={[styles.title, {color: textColor}]}>
-              {props.title}
-            </Text>
+            <>
+              {props.leadingIcon}
+              <Text style={[styles.text, {color: textColor}]}>
+                {props.text}
+              </Text>
+              {props.leadingIcon}
+            </>
           )}
         </View>
       </TouchableSurface>
@@ -72,9 +76,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: Theme.spacing.spacingM,
     paddingVertical: Theme.spacing.spacingS + Theme.spacing.spacing2XS
   },
-  title: {
+  text: {
     ...Theme.typography.text.h5
   }
 });
 
-export default PrimaryButton;
+export default Button;

@@ -1,6 +1,6 @@
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {Lesson} from 'codegen/models/Lesson';
-import PrimaryButton from 'components/buttons/PrimaryButton';
+import Button from 'components/buttons/Button';
 import React, {useEffect, useRef, useState} from 'react';
 import {Dimensions, StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -18,14 +18,14 @@ const LessonOverview = (): JSX.Element => {
   const navigation = useNavigation();
   const safeAreaInsets = useSafeAreaInsets();
   const route = useRoute<RouteProp<{params: LessonRouteProps}, 'params'>>();
-  const confettiCannon = useRef<ConfettiCannon>(null);
+  //const confettiCannon = useRef<ConfettiCannon>(null);
   const {width: viewportWidth} = Dimensions.get('window');
   const [sound, setSound] = React.useState<Audio.Sound>();
   const userStore = useUserStore();
   const [soundMuted] = useState(userStore.preferences.sound.muted);
 
   useEffect(() => {
-    confettiCannon.current?.start();
+    //confettiCannon.current?.start();
     playDingSound();
 
     return () => {
@@ -48,7 +48,6 @@ const LessonOverview = (): JSX.Element => {
             loop={false}
             autoPlay
             speed={0.8}
-            resizeMode="center"
             style={[styles.animation, {width: viewportWidth}]}
           />
 
@@ -58,9 +57,10 @@ const LessonOverview = (): JSX.Element => {
           </View>
         </View>
         <View style={[styles.buttonContainer, buttonPadding]}>
-          <PrimaryButton
+          <Button
             squircle={true}
-            title="Complete"
+            text="Complete"
+            theme={Theme.buttons.primary}
             onPress={() => {
               navigation.navigate('Home');
             }}
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   },
   animation: {
     aspectRatio: 200 / 100,
-    transform: [{scale: 1.35}]
+    transform: [{scale: 1.55}]
   },
   textContainer: {
     padding: Theme.spacing.spacingM

@@ -9,22 +9,20 @@ interface Props {
   subtitle?: string;
 }
 
-const ImageCard = (props: Props): JSX.Element => {
+const ImageContentCard = (props: Props): JSX.Element => {
   return (
     <View style={styles.container}>
-      <View style={styles.innerContainer}>
-        {props.source && (
-          <Image
-            resizeMode="contain"
-            style={styles.image}
-            source={props.source}
-          />
-        )}
-        <Spacer />
-        <Text style={styles.title}>{props.title}</Text>
-        <Spacer vertical={Theme.spacing.spacing3XS} />
-        <Text style={styles.subtitle}>{props.subtitle}</Text>
-      </View>
+      {props.source && (
+        <Image
+          resizeMode="contain"
+          style={styles.image}
+          source={props.source}
+        />
+      )}
+      <Spacer />
+      <Text style={styles.title}>{props.title}</Text>
+      <Spacer vertical={Theme.spacing.spacing3XS} />
+      <Text style={styles.subtitle}>{props.subtitle}</Text>
     </View>
   );
 };
@@ -33,11 +31,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Theme.colors.backgroundGray,
-  },
-  innerContainer: {
-    flex: 1, 
-    justifyContent: 'center', 
-    alignItems: 'center', 
+    justifyContent: 'center',
+    alignItems: 'center',
     marginHorizontal: Theme.spacing.spacingL
   },
   title: {
@@ -51,9 +46,9 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   image: {
-    width: 120, 
+    width: 120,
     height: 120
   }
 });
 
-export default ImageCard;
+export default ImageContentCard;
