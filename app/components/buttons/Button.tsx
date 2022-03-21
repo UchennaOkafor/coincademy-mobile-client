@@ -48,7 +48,7 @@ const Button = (props: Props): JSX.Element => {
               <Text style={[styles.text, {color: textColor}]}>
                 {props.text}
               </Text>
-              {props.leadingIcon}
+              {props.trailingIcon}
             </>
           )}
         </View>

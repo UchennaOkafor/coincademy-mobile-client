@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     backgroundColor: Theme.colors.backgroundGray,
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: Theme.spacing.spacingL
+    paddingHorizontal: Theme.spacing.spacingL
   },
   title: {
     ...Theme.typography.text.h4, 
