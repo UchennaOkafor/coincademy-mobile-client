@@ -53,7 +53,8 @@ export default function App() {
       />
       <RootNavigation
         onboarded={userStore.misc.onboarded}
-        authenticated={userStore.misc.signedIn}
+        // authenticated={userStore.misc.signedIn}
+        authenticated={userStore.misc.onboarded}
         authToken="EMTPY_TOKEN"
       />
     </SafeAreaProvider>

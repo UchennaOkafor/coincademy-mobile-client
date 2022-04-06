@@ -23,7 +23,7 @@ const Profile = (): JSX.Element => {
           style={styles.emptyImage}
           source={require('@assets/images/zen.png')}
         />
-        <Text style={styles.emptyText}>Nothing to see here...</Text>
+        <Text style={styles.emptyText}>Profile coming soon...</Text>
       </View>
     </View>
   );

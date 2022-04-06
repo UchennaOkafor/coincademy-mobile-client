@@ -18,6 +18,7 @@ const Settings = (): JSX.Element => {
   const state = useUserStore();
   const sections = SettingsListData.getSettingsSections();
   const safeAreaInsets = useSafeAreaInsets();
+  const user = getAuth().currentUser;
 
   const versionStyle: StyleProp<ViewStyle> = {
     marginBottom: safeAreaInsets.bottom > 0 ? 0 : Theme.spacing.spacingL
@@ -27,11 +28,17 @@ const Settings = (): JSX.Element => {
     <SafeAreaView style={styles.container} edges={['bottom']}>
       <ScrollView>
         <Spacer />
-        <HorizontalProfileCard 
-          user={getAuth().currentUser}
-          onPress={() => navigation.navigate('Profile')} 
-        />
-        <Spacer />
+
+        {user && (
+          <>
+            <HorizontalProfileCard
+              user={user}
+              onPress={() => navigation.navigate('Profile')}
+            />
+            <Spacer />
+          </>
+        )}
+        
         <SettingsSections
           sections={sections}
           onItemPressed={async (id: string) => {

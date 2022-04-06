@@ -12,9 +12,11 @@ interface Props {
 }
 
 const Header = (props: Props): JSX.Element => {
+  const name = props.user?.displayName?.split(' ')[0] ?? '';
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{`Hi, ${props.user?.displayName?.split(' ')[0] ?? ''}  👋`}</Text>
+      <Text style={styles.title}>{name === '' ? 'Hello' : `Hi, ${name}`}  👋</Text>
 
       <View style={styles.iconsContainer}>
         <TouchableOpacity

@@ -16,12 +16,12 @@ export interface SettingsSections {
 export default class SettingsListData {
   static getSettingsSections(): SettingsSections[] {
     const loginItems: SettingsItem[] = [
-      {
-        id: 'logout',
-        title: 'Logout',
-        icon: LogOut,
-        color: Theme.colors.red
-      },
+      // {
+      //   id: 'logout',
+      //   title: 'Logout',
+      //   icon: LogOut,
+      //   color: Theme.colors.red
+      // },
       {
         id: 'clear_cache',
         title: 'Clear cache',

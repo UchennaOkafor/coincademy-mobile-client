@@ -9,6 +9,7 @@ import {
   ImageStyle,
   TextStyle
 } from 'react-native';
+import { User as UserIcon } from 'react-native-feather';
 import {Theme} from 'styles/Index';
 
 interface Props {
@@ -29,12 +30,27 @@ const Avatar = (props: Props): JSX.Element => {
 
   return (
     <>
-      {props.user?.photoURL == null ? (
-        <View style={[styles.initialsContainer, avatarStyle]}>
-          <Text style={[styles.initialsText, initialsStyle]}>{getInitials(props.user?.displayName)}</Text>
-        </View>
+      {props.user == null ? (
+        <>
+          <View style={[styles.initialsContainer, avatarStyle]}>
+            <UserIcon
+              stroke={Theme.colors.grayDark900}
+              strokeWidth={2.25}
+              width={props.size / 2}
+              height={props.size / 2}
+            />
+          </View>
+        </>
       ) : (
-        <Image source={{ uri: props.user?.photoURL }} style={avatarStyle} />
+        <>
+          {props.user?.photoURL == null ? (
+            <View style={[styles.initialsContainer, avatarStyle]}>
+              <Text style={[styles.initialsText, initialsStyle]}>{getInitials(props.user?.displayName)}</Text>
+            </View>
+          ) : (
+            <Image source={{ uri: props.user?.photoURL }} style={avatarStyle} />
+          )}
+        </>
       )}
     </>
   );

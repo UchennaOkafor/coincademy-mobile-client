@@ -1,22 +1,34 @@
 import { User } from 'firebase/auth';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Clock} from 'react-native-feather';
 import {Theme} from 'styles/Index';
 import Avatar from './Avatar';
 import * as timeago from 'timeago.js';
+import * as Application from 'expo-application';
 
 interface Props {
   user: User | null;
 }
 
 const ProfileCard = (props: Props): JSX.Element => {
-  const dateCreated = timeago.format(props.user?.metadata.creationTime ?? new Date());
+  const [dateJoined, setDateJoined] = useState('');
 
+  useEffect(() => {
+    const initialize = async () => {
+      const timeInstalled = await Application.getInstallationTimeAsync();
+      const dateJoined = props.user?.metadata.creationTime;
+
+      setDateJoined(timeago.format(dateJoined ?? timeInstalled));
+    }
+
+    initialize();
+  });
+  
   return (
     <View style={styles.profileContainer}>
       <View>
-        <Text style={styles.name}>{props.user?.displayName}</Text>
+        <Text style={styles.name}>{props.user?.displayName ?? 'You'}</Text>
         <View style={styles.joinedContainer}>
           <Clock
             stroke={Theme.colors.grayDark}
@@ -24,7 +36,7 @@ const ProfileCard = (props: Props): JSX.Element => {
             width={16}
             height={16}
           />
-          <Text style={styles.joinedText}>Joined {dateCreated}</Text>
+          <Text style={styles.joinedText}>Joined {dateJoined}</Text>
         </View>
       </View>
       <Avatar 
