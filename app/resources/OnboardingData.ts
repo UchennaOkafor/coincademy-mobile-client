@@ -13,7 +13,7 @@ export default class OnboardingData {
         uri: 'https://ouch-cdn2.icons8.com/vS0N5EBMzu5sCInhQ68aMnucLx67F8oskyszSgpBDWM/rs:fit:456:456/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvMjM0/L2YwZTI2ZTEzLWIy/ZWEtNDFkMi05MjRh/LTY4ZDg1Y2UyYTVi/OC5zdmc.png',
         title: 'Earn Rewards',
         description:
-          'Get rewarded with Eko tokens as you learn and complete challenges.'
+          'Get rewarded with Coincademy tokens as you learn and complete challenges.'
       },
       {
         uri: 'https://ouch-cdn2.icons8.com/42ASHOv4yirDsYAUQni0xeWBS7kf11a3AUtt3Wpzxl8/rs:fit:456:456/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9zdmcvODc2/LzE1ZjJhOGVkLTE1/NTgtNDc2MC04NGIz/LTExOTZhODQ4Yzk5/My5zdmc.png',

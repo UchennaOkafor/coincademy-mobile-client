@@ -62,7 +62,7 @@ const LoginAlt = (): JSX.Element => {
                   source={require('@assets/images/app/icon.png')}
                   style={styles.logoIcon}
                 />
-                <GradientText style={styles.logoText}>Eko</GradientText>
+                <GradientText style={styles.logoText}>Coincademy</GradientText>
               </View>
               <Text style={styles.loginText}>Login</Text>
               <Text style={styles.loginSubText}>

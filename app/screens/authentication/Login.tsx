@@ -64,7 +64,7 @@ const Login = (): JSX.Element => {
                   source={require('@assets/images/app/icon.png')}
                   style={styles.logoIcon}
                 />
-                <GradientText style={styles.logoText}>Eko</GradientText>
+                <GradientText style={styles.logoText}>Coincademy</GradientText>
               </View>
               <Text style={styles.loginText}>Login</Text>
               <Text style={styles.loginSubText}>
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   logoText: {
-    ...Theme.typography.text.h3,
+    ...Theme.typography.text.h2,
     marginLeft: Theme.spacing.spacingXS
   },
   logoIcon: {

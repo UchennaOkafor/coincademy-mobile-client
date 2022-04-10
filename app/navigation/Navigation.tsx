@@ -20,6 +20,7 @@ import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Home, TrendingUp, User} from 'react-native-feather';
 import {Theme} from 'styles/Index';
 import LoginAlt from 'screens/authentication/LoginAlt';
+import Empty from 'screens/Empty';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -29,10 +30,6 @@ interface StateProps {
   authenticated: boolean;
   authToken: string;
 }
-
-const Blank = () => {
-  return <Text>Loading...</Text>;
-};
 
 const Tabs = () => {
   const insets = useSafeAreaInsets();
@@ -80,7 +77,7 @@ const Tabs = () => {
         {__DEV__ && (
           <Tab.Screen
             name="Discover"
-            component={Blank}
+            component={Empty}
             options={{
               tabBarIcon: ({ color, size }) => (
                 <TrendingUp
@@ -128,7 +125,7 @@ const RootNavigation = (props: StateProps) => {
           <>
             <Stack.Screen
               name="Blank"
-              component={Blank}
+              component={Empty}
               options={{headerShown: false}}
             />
             <Stack.Screen
