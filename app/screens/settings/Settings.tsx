@@ -44,11 +44,11 @@ const Settings = (): JSX.Element => {
           onItemPressed={async (id: string) => {
             switch (id) {
               case 'privacy_policy':
-                WebBrowser.openBrowserAsync('https://expo.dev');
+                WebBrowser.openBrowserAsync('https://www.privacypolicies.com/live/f86ecf9b-78fb-4759-a075-8d6e2319f10b');
                 break;
 
               case 'terms_of_service':
-                WebBrowser.openBrowserAsync('https://expo.dev');
+                WebBrowser.openBrowserAsync('https://www.privacypolicies.com/live/1067a25b-a409-4b4f-b93a-e8862aa15ff7');
                 break;
 
               case 'logout':

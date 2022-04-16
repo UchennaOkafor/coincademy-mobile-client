@@ -19,11 +19,11 @@ const Header = (props: Props): JSX.Element => {
       <Text style={styles.title}>{name === '' ? 'Hello' : `Hi, ${name}`}  👋</Text>
 
       <View style={styles.iconsContainer}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.secondIconContainer}
           onPress={props.onProfilePress}>
           <Avatar user={props.user} size={28}/>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity onPress={props.onSettingsPress}>
           <Settings
             stroke={Theme.colors.grayDark}

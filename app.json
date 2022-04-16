@@ -1,23 +1,29 @@
 {
   "expo": {
     "name": "Coincademy",
-    "slug": "eko-mobile-client",
+    "slug": "coincademy-mobile-client",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/images/app/icon.png",
     "splash": {
       "image": "./app/assets/images/app/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#000"
+      "backgroundColor": "#FFFFFF"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.cryptoverse",
+      "buildNumber": "3"
     },
     "android": {
+      "package": "com.cryptoverse",
+      "versionCode": 3,
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/images/app/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

@@ -17,7 +17,7 @@ import LessonComplete from 'screens/lessons/learn/Complete';
 import Settings from 'screens/settings/Settings';
 
 import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Home, TrendingUp, User} from 'react-native-feather';
+import {HelpCircle, Home, TrendingUp, User} from 'react-native-feather';
 import {Theme} from 'styles/Index';
 import LoginAlt from 'screens/authentication/LoginAlt';
 import Empty from 'screens/Empty';
@@ -64,6 +64,7 @@ const Tabs = () => {
           name="Home"
           component={Lessons}
           options={{
+            tabBarStyle: {display: 'none'},
             tabBarIcon: ({color, size}) => (
               <Home
                 stroke={color}
@@ -81,6 +82,22 @@ const Tabs = () => {
             options={{
               tabBarIcon: ({ color, size }) => (
                 <TrendingUp
+                  stroke={color}
+                  fill={Theme.colors.transparent}
+                  width={iconSize}
+                  height={iconSize}
+                />
+              )
+            }}
+          />
+        )}
+        {__DEV__ && (
+          <Tab.Screen
+            name="Help"
+            component={Empty}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <HelpCircle
                   stroke={color}
                   fill={Theme.colors.transparent}
                   width={iconSize}
@@ -124,9 +141,9 @@ const RootNavigation = (props: StateProps) => {
         {props.authenticated ? (
           <>
             <Stack.Screen
-              name="Blank"
-              component={Empty}
-              options={{headerShown: false}}
+              name="Tabs"
+              component={Tabs}
+              options={{ headerShown: false }}
             />
             <Stack.Screen
               name="Lesson"
@@ -151,11 +168,6 @@ const RootNavigation = (props: StateProps) => {
                 headerShown: true,
                 gestureEnabled: false
               }}
-            />
-            <Stack.Screen
-              name="Tabs"
-              component={Tabs}
-              options={{headerShown: false}}
             />
           </>
         ) : (

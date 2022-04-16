@@ -21,7 +21,7 @@ const AnimatedContentCard = (props: Props): JSX.Element => {
         source={props.source}
         autoPlay={true}
         speed={1.25}
-        style={{width: 170, height: 170}}
+        style={{width: 160, height: 160}}
       />
       <Text style={styles.title}>
         {props.title}
