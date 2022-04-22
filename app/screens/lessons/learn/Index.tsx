@@ -25,6 +25,8 @@ import {useUserStore} from 'state/useUserStore';
 import {Audio} from 'expo-av';
 import ImageContentCard from 'components/common/ImageContentCard';
 import AnimatedContentCard from '../../../components/common/AnimatedContentCard';
+import ConfirmActionModal from 'components/modals/ConfirmActionModal';
+import ContentModal from 'components/modals/ContentModal';
 const FeedbackWrong = require('@assets/sounds/feedback_wrong.mp3');
 const FeedbackCorrect = require('@assets/sounds/feedback_correct.mp3');
 
@@ -69,19 +71,22 @@ const LessonOverview = (): JSX.Element => {
   const [localSound, setLocalSound] = useState<Audio.Sound>();
   const [soundMuted, setSoundMuted] = useState(userStore.preferences.sound.muted);
 
-  const pauseSound = useCallback(() => {
-    networkSound?.pauseAsync();
-    localSound?.pauseAsync();
+  const [exitModalVisible, setExitModalVisible] = useState(false);
+  const [contentModalVisible, setContentModalVisible] = useState(userStore.preferences.sound.muted);
+
+  const pauseSound = useCallback(async () => {
+    await networkSound?.pauseAsync();
+    await localSound?.pauseAsync();
   }, [networkSound, localSound]);
 
-  const playSound = useCallback(() => {
-    networkSound?.playAsync();
-    localSound?.playAsync();
+  const playSound = useCallback(async () => {
+    await networkSound?.playAsync();
+    await localSound?.playAsync();
   }, [networkSound, localSound]);
 
-  const disposeSound = useCallback(() => {
-    networkSound?.unloadAsync();
-    localSound?.unloadAsync();
+  const disposeSound = useCallback(async () => {
+    await networkSound?.unloadAsync();
+    await localSound?.unloadAsync();
   }, [networkSound, localSound]);
 
   useEffect(() => {
@@ -107,7 +112,22 @@ const LessonOverview = (): JSX.Element => {
       setLoading(false);
     }, 1750);
 
+    const initializeAudio = async () => {
+      await Audio.setAudioModeAsync({
+        playsInSilentModeIOS: true,
+      });
+    }
+
+    const beforeRemove = (e: any) => {
+      e.preventDefault();
+      setExitModalVisible(true);
+    }
+
+    initializeAudio();
+    navigation.addListener('beforeRemove', beforeRemove);
+
     return () => {
+      navigation.removeListener('beforeRemove', beforeRemove);
       clearTimeout(loadingTimer);
     }
   }, []);
@@ -158,10 +178,52 @@ const LessonOverview = (): JSX.Element => {
       : Theme.spacing.spacing2XL
   };
 
+  const buttonsHitSlop = {
+    top: Theme.spacing.spacingM, 
+    bottom: Theme.spacing.spacingM, 
+    left: Theme.spacing.spacingM + Theme.spacing.spacingXS,
+    right: Theme.spacing.spacingM + Theme.spacing.spacingXS
+  };
+
   return (
     <SafeAreaView edges={['top']} style={styles.container}>
+      <ConfirmActionModal
+        visible={exitModalVisible}
+        title="Are you sure?"
+        text="All of your progress for this lesson will be lost"
+        primaryButton={{
+          text: "Leave",
+          onClick: () => navigation.navigate('Home')
+        }}
+        secondaryButton={{
+          text: "Cancel",
+          onClick: () => setExitModalVisible(false)
+        }}
+      />
+      <ContentModal
+        visible={contentModalVisible}
+        title="Listen To Lessons"
+        text="You can choose to listen along to lessons or read at your own pace by toggling the sound icon."
+        image={require('@assets/images/narration_prompt.png')}
+        primaryButton={{
+          text: "Listen Now",
+          onClick: () => {
+            setContentModalVisible(false);
+            setSoundMuted(false);
+          }
+        }}
+        secondaryButton={{
+          text: "I prefer to read",
+          onClick: () => {
+            setContentModalVisible(false);
+            setSoundMuted(true);
+          }
+        }}
+      />
       <View style={styles.headerContainer}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity 
+          onPress={() => navigation.goBack()} 
+          hitSlop={buttonsHitSlop}>
           <X
             stroke={Theme.colors.black}
             fill={Theme.colors.transparent}
@@ -170,8 +232,14 @@ const LessonOverview = (): JSX.Element => {
             strokeWidth={3}
           />
         </TouchableOpacity>
-        <ProgressBar value={carouselIndex + 1} max={lessonItems.length} />
-        <TouchableOpacity onPress={() => setSoundMuted(!soundMuted)}>
+        <ProgressBar 
+          value={carouselIndex + 1} 
+          max={lessonItems.length} 
+          style={styles.progressBar} 
+        />
+        <TouchableOpacity 
+          onPress={() => setSoundMuted(!soundMuted)} 
+          hitSlop={buttonsHitSlop}>
           {soundMuted ? (
             <VolumeX stroke={Theme.colors.black} fill={Theme.colors.white} />
           ) : (
@@ -198,7 +266,7 @@ const LessonOverview = (): JSX.Element => {
             disabled={currentQuestionMultiChoice && selectedAnswerId == null}
             squircle={true}
             text={!hasReachedEnd ? 'Continue' : 'Finish'}
-            theme={Theme.buttons.primary}
+            theme={Theme.buttons.styles.primary}
             onPress={() => {
               if (currentQuestionMultiChoice) {
                 setRevealMultiChoiceAnswer(true);
@@ -253,7 +321,7 @@ const LessonOverview = (): JSX.Element => {
     const {sound} = await Audio.Sound.createAsync(soundFile);
 
     if (!soundMuted) {
-      sound.playAsync();
+      await sound.playAsync();
     }
 
     setLocalSound(sound);
@@ -268,7 +336,7 @@ const LessonOverview = (): JSX.Element => {
     const {sound} = await Audio.Sound.createAsync({uri: soundUrl});
 
     if (!soundMuted) {
-      sound.playAsync();
+      await sound.playAsync();
     }
 
     setNetworkSound(sound);
@@ -295,6 +363,10 @@ const styles = StyleSheet.create({
     backgroundColor: Theme.colors.white,
     paddingTop: Theme.spacing.spacingXL,
     paddingHorizontal: Theme.spacing.spacingM
+  },
+  progressBar: {
+    marginLeft: Theme.spacing.spacingS, 
+    marginRight: Theme.spacing.spacingM
   }
 });
 

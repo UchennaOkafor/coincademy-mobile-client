@@ -9,7 +9,7 @@ import {
   ViewStyle,
   StyleProp
 } from 'react-native';
-import { ButtonTheme } from 'styles/Buttons';
+import { ButtonThemeSize, ButtonThemeStyle } from 'styles/Buttons';
 import {Theme} from 'styles/Index';
 import MaskedSquircleView from '../MaskedSquircleView';
 
@@ -21,23 +21,28 @@ interface Props {
   disabled?: boolean;
   leadingIcon?: ReactElement;
   trailingIcon?: ReactElement;
-  theme: ButtonTheme;
+  theme: ButtonThemeStyle;
+  size?: 'small' | 'medium';
+  style?: StyleProp<ViewStyle>;
 }
 
 const Button = (props: Props): JSX.Element => {
   const textColor = props.disabled === true ? props.theme.text.disabled : props.theme.text.enabled;
   const bgColor = props.disabled === true ? props.theme.background.disabled : props.theme.background.enabled;
   const border = props.disabled === true ? props.theme.border?.disabled : props.theme.border?.enabled;
+  const size = getButtonSizeStyles(props.size);
 
   const bgStyle: StyleProp<ViewStyle> = {
     backgroundColor: bgColor,
-    borderColor: border
+    borderColor: border,
+    paddingHorizontal: size.paddingHorizontal,
+    paddingVertical: size.paddingVertical
   };
 
-  const ButtonContainer = props.squircle === true && Platform.OS === 'ios' ? MaskedSquircleView : View;
+  const Container = props.squircle === true && Platform.OS === 'ios' ? MaskedSquircleView : View;
 
   return (
-    <ButtonContainer style={styles.buttonContainer}>
+    <Container style={[styles.buttonContainer, props.style]}>
       <TouchableSurface disabled={props.disabled ?? false} onPress={onPress}>
         <View style={[styles.innerButtonContainer, bgStyle]}>
           {props.loading === true ? (
@@ -45,7 +50,7 @@ const Button = (props: Props): JSX.Element => {
           ) : (
             <>
               {props.leadingIcon}
-              <Text style={[styles.text, {color: textColor}]}>
+                <Text style={[size.font, {color: textColor}]}>
                 {props.text}
               </Text>
               {props.trailingIcon}
@@ -53,7 +58,7 @@ const Button = (props: Props): JSX.Element => {
           )}
         </View>
       </TouchableSurface>
-    </ButtonContainer>
+    </Container>
   );
 
   function onPress(): void {
@@ -62,6 +67,14 @@ const Button = (props: Props): JSX.Element => {
     }
   }
 };
+
+const getButtonSizeStyles = (size?: string): ButtonThemeSize => {
+  if (size === 'small') {
+    return Theme.buttons.sizes.small;
+  } else {
+    return Theme.buttons.sizes.medium;
+  }
+}
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -72,12 +85,7 @@ const styles = StyleSheet.create({
   innerButtonContainer: {
     flexGrow: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
-    paddingHorizontal: Theme.spacing.spacingM,
-    paddingVertical: Theme.spacing.spacingS + Theme.spacing.spacing2XS
-  },
-  text: {
-    ...Theme.typography.text.h5
+    justifyContent: 'center'
   }
 });
 

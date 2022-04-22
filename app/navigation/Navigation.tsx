@@ -166,7 +166,7 @@ const RootNavigation = (props: StateProps) => {
               component={Settings}
               options={{
                 headerShown: true,
-                gestureEnabled: false
+                gestureEnabled: true
               }}
             />
           </>

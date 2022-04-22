@@ -33,6 +33,8 @@
     "web": {
       "favicon": "./app/assets/images/app/favicon.png"
     },
-    "jsEngine": "hermes"
-  }
+    "jsEngine": "hermes",
+    "sdkVersion": "44.0.0"
+  },
+  "name": "coincademy-mobile-client"
 }

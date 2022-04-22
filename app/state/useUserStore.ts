@@ -6,7 +6,7 @@ import produce from 'immer'
 const userStorePersist = persist((set, get) => ({
   preferences: {
     sound: {
-      muted: false
+      muted: true
     },
   },
   misc: { 

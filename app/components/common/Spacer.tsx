@@ -10,8 +10,11 @@ interface Props {
 const Spacer = (props: Props): JSX.Element => {
   const defaultSpacing = Theme.spacing.spacingS - Theme.spacing.spacing3XS;
   const verticalSpacing = props.vertical ?? defaultSpacing;
+  const horizontalSpacing = props.horizontal ?? defaultSpacing;
+
   const spacingStyle: StyleProp<ViewStyle> = {
-    marginVertical: verticalSpacing
+    marginVertical: verticalSpacing,
+    marginHorizontal: horizontalSpacing
   };
 
   return <View style={spacingStyle} />;

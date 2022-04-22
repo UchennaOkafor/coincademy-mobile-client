@@ -1,0 +1,24 @@
+{
+  "cli": {
+    "version": ">= 0.47.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {}
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "okafor.u@hotmail.com",
+        "ascAppId": "1618994864",
+        "appleTeamId": "6B2YTFKXHS"
+      }
+    }
+  }
+}

@@ -12,7 +12,7 @@ interface Props {
 const MaskedSquircleView = (props: Props): JSX.Element => {
   return (
     <MaskedView
-      style={[styles.container, props.style]}
+      style={props.style}
       maskElement={
         <SquircleView
           style={StyleSheet.absoluteFill}
@@ -26,11 +26,5 @@ const MaskedSquircleView = (props: Props): JSX.Element => {
     </MaskedView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%'
-  }
-});
 
 export default MaskedSquircleView;

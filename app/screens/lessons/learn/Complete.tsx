@@ -2,7 +2,7 @@ import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {Lesson} from 'codegen/models/Lesson';
 import Button from 'components/buttons/Button';
 import React, {useEffect, useRef, useState} from 'react';
-import {Dimensions, StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
+import {Alert, BackHandler, Dimensions, StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import {Theme} from 'styles/Index';
@@ -28,8 +28,13 @@ const LessonOverview = (): JSX.Element => {
     //confettiCannon.current?.start();
     playDingSound();
 
+    const onBackPress = () => true;
+    BackHandler.addEventListener('hardwareBackPress', onBackPress);
+    navigation.addListener('beforeRemove', (e) => e.preventDefault());
+
     return () => {
       sound?.unloadAsync();
+      BackHandler.removeEventListener('hardwareBackPress', onBackPress);
     };
   }, []);
 
@@ -60,7 +65,7 @@ const LessonOverview = (): JSX.Element => {
           <Button
             squircle={true}
             text="Complete"
-            theme={Theme.buttons.primary}
+            theme={Theme.buttons.styles.primary}
             onPress={() => {
               navigation.navigate('Home');
             }}

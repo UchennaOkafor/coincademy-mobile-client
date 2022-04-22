@@ -1,19 +1,20 @@
 import {MotiView} from 'moti';
 import React, {memo} from 'react';
 import isEqual from 'react-fast-compare';
-import {StyleSheet, View} from 'react-native';
+import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import {Theme} from 'styles/Index';
 
 interface Props {
   value: number;
   max: number;
+  style?: StyleProp<ViewStyle>;
 }
 
 const ProgressBar = (props: Props): JSX.Element => {
   const progressValue = (props.value / props.max) * 100;
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, props.style]}>
       <MotiView
         style={{flexGrow: 1}}
         from={{width: '0%'}}
@@ -31,8 +32,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     backgroundColor: Theme.colors.backgroundGrayDark,
     borderRadius: Theme.radius.normal + Theme.radius.extraSmall,
-    marginLeft: Theme.spacing.spacingS,
-    marginRight: Theme.spacing.spacingM,
     height: 24
   },
   background: {

@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {StyleSheet, View, Text, StyleProp, ViewStyle} from 'react-native';
+import {StyleSheet, View, Text, StyleProp, ViewStyle, Linking} from 'react-native';
 import {Theme} from 'styles/Index';
 import {useUserStore} from 'state/useUserStore';
 import Spacer from 'components/common/Spacer';
@@ -67,6 +67,14 @@ const Settings = (): JSX.Element => {
                   index: 0,
                   routes: [{name: 'Onboarding'}]
                 });
+                break;
+
+              case 'feedback':
+                Linking.openURL('mailto:okaforu335@gmail.com?subject=I have feedback&body=');
+                break;
+
+              case 'contactUs':
+                Linking.openURL('mailto:okaforu335@gmail.com?subject=Support&body=');
                 break;
             }
           }}

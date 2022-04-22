@@ -77,7 +77,7 @@ const LoginAlt = (): JSX.Element => {
                   <Image source={{ uri: 'https://cdn1.iconfinder.com/data/icons/logotypes/32/apple-256.png' }} style={{ tintColor: 'white', width: 20, height: 20, marginRight: 10}} />
                 }
                 onPress={login}
-                theme={Theme.buttons.black}
+                theme={Theme.buttons.styles.black}
               />
 
               <Spacer />
@@ -90,7 +90,7 @@ const LoginAlt = (): JSX.Element => {
                   <Image source={{ uri: 'https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Google-256.png' }} style={{ width: 20, height: 20, marginRight: 10 }} />
                 }
                 onPress={login}
-                theme={Theme.buttons.white}
+                theme={Theme.buttons.styles.white}
               />
 
               <Spacer />

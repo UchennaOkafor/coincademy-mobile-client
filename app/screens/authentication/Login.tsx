@@ -117,7 +117,7 @@ const Login = (): JSX.Element => {
                 text="Login"
                 loading={authenticating}
                 onPress={login}
-                theme={Theme.buttons.primary}
+                theme={Theme.buttons.styles.primary}
               />
 
               <TouchableOpacity

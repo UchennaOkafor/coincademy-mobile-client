@@ -1,4 +1,4 @@
-import {Book, LogOut, Trash2, File} from 'react-native-feather';
+import {Book, LogOut, Trash2, File, MessageCircle, Mail} from 'react-native-feather';
 import {Theme} from 'styles/Index';
 
 export interface SettingsItem {
@@ -30,7 +30,7 @@ export default class SettingsListData {
       }
     ];
 
-    const aboutItems: SettingsItem[] = [
+    const legalItems: SettingsItem[] = [
       {
         id: 'privacy_policy',
         title: 'Privacy Policy',
@@ -45,8 +45,24 @@ export default class SettingsListData {
       }
     ];
 
+    const supportItems: SettingsItem[] = [
+      {
+        id: 'feedback',
+        title: 'Feedback',
+        icon: MessageCircle,
+        color: Theme.colors.grayDark
+      },
+      {
+        id: 'contactUs',
+        title: 'Contact Us',
+        icon: Mail,
+        color: Theme.colors.grayDark
+      },
+    ];
+
     const sections: SettingsSections[] = [
-      {title: 'About', items: aboutItems},
+      {title: 'Support', items: supportItems},
+      {title: 'Legal', items: legalItems},
       {title: 'Device', items: loginItems}
     ];
 

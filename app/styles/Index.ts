@@ -9,5 +9,5 @@ export const Theme = {
   spacing: Spacing.Spacing,
   colors: Colors.Colors,
   radius: Radius.Radius,
-  buttons: Buttons.presets
+  buttons: Buttons
 };
