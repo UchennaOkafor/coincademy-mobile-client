@@ -21,15 +21,16 @@ interface Props {
   disabled?: boolean;
   leadingIcon?: ReactElement;
   trailingIcon?: ReactElement;
-  theme: ButtonThemeStyle;
+  theme?: ButtonThemeStyle;
   size?: 'small' | 'medium';
   style?: StyleProp<ViewStyle>;
 }
 
 const Button = (props: Props): JSX.Element => {
-  const textColor = props.disabled === true ? props.theme.text.disabled : props.theme.text.enabled;
-  const bgColor = props.disabled === true ? props.theme.background.disabled : props.theme.background.enabled;
-  const border = props.disabled === true ? props.theme.border?.disabled : props.theme.border?.enabled;
+  const theme = props.theme ?? Theme.buttons.styles.primary;
+  const textColor = props.disabled === true ? theme.text.disabled : theme.text.enabled;
+  const bgColor = props.disabled === true ? theme.background.disabled : theme.background.enabled;
+  const border = props.disabled === true ? theme.border?.disabled : theme.border?.enabled;
   const size = getButtonSizeStyles(props.size);
 
   const bgStyle: StyleProp<ViewStyle> = {
@@ -63,7 +64,7 @@ const Button = (props: Props): JSX.Element => {
 
   function onPress(): void {
     if (!props.loading) {
-      props.onPress();
+      props.onPress?.();
     }
   }
 };

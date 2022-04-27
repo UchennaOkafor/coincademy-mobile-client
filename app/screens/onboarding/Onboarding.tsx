@@ -62,7 +62,6 @@ const Onboarding = (): JSX.Element => {
           squircle={true}
           text="Next"
           onPress={() => carousel.current?.snapToNext()}
-          theme={Theme.buttons.styles.primary}
         />
       ) : (
         <GradientButton

@@ -235,7 +235,7 @@ const LessonOverview = (): JSX.Element => {
         <ProgressBar 
           value={carouselIndex + 1} 
           max={lessonItems.length} 
-          style={styles.progressBar} 
+          progressBarStyle={styles.progressBar} 
         />
         <TouchableOpacity 
           onPress={() => setSoundMuted(!soundMuted)} 
@@ -266,7 +266,6 @@ const LessonOverview = (): JSX.Element => {
             disabled={currentQuestionMultiChoice && selectedAnswerId == null}
             squircle={true}
             text={!hasReachedEnd ? 'Continue' : 'Finish'}
-            theme={Theme.buttons.styles.primary}
             onPress={() => {
               if (currentQuestionMultiChoice) {
                 setRevealMultiChoiceAnswer(true);
@@ -298,8 +297,12 @@ const LessonOverview = (): JSX.Element => {
 
   function renderCarouselItem({item}: {item: BaseLessonItem}): JSX.Element {
     return (
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {item.type === 'Content' && <GenericContent item={item} />}
+      <ScrollView 
+        contentContainerStyle={styles.contentContainer} 
+        showsVerticalScrollIndicator={false}>
+        {item.type === 'Content' && (
+          <GenericContent item={item} />
+        )}
 
         {item.type === 'MultiChoiceQuestion' && (
           <MultipleChoiceQuestion
@@ -362,11 +365,16 @@ const styles = StyleSheet.create({
   buttonContainer: {
     backgroundColor: Theme.colors.white,
     paddingTop: Theme.spacing.spacingXL,
-    paddingHorizontal: Theme.spacing.spacingM
+    paddingHorizontal: Theme.spacing.spacingM,
+    borderTopWidth: 1,
+    borderTopColor: Theme.colors.borderGray
   },
   progressBar: {
     marginLeft: Theme.spacing.spacingS, 
     marginRight: Theme.spacing.spacingM
+  },
+  contentContainer: {
+    paddingBottom: Theme.spacing.spacing3XL, 
   }
 });
 

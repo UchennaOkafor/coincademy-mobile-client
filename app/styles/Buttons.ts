@@ -22,15 +22,13 @@ export interface ButtonThemeSize {
 export const sizes = {
 	small: {
 		font: text.h6,
-		paddingHorizontal: Spacing.spacingS,
-		paddingVertical: Spacing.spacingS
-
+		paddingHorizontal: Spacing.spacingS + Spacing.spacing3XS,
+		paddingVertical: Spacing.spacingS + Spacing.spacing3XS
 	} as ButtonThemeSize,
 	medium: {
 		font: text.h5,
 		paddingHorizontal: Spacing.spacingM,
-		paddingVertical: Spacing.spacingS + Spacing.spacing2XS
-
+		paddingVertical: Spacing.spacingS + Spacing.spacing3XS
 	}
 }
 
@@ -43,6 +41,20 @@ export const styles = {
 		background: {
 			enabled: Colors.purple,
 			disabled: Colors.backgroundGrayDark,
+		}
+	} as ButtonThemeStyle,
+	secondaryOutline: {
+		text: {
+			enabled: Colors.purple,
+			disabled: Colors.white,
+		},
+		background: {
+			enabled: Colors.white,
+			disabled: Colors.backgroundGrayDark,
+		},
+		border: {
+			enabled: Colors.purple,
+			disabled: Colors.backgroundGrayDark
 		}
 	} as ButtonThemeStyle,
 	danger: {

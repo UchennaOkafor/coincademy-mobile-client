@@ -32,15 +32,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: Theme.radius.normal,
-    borderColor: Theme.colors.backgroundGrayDark,
-    borderWidth: 0.4,
+    borderRadius: Theme.radius.large,
+    borderColor: Theme.colors.borderGray,
+    borderWidth: 2,
     backgroundColor: Theme.colors.white,
     paddingHorizontal: Theme.spacing.spacingM
   },
   input: {
-    ...Theme.typography.text.h6,
-    ...Theme.typography.weight.normal,
+    ...Theme.typography.text.h5,
+    ...Theme.typography.weight.medium,
     flex: 1,
     color: Theme.colors.grayDark,
     paddingVertical: Platform.OS === 'android'

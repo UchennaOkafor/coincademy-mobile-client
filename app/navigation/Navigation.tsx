@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
@@ -21,6 +21,11 @@ import {HelpCircle, Home, TrendingUp, User} from 'react-native-feather';
 import {Theme} from 'styles/Index';
 import LoginAlt from 'screens/authentication/LoginAlt';
 import Empty from 'screens/Empty';
+import Discover from 'screens/discover/Index';
+import Overview from 'screens/discover/Overview';
+import CategoryListings from 'screens/discover/CategoryListings';
+import Onboarding2 from 'screens/onboarding/Onboarding2';
+import Welcome from 'screens/onboarding/Welcome';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -64,7 +69,6 @@ const Tabs = () => {
           name="Home"
           component={Lessons}
           options={{
-            tabBarStyle: {display: 'none'},
             tabBarIcon: ({color, size}) => (
               <Home
                 stroke={color}
@@ -75,25 +79,23 @@ const Tabs = () => {
             )
           }}
         />
+        <Tab.Screen
+          name="Discover"
+          component={Discover}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <TrendingUp
+                stroke={color}
+                fill={Theme.colors.transparent}
+                width={iconSize}
+                height={iconSize}
+              />
+            )
+          }}
+        />
         {__DEV__ && (
           <Tab.Screen
-            name="Discover"
-            component={Empty}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <TrendingUp
-                  stroke={color}
-                  fill={Theme.colors.transparent}
-                  width={iconSize}
-                  height={iconSize}
-                />
-              )
-            }}
-          />
-        )}
-        {__DEV__ && (
-          <Tab.Screen
-            name="Help"
+            name="Test"
             component={Empty}
             options={{
               tabBarIcon: ({ color, size }) => (
@@ -131,7 +133,7 @@ const RootNavigation = (props: StateProps) => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={props.authenticated ? "Tabs" : props.onboarded ? "Login" : "Onboarding"}
+        initialRouteName={props.authenticated ? "Tabs" : props.onboarded ? "Login" : "Welcome"}
         screenOptions={{
           // animation: "fade",
           headerTitleStyle: {
@@ -162,6 +164,20 @@ const RootNavigation = (props: StateProps) => {
               }}
             />
             <Stack.Screen
+              name="ProjectOverview"
+              component={Overview}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="CategoryListings"
+              component={CategoryListings}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
               name="Settings"
               component={Settings}
               options={{
@@ -173,9 +189,17 @@ const RootNavigation = (props: StateProps) => {
         ) : (
           <>
             <Stack.Screen
-              name="Onboarding"
-              component={Onboarding}
+              name="Welcome"
+              component={Welcome}
               options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Onboarding"
+              component={Onboarding2}
+              options={{
+                headerShown: false,
+                gestureEnabled: false
+              }}
             />
             <Stack.Screen
               name="Login"

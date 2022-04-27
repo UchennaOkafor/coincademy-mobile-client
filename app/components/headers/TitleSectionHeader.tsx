@@ -13,6 +13,7 @@ interface Props {
   title: string;
   titleIcon?: JSX.Element;
   rightText?: string;
+  rightTextOnPress?: () => void;
   style?: StyleProp<ViewStyle>;
 }
 
@@ -22,7 +23,9 @@ const TitleSectionHeader = (props: Props): JSX.Element => {
       <View style={styles.innerContainer}>
         <Text style={styles.title}>{props.title}</Text>
         {props.titleIcon}
-        <TouchableOpacity style={styles.rightTextContainer}>
+        <TouchableOpacity 
+          style={styles.rightTextContainer} 
+          onPress={props.rightTextOnPress}>
           <Text style={styles.rightText}>{props.rightText}</Text>
         </TouchableOpacity>
       </View>
@@ -42,7 +45,6 @@ const styles = StyleSheet.create({
   },
   rightTextContainer: {
     marginLeft: 'auto',
-    marginRight: Theme.spacing.spacing3XS
   },
   rightText: {
     ...Theme.typography.text.h6,

@@ -65,7 +65,6 @@ const LessonOverview = (): JSX.Element => {
           <Button
             squircle={true}
             text="Complete"
-            theme={Theme.buttons.styles.primary}
             onPress={() => {
               navigation.navigate('Home');
             }}
@@ -131,7 +130,9 @@ const styles = StyleSheet.create({
   buttonContainer: {
     backgroundColor: Theme.colors.white,
     paddingHorizontal: Theme.spacing.spacingM,
-    paddingTop: Theme.spacing.spacingXL
+    paddingTop: Theme.spacing.spacingXL,
+    borderTopWidth: 1,
+    borderTopColor: Theme.colors.borderGray
   }
 });
 

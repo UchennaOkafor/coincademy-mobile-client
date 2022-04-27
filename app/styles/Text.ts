@@ -30,61 +30,59 @@ export const weight = StyleSheet.create({
 });
 
 export const text = StyleSheet.create({
-  fs1: {},
-
   h1: {
     color: Colors.black,
-    fontSize: 30,
-    fontFamily: 'Inter-Bold'
+    fontSize: 28,
+    fontFamily: weight.black.fontFamily,
   },
   h2: {
-    fontSize: 25,
+    fontSize: 24,
     color: Colors.black,
-    fontFamily: 'Inter-Bold'
+    fontFamily: weight.bold.fontFamily,
   },
   h3: {
-    fontFamily: 'Inter-Bold',
-    fontSize: 20,
+    fontFamily: weight.bold.fontFamily,
+    fontSize: 22,
     color: Colors.black
   },
   h4: {
-    fontFamily: 'Inter-Bold',
+    fontFamily: weight.bold.fontFamily,
     fontSize: 18,
     color: Colors.black
   },
   h5: {
-    fontFamily: 'Inter-SemiBold',
+    fontFamily: weight.semiBold.fontFamily,
     fontSize: 16,
     color: Colors.black
   },
   h6: {
     fontSize: 14,
-    fontFamily: 'Inter-SemiBold',
+    fontFamily: weight.semiBold.fontFamily,
     color: Colors.black
   },
   h7: {
     fontSize: 13,
-    fontFamily: 'Inter-SemiBold',
+    fontFamily: weight.semiBold.fontFamily,
     color: Colors.black
   },
   h8: {
     fontSize: 12,
-    fontFamily: 'Inter-SemiBold',
+    fontFamily: weight.semiBold.fontFamily,
     color: Colors.black
   },
   body: {
     color: Colors.grayDark,
     fontSize: 16,
-    fontFamily: 'Inter-Regular',
+    fontFamily: weight.normal.fontFamily,
     letterSpacing: 0.3,
     lineHeight: 21
   },
   tabBarFooter: {
     fontSize: 11.5,
-    fontFamily: 'Inter-Medium'
+    fontFamily: weight.medium.fontFamily
   },
   tabBarHeader: {
     fontSize: 18,
-    fontFamily: 'Inter-Medium'
+    fontFamily: weight.medium.fontFamily
   }
 });

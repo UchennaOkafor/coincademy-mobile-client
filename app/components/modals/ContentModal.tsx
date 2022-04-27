@@ -32,14 +32,14 @@ const ContentModal = (props: Props): JSX.Element => {
 						<Image source={props.image} style={styles.image} />
 					</View>
 				)}
-				<Spacer vertical={Theme.spacing.spacingM} />
+				<Spacer vertical={Theme.spacing.spacingS} />
 				<View style={styles.buttonContainer}>
 					<Button
 						text={props.primaryButton.text}
-						theme={Theme.buttons.styles.primary}
 						onPress={props.primaryButton.onClick}
+						squircle={true}
 					/>
-					<Spacer horizontal={Theme.spacing.spacingS} />
+					<Spacer horizontal={Theme.spacing.spacingXS} />
 					<TouchableOpacity onPress={props.secondaryButton.onClick}>
 						<Text style={styles.secondaryAction}>{props.secondaryButton.text}</Text>
 					</TouchableOpacity>

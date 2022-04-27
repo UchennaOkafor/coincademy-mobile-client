@@ -7,34 +7,35 @@ import {Theme} from 'styles/Index';
 interface Props {
   value: number;
   max: number;
-  style?: StyleProp<ViewStyle>;
+  progressBarStyle?: StyleProp<ViewStyle>;
+  progressValueStyle?: StyleProp<ViewStyle>;
 }
 
 const ProgressBar = (props: Props): JSX.Element => {
   const progressValue = (props.value / props.max) * 100;
 
   return (
-    <View style={[styles.container, props.style]}>
+    <View style={[styles.progressBar, props.progressBarStyle]}>
       <MotiView
         style={{flexGrow: 1}}
         from={{width: '0%'}}
         animate={{width: `${progressValue}%`}}
         transition={{type: 'spring', damping: 100, stiffness: 50}}>
-        <View style={styles.background} />
+        <View style={[styles.progressValue, props.progressValueStyle]} />
       </MotiView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  progressBar: {
     overflow: 'hidden',
     flexGrow: 1,
     backgroundColor: Theme.colors.backgroundGrayDark,
     borderRadius: Theme.radius.normal + Theme.radius.extraSmall,
     height: 24
   },
-  background: {
+  progressValue: {
     flexGrow: 1,
     backgroundColor: Theme.colors.green,
     width: '100%',

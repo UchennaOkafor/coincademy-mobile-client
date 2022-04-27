@@ -65,7 +65,7 @@ const Settings = (): JSX.Element => {
                 await state.clearCache();
                 navigation.reset({
                   index: 0,
-                  routes: [{name: 'Onboarding'}]
+                  routes: [{name: 'Welcome'}]
                 });
                 break;
 
