@@ -1,5 +1,7 @@
 import RNBounceable from '@freakycoder/react-native-bounceable';
 import Spacer from 'components/common/Spacer';
+import ToggleIcon from 'components/common/ToggleIcon';
+import TouchableSurface from 'components/layout/TouchableSurface';
 import Project from 'models/Project';
 import React, { useState } from 'react';
 import {
@@ -25,7 +27,7 @@ const ProjectCard = (props: Props): JSX.Element => {
 
 	return (
 		<View style={[styles.container, props.style]}>
-			<TouchableNativeFeedback onPress={props.onPress}>
+			<TouchableSurface onPress={props.onPress}>
 				<View style={styles.innerContainer}>
 					<View style={styles.topContentContainer}>
 						<Image
@@ -33,24 +35,11 @@ const ProjectCard = (props: Props): JSX.Element => {
 							source={{ uri: props.project.imageUrl}}
 							style={styles.logo}
 						/>
-						<RNBounceable
+						<ToggleIcon
+							size={18}
 							style={styles.heart}
-							bounceEffect={0.8}
-							onPress={() => setIsLiked(!isLiked)}
-							hitSlop={{ 
-								top: Theme.spacing.spacingM, 
-								bottom: Theme.spacing.spacingM, 
-								left: Theme.spacing.spacingM, 
-								right: Theme.spacing.spacingM
-							}}>
-							<Heart
-								stroke={Theme.colors.red}
-								fill={isLiked ? Theme.colors.red : Theme.colors.transparent}
-								width={18}
-								height={18}
-								strokeWidth={2}
-							/>
-						</RNBounceable>
+							onChecked={(checked: boolean) => setIsLiked(checked)}
+						/>
 					</View>
 					<>
 						<Spacer vertical={Theme.spacing.spacing2XS} />
@@ -76,7 +65,7 @@ const ProjectCard = (props: Props): JSX.Element => {
 						</Text>
 					</View> */}
 				</View>
-			</TouchableNativeFeedback>
+			</TouchableSurface>
 		</View>
 	);
 };
@@ -93,6 +82,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		paddingVertical: Theme.spacing.spacingM,
 		paddingHorizontal: Theme.spacing.spacingL,
+		backgroundColor: Theme.colors.white
 	},
 	logo: {
 		width: 40,

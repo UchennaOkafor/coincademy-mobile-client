@@ -2,7 +2,7 @@ import React, {memo, useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import equals from 'react-fast-compare';
 import {Check, X} from 'react-native-feather';
-import TouchableSurface from 'components/TouchableSurface';
+import TouchableSurface from 'components/layout/TouchableSurface';
 import {MultipleChoiceQuestionItem} from 'codegen/models/MultipleChoiceQuestionItem';
 import {Choice} from 'codegen/models/Choice';
 import {Theme} from 'styles/Index';

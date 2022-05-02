@@ -8,7 +8,7 @@ import {
   Image
 } from 'react-native';
 import equals from 'react-fast-compare';
-import TouchableSurface from 'components/TouchableSurface';
+import TouchableSurface from 'components/layout/TouchableSurface';
 import {Lesson} from 'codegen/models/Lesson';
 import {Theme} from 'styles/Index';
 import Badge from 'components/badges/Badge';

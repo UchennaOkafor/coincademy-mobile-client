@@ -34,18 +34,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: Theme.radius.large,
     borderColor: Theme.colors.borderGray,
-    borderWidth: 2,
+    borderWidth: 1,
     backgroundColor: Theme.colors.white,
     paddingHorizontal: Theme.spacing.spacingM
   },
   input: {
-    ...Theme.typography.text.h5,
-    ...Theme.typography.weight.medium,
     flex: 1,
+    ...Theme.typography.text.h5,
+    ...Theme.typography.weight.normal,
     color: Theme.colors.grayDark,
     paddingVertical: Platform.OS === 'android'
         ? Theme.spacing.spacingXS + Theme.spacing.spacing3XS
-        : Theme.spacing.spacingM,
+        : Theme.spacing.spacingS + Theme.spacing.spacing3XS,
     paddingHorizontal: Theme.spacing.spacingM
   }
 });

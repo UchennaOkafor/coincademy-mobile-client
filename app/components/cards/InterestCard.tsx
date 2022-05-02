@@ -20,7 +20,7 @@ interface Props {
 const InterestCard = (props: Props): JSX.Element => {
 	const [active, setActive] = useState(false);
 	const activeStyle: StyleProp<ViewStyle> = {
-		borderColor: active ? Theme.colors.green : Theme.colors.transparent
+		borderColor: active ? Theme.colors.purple : Theme.colors.transparent
 	}
 	
 	return (
@@ -39,10 +39,10 @@ const InterestCard = (props: Props): JSX.Element => {
 				<Text style={styles.name}>{props.name}</Text>
 				<CheckCircle
 					stroke={Theme.colors.white}
-					fill={Theme.colors.green}
+					fill={Theme.colors.purple}
 					strokeWidth={3}
-					width={21}
-					height={21}
+					width={22}
+					height={22}
 					style={{ opacity: active ? 1 : 0 }}
 				/>
 			</View>

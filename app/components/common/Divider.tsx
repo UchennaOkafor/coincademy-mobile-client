@@ -2,16 +2,21 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Theme} from 'styles/Index';
 
-interface Props {}
+interface Props {
+  color?: string;
+}
 
 const Divider = (props: Props): JSX.Element => {
-  return <View style={styles.divider} />;
+  const borderColor = { 
+    borderBottomColor: props.color ?? Theme.colors.backgroundGrayDark 
+  };
+
+  return <View style={[styles.divider, borderColor]} />;
 };
 
 const styles = StyleSheet.create({
   divider: {
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: Theme.colors.backgroundGrayDark
+    borderBottomWidth: StyleSheet.hairlineWidth,
   }
 });
 

@@ -7,6 +7,7 @@ import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Theme } from 'styles/Index';
 import SearchBar from 'components/inputs/SearchBox';
+import CollectibleCardList from 'components/cards/CollectibleCardList';
 
 const Discover = (): JSX.Element => {
 	const navigation = useNavigation();
@@ -60,17 +61,41 @@ const Discover = (): JSX.Element => {
 		imageUrl: 'https://s2.coinmarketcap.com/static/img/coins/64x64/5034.png'
 	}];
 
+	const collectibles = [{
+		id: '1',
+		name: 'BoredApe #162',
+		description: `If you like Dogs then you'll fall in love with Baby Doge.`,
+		imageUrl: 'https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/advisor/in/wp-content/uploads/2022/03/monkey-g412399084_1280.jpg'
+	}, {
+		id: '2',
+		name: 'CryptoKittie #2762',
+		description: 'Dogecoin is an open source peer-to-peer digital currency, favored by Shiba Inus worldwide.',
+		imageUrl: 'https://unframed.lacma.org/sites/default/files/styles/article_full/public/field/image/Screen%20Shot%202021-06-09%20at%205.21.55%20PM.png?itok=o0fDqYx6'
+	}, {
+		id: '3',
+		name: 'Pixel Art #684',
+		description: 'A blockchain platform for changemakers, innovators, and visionaries',
+		imageUrl: 'https://www.cnet.com/a/img/resize/180806b9e13bc1d1750aeef34e28f173dc2ee7e3/2021/11/29/f566750f-79b6-4be9-9c32-8402f58ba0ef/richerd.png?auto=webp&width=940'
+	}, {
+		id: '4',
+		name: 'Pixel Art #321',
+		description: 'Polkadot empowers blockchain networks to work together under the protection of shared security.',
+		imageUrl: 'https://lh3.googleusercontent.com/XA1nBAsxklaTvzPk5BX6Eb35gOnc-Uk9AVxvN6rW5Iq2g6MDcYI6FCqrPRhkG8DzEwZysTgaoqfgAmzTKFLM8MVDRFAGE7HGTdhR2Q=w600'
+	}];
+
 	return (
 		<ScrollView 
 			style={styles.container}
 			showsVerticalScrollIndicator={false}>
 			<View style={styles.defaultPadding}>
-				<Text style={styles.title}>Explore</Text>
+				<Spacer vertical={Theme.spacing.spacing2XS} />
+				<Text style={styles.title}>Discover</Text>
 				<Spacer vertical={Theme.spacing.spacing3XS} />
-				<Text style={styles.subtitle}>Discover your next favourite crypto project</Text>
+				<Text style={styles.subtitle}>Explore the world of web3</Text>
+				<Spacer vertical={Theme.spacing.spacing3XS} />
 
 				<SearchBar
-					placeholder="Search"
+					placeholder="Search topics & projects"
 					containerStyle={styles.searchBar}
 					onChangeText={() => {}}
 					onSubmitEditing={() => { }}
@@ -105,6 +130,19 @@ const Discover = (): JSX.Element => {
 				contentContainertStyle={styles.projectCardList}
 				onPress={(project: Project) => navigation.navigate('ProjectOverview', { project })}
 			/>
+
+			<Spacer vertical={Theme.spacing.spacingS} />
+			<TitleSectionHeader
+				title="Collectibles & NFTs"
+				rightText="View More"
+				rightTextOnPress={() => navigation.navigate('CategoryListings')}
+				style={styles.defaultPadding}
+			/>
+			<CollectibleCardList
+				items={collectibles}
+				contentContainertStyle={styles.projectCardList}
+				onPress={(project: Project) => navigation.navigate('ProjectOverview', { project })}
+			/>
 			<Spacer vertical={Theme.spacing.spacing2XL} />
 		</ScrollView>
 	);
@@ -120,7 +158,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: Theme.spacing.spacingM
 	},
 	title: {
-		...Theme.typography.text.h3,
+		...Theme.typography.text.h2,
 		...Theme.typography.weight.extraBold
 	},
 	subtitle: {

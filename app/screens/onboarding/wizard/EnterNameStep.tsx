@@ -17,6 +17,7 @@ const EnterNameStep = (props: Props): JSX.Element => {
 		<>
 			<View style={styles.container}>
 				<Text style={styles.title}>Who art thou?</Text>
+				<Spacer vertical={Theme.spacing.spacing3XS} />
 				<Text style={styles.subtitle}>So we know what you call you</Text>
 
 				<Spacer vertical={Theme.spacing.spacingXS} />
@@ -25,13 +26,14 @@ const EnterNameStep = (props: Props): JSX.Element => {
 					keyboardType="default"
 					icon={
 						<User
-							stroke="gray"
+							stroke={Theme.colors.gray}
 							fill={Theme.colors.transparent}
 							width={21}
 							height={21}
+							strokeWidth={2}
 						/>
 					}
-					placeholder="E.g. John Doe"
+					placeholder="Enter your name"
 					onChangeText={(text: string) => setName(text)}
 				/>
 			</View>

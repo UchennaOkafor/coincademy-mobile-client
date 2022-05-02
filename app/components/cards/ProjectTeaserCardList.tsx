@@ -2,10 +2,10 @@ import Project from 'models/Project';
 import React from 'react';
 import { ScrollView, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { Theme } from 'styles/Index';
-import ProjectCard from './ProjectCard';
+import ProjectTeaserCard from './ProjectTeaserCard';
 
 interface Props {
-	projects: Project[];
+	items: Project[];
 	style?: StyleProp<ViewStyle>;
 	contentContainertStyle?: StyleProp<ViewStyle>;
 	loading?: boolean;
@@ -14,31 +14,31 @@ interface Props {
 	onPress: (project: Project) => void;
 }
 
-const ProjectCardList = (props: Props): JSX.Element => {
+const ProjectTeaserCardList = (props: Props): JSX.Element => {
 	return (
 		<View style={props.style}>
 			{props.loading ? (
 				props.loadingComponent
 			) : (
 				<>
-						{props.projects == null || props.projects.length === 0 ? (
+					{props.items == null || props.items.length === 0 ? (
 						props.emptyComponent
 					) : (
 						<>
 							<ScrollView
-								horizontal={true}
 								contentContainerStyle={props.contentContainertStyle}
 								showsHorizontalScrollIndicator={false}>
-								{props.projects.map((item: Project, index: number) => {
-									const isLastItem = index === props.projects.length;
+								{props.items.map((item: Project, index: number) => {
+									const isLastItem = index === props.items.length;
 									const cardStyle: StyleProp<ViewStyle> = { 
-										marginRight: isLastItem ? 0 : Theme.spacing.spacingM 
+										marginBottom: isLastItem ? 0 : Theme.spacing.spacingXL 
 									};
 
 									return (
-										<ProjectCard
+										<ProjectTeaserCard
 											key={item.id}
-											project={item}
+											name={item.name}
+											imageUrl={item.imageUrl}
 											onPress={() => props.onPress?.(item)}
 											style={cardStyle}
 										/>
@@ -55,4 +55,4 @@ const ProjectCardList = (props: Props): JSX.Element => {
 
 const styles = StyleSheet.create({});
 
-export default ProjectCardList;
+export default ProjectTeaserCardList;

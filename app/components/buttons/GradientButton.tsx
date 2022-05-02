@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
 import {Theme} from 'styles/Index';
-import MaskedSquircleView from '../MaskedSquircleView';
+import MaskedSquircleView from 'components/layout/MaskedSquircleView';
 
 interface Props {
   text: string;

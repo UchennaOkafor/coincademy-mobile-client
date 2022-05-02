@@ -31,7 +31,7 @@ const Onboarding2 = (): JSX.Element => {
       <LinearGradient
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
-        colors={[Theme.colors.orange, Theme.colors.blue]}
+        colors={[Theme.colors.orange, Theme.colors.purple]}
         style={[styles.header, {paddingTop: insets.top + Theme.spacing.spacingXS}]}>
         <HeaderBackButton
           color={Theme.colors.white}

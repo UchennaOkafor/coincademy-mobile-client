@@ -75,7 +75,7 @@ export const text = StyleSheet.create({
     fontSize: 16,
     fontFamily: weight.normal.fontFamily,
     letterSpacing: 0.3,
-    lineHeight: 21
+    lineHeight: 24
   },
   tabBarFooter: {
     fontSize: 11.5,

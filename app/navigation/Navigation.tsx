@@ -26,6 +26,7 @@ import Overview from 'screens/discover/Overview';
 import CategoryListings from 'screens/discover/CategoryListings';
 import Onboarding2 from 'screens/onboarding/Onboarding2';
 import Welcome from 'screens/onboarding/Welcome';
+import ForYou from 'screens/discover/ForYou';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -96,7 +97,7 @@ const Tabs = () => {
         {__DEV__ && (
           <Tab.Screen
             name="Test"
-            component={Empty}
+            component={ForYou}
             options={{
               tabBarIcon: ({ color, size }) => (
                 <HelpCircle

@@ -1,6 +1,7 @@
 import RNBounceable from '@freakycoder/react-native-bounceable';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import Spacer from 'components/common/Spacer';
+import ToggleIcon from 'components/common/ToggleIcon';
 import HeaderBackButton from 'components/headers/HeaderBackButton';
 import Project from 'models/Project';
 import React, { useEffect } from 'react';
@@ -28,15 +29,10 @@ const Discover = (): JSX.Element => {
 			<HeaderBackButton
 				onPress={() => navigation.goBack()}
 				rightComponent={
-					<RNBounceable onPress={() => {}}>
-						<Heart
-							width={22}
-							height={22}
-							fill={Theme.colors.red}
-							stroke={Theme.colors.red}
-							strokeWidth={2}
-						/>
-					</RNBounceable>
+					<ToggleIcon
+						size={20}
+						onChecked={(checked: boolean) => {}}
+					/>
 				}
 			/>
 			<Spacer />

@@ -13,7 +13,7 @@ import {
 import equals from 'react-fast-compare';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import {Check, Clock, Lock, PlayCircle} from 'react-native-feather';
-import TouchableSurface from 'components/TouchableSurface';
+import TouchableSurface from 'components/layout/TouchableSurface';
 import {Lesson} from 'codegen/models/Lesson';
 import {Theme} from 'styles/Index';
 

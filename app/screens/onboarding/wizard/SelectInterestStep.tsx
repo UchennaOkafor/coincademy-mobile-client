@@ -23,7 +23,7 @@ const SelectInterestStep = (props: Props): JSX.Element => {
 		name: 'web3'
 	}, {
 		emoji: '🧑‍💻',
-		name: 'Tech'
+		name: 'Technology'
 	}, {
 		emoji: '💼',
 		name: 'Business'
@@ -35,10 +35,13 @@ const SelectInterestStep = (props: Props): JSX.Element => {
 		name: 'DeFi'
 	}, {
 		emoji: '🎮',
-		name: 'Gaming'
+		name: 'eSports & Gaming'
 	}, {
 		emoji: '♻️',
 		name: 'Sustainability'
+	}, {
+		emoji: '🍃',
+		name: 'Green Energy'
 	}, {
 		emoji: '💊',
 		name: 'Healthcare'
@@ -52,9 +55,6 @@ const SelectInterestStep = (props: Props): JSX.Element => {
 		emoji: '🕶',
 		name: 'Metaverse'
 	}, {
-		emoji: '🤖',
-		name: 'DAOs'
-	}, {
 		emoji: '🖼',
 		name: 'Collectibles/NFTs'
 	}, {
@@ -64,18 +64,22 @@ const SelectInterestStep = (props: Props): JSX.Element => {
 		emoji: '🏡',
 		name: 'Real Estate'
 	}, {
-		emoji: '🫀',
-		name: 'Health & Fitness'
+		emoji: '🏃‍♂️',
+		name: 'Fitness & Wellbeing'
 	}, {
 		emoji: '🎓',
 		name: 'Education'
+	}, {
+		emoji: '🍿',
+		name: 'Media & Entertainment'
 	}];
 
 	return (
 		<>
 			<View style={styles.container}>
 				<Text style={styles.title}>Select your interests</Text>
-				<Text style={styles.subtitle}>Choose atleast a minimum of 3</Text>
+				<Spacer vertical={Theme.spacing.spacing3XS} />
+				<Text style={styles.subtitle}>We use this to personalize your experience</Text>
 				<Spacer vertical={Theme.spacing.spacing2XS} />
 			</View>
 			<FlatGrid

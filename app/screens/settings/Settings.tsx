@@ -12,6 +12,7 @@ import SettingsSections from 'components/settings/SettingsSections';
 import SettingsListData from 'resources/SettingsListData';
 import { getAuth } from 'firebase/auth';
 import HorizontalProfileCard from 'components/profile/HorizontalProfileCard';
+import * as MailComposer from 'expo-mail-composer';
 
 const Settings = (): JSX.Element => {
   const navigation = useNavigation();
@@ -70,11 +71,17 @@ const Settings = (): JSX.Element => {
                 break;
 
               case 'feedback':
-                Linking.openURL('mailto:okaforu335@gmail.com?subject=I have feedback&body=');
+                await MailComposer.composeAsync({
+                  recipients: ['okaforu335@gmail.com'],
+                  subject: 'I have feedback'
+                });
                 break;
 
               case 'contactUs':
-                Linking.openURL('mailto:okaforu335@gmail.com?subject=Support&body=');
+                await MailComposer.composeAsync({
+                  recipients: ['okaforu335@gmail.com'],
+                  subject: 'Support'
+                });
                 break;
             }
           }}

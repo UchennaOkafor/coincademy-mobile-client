@@ -2,10 +2,10 @@ import Project from 'models/Project';
 import React from 'react';
 import { ScrollView, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { Theme } from 'styles/Index';
-import ProjectCard from './ProjectCard';
+import CollectibleCard from './CollectibleCard';
 
 interface Props {
-	projects: Project[];
+	items: Project[];
 	style?: StyleProp<ViewStyle>;
 	contentContainertStyle?: StyleProp<ViewStyle>;
 	loading?: boolean;
@@ -14,14 +14,14 @@ interface Props {
 	onPress: (project: Project) => void;
 }
 
-const ProjectCardList = (props: Props): JSX.Element => {
+const CollectibleCardList = (props: Props): JSX.Element => {
 	return (
 		<View style={props.style}>
 			{props.loading ? (
 				props.loadingComponent
 			) : (
 				<>
-						{props.projects == null || props.projects.length === 0 ? (
+					{props.items == null || props.items.length === 0 ? (
 						props.emptyComponent
 					) : (
 						<>
@@ -29,16 +29,16 @@ const ProjectCardList = (props: Props): JSX.Element => {
 								horizontal={true}
 								contentContainerStyle={props.contentContainertStyle}
 								showsHorizontalScrollIndicator={false}>
-								{props.projects.map((item: Project, index: number) => {
-									const isLastItem = index === props.projects.length;
+								{props.items.map((item: Project, index: number) => {
+									const isLastItem = index === props.items.length;
 									const cardStyle: StyleProp<ViewStyle> = { 
 										marginRight: isLastItem ? 0 : Theme.spacing.spacingM 
 									};
 
 									return (
-										<ProjectCard
+										<CollectibleCard
 											key={item.id}
-											project={item}
+											item={item}
 											onPress={() => props.onPress?.(item)}
 											style={cardStyle}
 										/>
@@ -55,4 +55,4 @@ const ProjectCardList = (props: Props): JSX.Element => {
 
 const styles = StyleSheet.create({});
 
-export default ProjectCardList;
+export default CollectibleCardList;
