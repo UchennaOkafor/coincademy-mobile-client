@@ -1,5 +1,5 @@
 import React, {memo, useState} from 'react';
-import {StyleSheet, Dimensions, Text} from 'react-native';
+import {StyleSheet, useWindowDimensions} from 'react-native';
 import equals from 'react-fast-compare';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {Theme} from 'styles/Index';
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const FeaturedLessonCardCarousel = (props: Props): JSX.Element => {
-  const {width: viewportWidth} = Dimensions.get('window');
+  const dimensions = useWindowDimensions();
   const [featuredLessonScrollIndex, setFeaturedLessonScrollIndex] = useState(0);
 
   return (
@@ -23,8 +23,8 @@ const FeaturedLessonCardCarousel = (props: Props): JSX.Element => {
         vertical={false}
         data={props.featuredLessons}
         renderItem={renderCarouselItem}
-        sliderWidth={viewportWidth}
-        itemWidth={viewportWidth}
+        sliderWidth={dimensions.width}
+        itemWidth={dimensions.width}
         useScrollView={true}
         useExperimentalSnap={true}
         onScrollIndexChanged={(index: number) =>

@@ -1,8 +1,8 @@
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {Lesson} from 'codegen/models/Lesson';
 import Button from 'components/buttons/Button';
-import React, {useEffect, useRef, useState} from 'react';
-import {Alert, BackHandler, Dimensions, StyleProp, StyleSheet, Text, View, ViewStyle} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Alert, BackHandler, StyleProp, StyleSheet, Text, useWindowDimensions, View, ViewStyle} from 'react-native';
 import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import {Theme} from 'styles/Index';
@@ -19,7 +19,7 @@ const LessonOverview = (): JSX.Element => {
   const safeAreaInsets = useSafeAreaInsets();
   const route = useRoute<RouteProp<{params: LessonRouteProps}, 'params'>>();
   //const confettiCannon = useRef<ConfettiCannon>(null);
-  const {width: viewportWidth} = Dimensions.get('window');
+  const dimensions = useWindowDimensions();
   const [sound, setSound] = React.useState<Audio.Sound>();
   const userStore = useUserStore();
   const [soundMuted] = useState(userStore.preferences.sound.muted);
@@ -53,7 +53,7 @@ const LessonOverview = (): JSX.Element => {
             loop={false}
             autoPlay
             speed={0.8}
-            style={[styles.animation, {width: viewportWidth}]}
+            style={[styles.animation, { width: dimensions.width }]}
           />
 
           <View style={styles.textContainer}>

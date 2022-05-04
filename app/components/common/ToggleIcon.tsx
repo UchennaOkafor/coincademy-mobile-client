@@ -1,25 +1,43 @@
 import RNBounceable from '@freakycoder/react-native-bounceable';
-import React, { useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import {StyleProp, ViewStyle} from 'react-native';
 import { Heart } from 'react-native-feather';
 import {Theme} from 'styles/Index';
 
 interface Props {
+  initialValue?: boolean;
   size?: number;
   onChecked?: (checked: boolean) => void;
   style?: StyleProp<ViewStyle>;
 }
 
-const ToggleIcon = (props: Props): JSX.Element => {
-  const [isLiked, setIsLiked] = useState(false);
+export interface ToggleIconRef {
+  setChecked: (value: boolean) => void;
+  toggle: () => void;
+}
+
+let ToggleIcon = (props: Props, ref: React.ForwardedRef<ToggleIconRef>): JSX.Element => {
+  const [isLiked, setIsLiked] = useState(props.initialValue ?? false);
+  const bounceable = useRef<RNBounceable>(null);
+
+  useImperativeHandle(ref, () => ({
+    setChecked: (value: boolean) => {
+      setIsLiked(value);
+      props.onChecked?.(value);
+    },
+    toggle: () => {
+      bounceable.current?.onPress();
+    }
+  }));
 
   return (
     <RNBounceable
+      ref={bounceable}
       style={props.style}
       bounceEffect={0.8}
       onPress={() => {
         setIsLiked(!isLiked);
-        props.onChecked?.(isLiked);
+        props.onChecked?.(!isLiked);
       }}
       hitSlop={{
         top: Theme.spacing.spacingM,
@@ -38,4 +56,4 @@ const ToggleIcon = (props: Props): JSX.Element => {
   )
 };
 
-export default ToggleIcon;
+export default forwardRef(ToggleIcon);

@@ -17,7 +17,7 @@
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
     "@freakycoder/react-native-bounceable": "^0.2.5",
-    "@gorhom/bottom-sheet": "^4.2.1",
+    "@gorhom/bottom-sheet": "^4.2.2",
     "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-native-masked-view/masked-view": "0.2.6",
     "@react-navigation/bottom-tabs": "^6.3.1",
@@ -31,6 +31,7 @@
     "expo-font": "~10.0.5",
     "expo-linear-gradient": "~11.0.3",
     "expo-localization": "~12.0.1",
+    "expo-mail-composer": "~11.1.0",
     "expo-status-bar": "~1.2.0",
     "expo-updates": "~0.11.6",
     "expo-web-browser": "~10.1.1",
@@ -48,12 +49,13 @@
     "react-native-confetti-cannon": "^1.5.2",
     "react-native-feather": "^1.1.2",
     "react-native-figma-squircle": "^0.2.0",
+    "react-native-fit-image": "^1.5.5",
     "react-native-floating-action": "^1.22.0",
     "react-native-gesture-handler": "~2.1.0",
     "react-native-modal": "^12.1.0",
     "react-native-pager-view": "5.4.15",
     "react-native-reanimated": "~2.3.1",
-    "react-native-reanimated-carousel": "^2.3.5",
+    "react-native-reanimated-carousel": "^2.3.9",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
     "react-native-snap-carousel": "^4.0.0-beta.6",
@@ -61,8 +63,7 @@
     "react-native-svg": "12.1.1",
     "react-native-web": "0.17.1",
     "timeago.js": "^4.0.2",
-    "zustand": "^3.7.1",
-    "expo-mail-composer": "~11.1.0"
+    "zustand": "^3.7.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

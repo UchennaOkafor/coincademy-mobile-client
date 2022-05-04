@@ -1,10 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {
-  Dimensions,
   Image,
   StyleSheet,
   Text,
   TouchableOpacity,
+  useWindowDimensions,
   View
 } from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
@@ -23,7 +23,7 @@ const Onboarding = (): JSX.Element => {
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [hasReachedEnd, setHasReachedEnd] = useState(false);
   const carousel = useRef<Carousel<OnboardingCarouselItem>>(null);
-  const {width: viewportWidth} = Dimensions.get('window');
+  const dimensions = useWindowDimensions();
 
   const onboardingData = OnboardingData.getCarouselItems();
 
@@ -40,8 +40,8 @@ const Onboarding = (): JSX.Element => {
           ref={carousel}
           data={onboardingData}
           renderItem={renderCarouselItem}
-          sliderWidth={viewportWidth}
-          itemWidth={viewportWidth - 10}
+          sliderWidth={dimensions.width}
+          itemWidth={dimensions.width - 10}
           onScrollIndexChanged={(index: number) => setCarouselIndex(index)}
           useScrollView={false}
         />

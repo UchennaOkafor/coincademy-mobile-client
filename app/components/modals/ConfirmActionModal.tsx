@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Theme } from 'styles/Index';
-import Spacer from '../common/Spacer';
 import Modal from "react-native-modal";
+import Spacer from 'components/common/Spacer';
 
 interface Props {
 	visible: boolean;

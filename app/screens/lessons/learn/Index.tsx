@@ -1,12 +1,12 @@
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {
-  Dimensions,
   Image,
   ScrollView,
   StyleProp,
   StyleSheet,
   TouchableOpacity,
+  useWindowDimensions,
   View,
   ViewStyle
 } from 'react-native';
@@ -24,7 +24,7 @@ import {Theme} from 'styles/Index';
 import {useUserStore} from 'state/useUserStore';
 import {Audio} from 'expo-av';
 import ImageContentCard from 'components/common/ImageContentCard';
-import AnimatedContentCard from '../../../components/common/AnimatedContentCard';
+import AnimatedContentCard from 'components/common/AnimatedContentCard';
 import ConfirmActionModal from 'components/modals/ConfirmActionModal';
 import ContentModal from 'components/modals/ContentModal';
 const FeedbackWrong = require('@assets/sounds/feedback_wrong.mp3');
@@ -55,7 +55,7 @@ const LessonOverview = (): JSX.Element => {
   }
 
   const safeAreaInsets = useSafeAreaInsets();
-  const {width: viewportWidth} = Dimensions.get('window');
+  const dimensions = useWindowDimensions();
 
   const userStore = useUserStore();
   const carousel = useRef<Carousel<BaseLessonItem>>(null);
@@ -253,8 +253,8 @@ const LessonOverview = (): JSX.Element => {
           ref={carousel}
           data={currentLessonItems}
           renderItem={renderCarouselItem}
-          sliderWidth={viewportWidth}
-          itemWidth={viewportWidth}
+          sliderWidth={dimensions.width}
+          itemWidth={dimensions.width}
           onScrollIndexChanged={(index: number) => setCarouselIndex(index)}
           useScrollView={false}
           loop={false}

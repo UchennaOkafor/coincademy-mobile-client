@@ -68,7 +68,7 @@ const Tabs = () => {
         }}>
         <Tab.Screen
           name="Home"
-          component={Lessons}
+          component={ForYou}
           options={{
             tabBarIcon: ({color, size}) => (
               <Home
@@ -97,7 +97,7 @@ const Tabs = () => {
         {__DEV__ && (
           <Tab.Screen
             name="Test"
-            component={ForYou}
+            component={Lessons}
             options={{
               tabBarIcon: ({ color, size }) => (
                 <HelpCircle

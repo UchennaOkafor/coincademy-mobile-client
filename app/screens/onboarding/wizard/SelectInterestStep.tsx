@@ -23,13 +23,19 @@ const SelectInterestStep = (props: Props): JSX.Element => {
 		name: 'web3'
 	}, {
 		emoji: '🧑‍💻',
-		name: 'Technology'
+		name: 'Tech'
+	}, {
+		emoji: '💻',
+		name: 'Developer'
 	}, {
 		emoji: '💼',
 		name: 'Business'
 	}, {
 		emoji: '💰',
 		name: 'Fintech'
+	}, {
+		emoji: '💸',
+		name: 'Passive Income'
 	}, {
 		emoji: '🪙',
 		name: 'DeFi'
