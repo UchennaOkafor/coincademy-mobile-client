@@ -19,8 +19,7 @@ interface Props {
 
 const BaseView = (props: Props): JSX.Element => {
 	const insets = useSafeAreaInsets();
-	//const style = [styles.container, { paddingTop: insets.top + Theme.spacing.spacingS }];
-	const style = [styles.container];
+	const style = [styles.container, { paddingTop: insets.top + Theme.spacing.spacingS }];
 
 	if (props.scrollable === true) {
 		return (

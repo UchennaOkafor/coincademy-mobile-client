@@ -34,7 +34,7 @@ const Welcome = (): JSX.Element => {
 				{/* <GradientText style={styles.title}>Explore web3</GradientText> */}
 				<Text style={styles.title}>Explore web3</Text>
 				<Spacer vertical={Theme.spacing.spacing3XS} />
-				<Text style={styles.subtitle}>Your next favourite project is only a few taps away</Text>
+				<Text style={styles.subtitle}>Discover and learn about your next crypto project.</Text>
 				<Spacer />
 
 				<View style={styles.buttonContainer}>

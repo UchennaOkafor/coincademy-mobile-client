@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import equals from 'react-fast-compare';
 import CircularProgress from 'react-native-circular-progress-indicator';
-import {Check, Clock, Lock, PlayCircle} from 'react-native-feather';
+import {Check, ChevronRight, Clock, Lock, PlayCircle} from 'react-native-feather';
 import TouchableSurface from 'components/layout/TouchableSurface';
 import {Lesson} from 'codegen/models/Lesson';
 import {Theme} from 'styles/Index';
@@ -76,8 +76,18 @@ const LessonCard = (props: Props): JSX.Element => {
   );
 
   function LeadingIcon() {
-    return null;
+    return (
+      <ChevronRight
+        stroke={Theme.colors.blue}
+        fill={Theme.colors.transparent}
+        strokeWidth={2.5}
+        width={22}
+        height={22}
+        style={styles.chevronRightIcon}
+      />
+    );
 
+    return null;
     if (props.lesson.locked) {
       return (
         <Lock
@@ -176,20 +186,20 @@ const styles = StyleSheet.create({
     marginHorizontal: Theme.spacing.spacingM
   },
   image: {
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
     borderRadius: Theme.radius.large,
     overflow: 'hidden'
   },
   title: {
-    ...Theme.typography.text.h6,
-    ...Theme.typography.weight.medium,
+    ...Theme.typography.text.h7,
+    ...Theme.typography.weight.normal,
     marginHorizontal: Theme.spacing.spacingM,
     textAlign: 'left',
     flexWrap: 'wrap'
   },
   subtitle: {
-    ...Theme.typography.text.h7,
+    ...Theme.typography.text.h8,
     ...Theme.typography.weight.normal,
     textAlign: 'left'
   },
@@ -199,6 +209,9 @@ const styles = StyleSheet.create({
   },
   clockIcon: {
     marginRight: Theme.spacing.spacing2XS
+  },
+  chevronRightIcon: {
+    marginLeft: Theme.spacing.spacingM
   }
 });
 

@@ -1,5 +1,5 @@
 import React, {memo} from 'react';
-import {StyleSheet, View, ScrollView, RefreshControlProps} from 'react-native';
+import {StyleSheet, View, ScrollView, RefreshControlProps, StyleProp, TextStyle} from 'react-native';
 import equals from 'react-fast-compare';
 import {Course} from 'codegen/models/Course';
 import TitleSectionHeader from 'components/headers/TitleSectionHeader';
@@ -10,6 +10,7 @@ import {Lesson} from 'codegen';
 interface Props {
   courses: Course[];
   onLessonPressed: (lesson: Lesson) => void;
+  titleStyle?: StyleProp<TextStyle>;
   refreshControl?: React.ReactElement<RefreshControlProps>;
 }
 
@@ -22,7 +23,8 @@ const CourseList = (props: Props): JSX.Element => {
           <View key={`course_${course.id}`}>
             <TitleSectionHeader
               title={course.title}
-              style={styles.sectionHeader}
+              containerStyle={styles.sectionHeader}
+              titleStyle={props.titleStyle}
             />
 
             {course.lessons.map((lesson, index) => {

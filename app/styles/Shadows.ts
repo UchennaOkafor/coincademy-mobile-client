@@ -2,6 +2,16 @@ import {StyleSheet} from 'react-native';
 import { Colors } from './Colors';
 
 export const Shadows = StyleSheet.create({
+  none: {
+    shadowColor: undefined,
+    shadowOffset: {
+      width: 0,
+      height: 0
+    },
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    elevation: 0,
+  },
   small: {
     shadowColor: Colors.grayDark,
     shadowOffset: {

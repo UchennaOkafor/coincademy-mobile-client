@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 	contentContainer: {
 		backgroundColor: Theme.colors.white,
 		borderRadius: Theme.radius.normal,
-		padding: Theme.spacing.spacingXL,
+		padding: Theme.spacing.spacingL,
 	},
 	title: {
 		...Theme.typography.text.h4,

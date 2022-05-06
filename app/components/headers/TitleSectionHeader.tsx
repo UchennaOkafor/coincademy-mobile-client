@@ -3,6 +3,7 @@ import {
   StyleProp,
   StyleSheet,
   Text,
+  TextStyle,
   TouchableOpacity,
   View,
   ViewStyle
@@ -14,14 +15,15 @@ interface Props {
   titleIcon?: JSX.Element;
   rightText?: string;
   rightTextOnPress?: () => void;
-  style?: StyleProp<ViewStyle>;
+  containerStyle?: StyleProp<ViewStyle>;
+  titleStyle?: StyleProp<TextStyle>;
 }
 
 const TitleSectionHeader = (props: Props): JSX.Element => {
   return (
-    <View style={props.style}>
+    <View style={props.containerStyle}>
       <View style={styles.innerContainer}>
-        <Text style={styles.title}>{props.title}</Text>
+        <Text style={[styles.title, props.titleStyle]}>{props.title}</Text>
         {props.titleIcon}
         <TouchableOpacity 
           style={styles.rightTextContainer} 
@@ -40,6 +42,7 @@ const styles = StyleSheet.create({
   },
   title: {
     ...Theme.typography.text.h5,
+    ...Theme.typography.weight.medium,
     marginRight: Theme.spacing.spacingXS,
     textAlign: 'left'
   },

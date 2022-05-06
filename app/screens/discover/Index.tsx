@@ -110,7 +110,7 @@ const Discover = (): JSX.Element => {
 				title="Real estate 🏡"
 				rightText="View More"
 				rightTextOnPress={() => navigation.navigate('CategoryListings')}
-				style={styles.defaultPadding}
+				containerStyle={styles.defaultPadding}
 			/>
 			<ProjectCardList
 				projects={realEstateProjects}
@@ -123,7 +123,7 @@ const Discover = (): JSX.Element => {
 				title="Meme Coins"
 				rightText="View More"
 				rightTextOnPress={() => navigation.navigate('CategoryListings')}
-				style={styles.defaultPadding}
+				containerStyle={styles.defaultPadding}
 			/>
 			<ProjectCardList
 				projects={memeProjects}
@@ -136,7 +136,7 @@ const Discover = (): JSX.Element => {
 				title="Collectibles & NFTs"
 				rightText="View More"
 				rightTextOnPress={() => navigation.navigate('CategoryListings')}
-				style={styles.defaultPadding}
+				containerStyle={styles.defaultPadding}
 			/>
 			<CollectibleCardList
 				items={collectibles}

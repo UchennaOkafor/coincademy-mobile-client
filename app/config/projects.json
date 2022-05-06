@@ -1,0 +1,181 @@
+[
+	{
+		"id": "0.223",
+		"name": "Polkadot",
+		"shortDescription": "The internet, but for blockchains.",
+		"tags": [
+			"Interoperability",
+			"Layer 0"
+		],
+		"categories": [
+			"🌎 web3"
+		],
+		"brandImageUrl": "https://bitcourier.co.uk/storage/photos/11/buying/polkadot.png",
+		"type": "token"
+	},
+	{
+		"id": "0.1",
+		"name": "Bitcoin",
+		"shortDescription": "The first cryptocurrency",
+		"tags": [
+			"Blockchain",
+			"Decentralised"
+		],
+		"categories": [
+			"💰 Fintech",
+			"🧑‍💻 Technology"
+		],
+		"brandImageUrl": "https://cdn.pixabay.com/photo/2013/12/08/12/12/bitcoin-225080_1280.png",
+		"type": "coin"
+	},
+	{
+		"id": "0.003",
+		"name": "Solana",
+		"shortDescription": "A very fast blockchain",
+		"tags": [
+			"Scalability",
+			"dApps"
+		],
+		"categories": [
+			"💻 Developer",
+			"🌎 web3"
+		],
+		"brandImageUrl": "https://recvc.com/wp-content/uploads/2021/02/Solana_Logo_2021_Color.png",
+		"type": "token"
+	},
+	{
+		"id": "0.02",
+		"name": "Baby Doge",
+		"shortDescription": "For people that like dogs",
+		"tags": [
+			"Animal friendly",
+			"Good boys",
+			"Charity"
+		],
+		"categories": [
+			"🐕 Meme Coins"
+		],
+		"brandImageUrl": "https://cdn.shopify.com/s/files/1/0388/4833/1916/files/baby_doge_logo_retro_540x.png?v=1634498789",
+		"type": "coin"
+	},
+	{
+		"id": "0.2",
+		"name": "Etheruem",
+		"shortDescription": "Programmable money",
+		"tags": [
+			"Blockchain",
+			"Smart Contracts"
+		],
+		"categories": [
+			"🧑‍💻 Technology",
+			"💻 Developer"
+		],
+		"brandImageUrl": "https://d33wubrfki0l68.cloudfront.net/9e72bf7f221f56a4771559f5e7792c64c1ae506d/858e7/static/9e43837989f5a675de707424188ea962/2a657/ethereum-logo-portrait-black.png",
+		"type": "coin"
+	},
+	{
+		"id": "0.3",
+		"name": "The Graph",
+		"shortDescription": "Search engine for the Blockchain",
+		"tags": [
+			"Index",
+			"Search"
+		],
+		"categories": [
+			"💻 Developer",
+			"🌎 web3"
+		],
+		"brandImageUrl": "https://handelpro.com/uploads/doge/0_KYAt9fZMMqUTeodo.png",
+		"type": "token"
+	},
+	{
+		"id": "1",
+		"name": "Proptee",
+		"shortDescription": "Real estate investing backed by the blockchain",
+		"tags": [
+			"Real estate exchange",
+			"Blockchain"
+		],
+		"categories": [
+			"🏡 Real estate",
+			"💸 Passive Income"
+		],
+		"brandImageUrl": "https://miro.medium.com/max/1200/1*b5r7B0bxOGHIXqTA8_Kfmg.png",
+		"type": "project"
+	},
+	{
+		"id": "2",
+		"name": "Bricknest",
+		"shortDescription": "Real estate backed NFTs.",
+		"tags": [
+			"Real estate",
+			"NFTs"
+		],
+		"categories": [
+			"🏡 Real estate",
+			"💸 Passive Income"
+		],
+		"brandImageUrl": "https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/hrcqzxw59okfbkbmqihq",
+		"type": "project"
+	},
+	{
+		"id": "3",
+		"name": "bHome",
+		"shortDescription": "A Stable Coin+ backed by U.S. Homes",
+		"tags": [
+			"Real estate",
+			"Stable coin"
+		],
+		"categories": [
+			"🏡 Real estate",
+			"💸 Passive Income"
+		],
+		"brandImageUrl": "https://assets.website-files.com/61eb3243f8c18af6816a1f92/61eb37337a0f1c28285b73c4_B2_logo_spin.gif",
+		"type": "coin"
+	},
+	{
+		"id": "3.0",
+		"name": "Sweatcoin",
+		"shortDescription": "Get paid to walk",
+		"tags": [
+			"Fitness",
+			"Tech for good"
+		],
+		"categories": [
+			"🏃‍♂️ Fitness & Wellbeing",
+			"♻️ Sustainability"
+		],
+		"brandImageUrl": "https://getlogo.net/wp-content/uploads/2020/11/sweatcoin-logo-vector.png",
+		"type": "project"
+	},
+	{
+		"id": "3.1",
+		"name": "Cabin",
+		"shortDescription": "A decentralized city for creators",
+		"tags": [
+			"City building",
+			"Community"
+		],
+		"categories": [
+			"🤖 DAO",
+			"🏡 Real estate"
+		],
+		"brandImageUrl": "https://pbs.twimg.com/profile_images/1458804832551247877/z8CMVDb8_400x400.jpg",
+		"type": "project"
+	},
+	{
+		"id": "3.12",
+		"name": "Kusama",
+		"shortDescription": "Polkadot's Canary Network",
+		"tags": [
+			"Polkdadot",
+			"Interoperability"
+		],
+		"categories": [
+			"🌎 web3"
+		],
+		"iconUrl": "https://s2.coinmarketcap.com/static/img/coins/64x64/5034.png",
+		"brandImageUrl": "https://logovectordl.com/wp-content/uploads/2020/12/kusama-logo-vector.png",
+		"type": "coin"
+	}
+]
