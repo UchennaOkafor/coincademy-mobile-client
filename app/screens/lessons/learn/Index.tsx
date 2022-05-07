@@ -89,6 +89,11 @@ const LessonOverview = (): JSX.Element => {
     await localSound?.unloadAsync();
   }, [networkSound, localSound]);
 
+  const beforeRemove = useCallback((e) => {
+    e.preventDefault();
+    setExitModalVisible(true);
+  }, [setExitModalVisible]);
+
   useEffect(() => {
     lessonItems.forEach((e) => {
       if (e.imageUrl) {
@@ -107,6 +112,8 @@ const LessonOverview = (): JSX.Element => {
     };
   }, [disposeSound]);
 
+
+
   useEffect(() => {
     const loadingTimer = setTimeout(() => {
       setLoading(false);
@@ -116,11 +123,6 @@ const LessonOverview = (): JSX.Element => {
       await Audio.setAudioModeAsync({
         playsInSilentModeIOS: true,
       });
-    }
-
-    const beforeRemove = (e: any) => {
-      e.preventDefault();
-      setExitModalVisible(true);
     }
 
     initializeAudio();
@@ -193,7 +195,10 @@ const LessonOverview = (): JSX.Element => {
         text="All of your progress for this lesson will be lost"
         primaryButton={{
           text: "Leave",
-          onClick: () => navigation.navigate('Home')
+          onClick: () => {
+            navigation.removeListener('beforeRemove', beforeRemove);
+            navigation.goBack();
+          }
         }}
         secondaryButton={{
           text: "Cancel",

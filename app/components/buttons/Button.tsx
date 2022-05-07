@@ -14,7 +14,6 @@ interface Props {
   text: string;
   onPress: () => void;
   loading?: boolean;
-  squircle?: boolean;
   disabled?: boolean;
   leadingIcon?: ReactElement;
   trailingIcon?: ReactElement;

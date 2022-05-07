@@ -33,16 +33,14 @@ const ContentModal = (props: Props): JSX.Element => {
 					</View>
 				)}
 				<Spacer vertical={Theme.spacing.spacingS} />
-				<View style={styles.buttonContainer}>
-					<Button
-						text={props.primaryButton.text}
-						onPress={props.primaryButton.onClick}
-					/>
-					<Spacer horizontal={Theme.spacing.spacingXS} />
-					<TouchableOpacity onPress={props.secondaryButton.onClick}>
-						<Text style={styles.secondaryAction}>{props.secondaryButton.text}</Text>
-					</TouchableOpacity>
-				</View>
+				<Button
+					text={props.primaryButton.text}
+					onPress={props.primaryButton.onClick}
+				/>
+				<Spacer horizontal={Theme.spacing.spacingXS} />
+				<TouchableOpacity onPress={props.secondaryButton.onClick}>
+					<Text style={styles.secondaryAction}>{props.secondaryButton.text}</Text>
+				</TouchableOpacity>
 			</View>
 		</Modal>
 	);
@@ -66,10 +64,6 @@ const styles = StyleSheet.create({
 	text: {
 		...Theme.typography.text.body,
 	},
-	buttonContainer: {
-		flexDirection: 'column', 
-		alignItems: 'center'
-	},
 	imageContainer: {
 		overflow: 'hidden',
 		borderRadius: Theme.spacing.spacingXS
@@ -82,7 +76,8 @@ const styles = StyleSheet.create({
 		...Theme.typography.text.h5, 
 		...Theme.typography.weight.medium, 
 		color: Theme.colors.gray, 
-		textDecorationLine: 'underline'
+		textDecorationLine: 'underline',
+		alignSelf: 'center'
 	}
 });
 
