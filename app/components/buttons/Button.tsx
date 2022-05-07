@@ -1,17 +1,14 @@
-import TouchableSurface from 'components/TouchableSurface';
+import TouchableSurface from 'components/layout/TouchableSurface';
 import React, { ReactElement } from 'react';
 import {
   ActivityIndicator,
-  Platform,
   StyleSheet,
   Text,
-  View,
   ViewStyle,
   StyleProp
 } from 'react-native';
 import { ButtonThemeSize, ButtonThemeStyle } from 'styles/Buttons';
 import {Theme} from 'styles/Index';
-import MaskedSquircleView from '../MaskedSquircleView';
 
 interface Props {
   text: string;
@@ -35,31 +32,30 @@ const Button = (props: Props): JSX.Element => {
 
   const bgStyle: StyleProp<ViewStyle> = {
     backgroundColor: bgColor,
-    borderColor: border,
     paddingHorizontal: size.paddingHorizontal,
-    paddingVertical: size.paddingVertical
+    paddingVertical: size.paddingVertical,
+    
+    borderColor: border == null ? undefined : border,
+    borderWidth: border == null ? undefined : 2,
   };
 
-  const Container = props.squircle === true && Platform.OS === 'ios' ? MaskedSquircleView : View;
-
   return (
-    <Container style={[styles.buttonContainer, props.style]}>
-      <TouchableSurface disabled={props.disabled ?? false} onPress={onPress}>
-        <View style={[styles.innerButtonContainer, bgStyle]}>
-          {props.loading === true ? (
-            <ActivityIndicator color={Theme.colors.white} />
-          ) : (
-            <>
-              {props.leadingIcon}
-                <Text style={[size.font, {color: textColor}]}>
-                {props.text}
-              </Text>
-              {props.trailingIcon}
-            </>
-          )}
-        </View>
-      </TouchableSurface>
-    </Container>
+    <TouchableSurface 
+      style={[styles.container, bgStyle, props.style]} 
+      disabled={props.disabled ?? false} 
+      onPress={onPress}>
+      {props.loading === true ? (
+        <ActivityIndicator color={Theme.colors.white} />
+      ) : (
+        <>
+          {props.leadingIcon}
+          <Text style={[size.font, { color: textColor }]}>
+            {props.text}
+          </Text>
+          {props.trailingIcon}
+        </>
+      )}
+    </TouchableSurface>
   );
 
   function onPress(): void {
@@ -78,15 +74,10 @@ const getButtonSizeStyles = (size?: string): ButtonThemeSize => {
 }
 
 const styles = StyleSheet.create({
-  buttonContainer: {
+  container: {
     flexDirection: 'row',
-    overflow: 'hidden',
-    borderRadius: Theme.radius.large + Theme.radius.extraSmall
-  },
-  innerButtonContainer: {
-    flexGrow: 1,
-    flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    borderRadius: Theme.radius.large
   }
 });
 

@@ -4,10 +4,10 @@ export default interface Project {
 	shortDescription: string;
 	description: string;
 	symbol: string;
-	iconUrl: string;
-	brandImageUrl: string;
+	logoUrl: string;
+	fullLogoUrl: string;
 	imageUrl: string;
 	tags: string[];
 	categories: string[];
-	type: string;
+	type: 'project' | 'token' | 'coin';
 }

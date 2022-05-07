@@ -42,7 +42,6 @@ const EnterNameStep = (props: Props): JSX.Element => {
 				<Button
 					text="Continue"
 					disabled={name?.trim() === ''}
-					squircle={true}
 					theme={Theme.buttons.styles.primary}
 					onPress={() => props.onNext?.(name)}
 				/>

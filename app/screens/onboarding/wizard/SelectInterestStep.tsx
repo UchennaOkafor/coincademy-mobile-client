@@ -117,7 +117,6 @@ const SelectInterestStep = (props: Props): JSX.Element => {
 					text="Continue"
 					disabled={selectedInterests.length < 3}
 					theme={Theme.buttons.styles.primary}
-					squircle={true}
 					onPress={() => props.onNext?.(selectedInterests)}
 				/>
 			</View>

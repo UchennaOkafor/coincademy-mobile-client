@@ -40,7 +40,7 @@ const ProjectPreviewCard = (props: Props): JSX.Element => {
 	return (
 		<GestureDetector gesture={tap}>
 			<View style={[styles.container, props.style]}>
-				<TouchableSurface disabled={true} onPress={props.onPress}>
+				<TouchableSurface disabled={false} onPress={props.onPress}>
 					<View style={styles.innerContainer}>
 						<ToggleIcon
 							ref={toggleIcon}
@@ -52,7 +52,7 @@ const ProjectPreviewCard = (props: Props): JSX.Element => {
 						<View style={styles.header}>
 							<Image
 								resizeMode="contain"
-								source={{ uri: props.project.brandImageUrl }}
+								source={{ uri: props.project.fullLogoUrl }}
 								style={styles.logoImage}
 							/>
 							<Text style={styles.shortDescription} numberOfLines={2}>

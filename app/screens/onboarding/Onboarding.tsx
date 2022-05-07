@@ -59,7 +59,6 @@ const Onboarding = (): JSX.Element => {
 
       {!hasReachedEnd ? (
         <Button
-          squircle={true}
           text="Next"
           onPress={() => carousel.current?.snapToNext()}
         />
@@ -67,7 +66,6 @@ const Onboarding = (): JSX.Element => {
         <GradientButton
           text="Get Started"
           onPress={navigateToLogin}
-          squircle={true}
         />
       )}
 

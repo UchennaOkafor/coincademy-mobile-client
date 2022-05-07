@@ -113,7 +113,6 @@ const Login = (): JSX.Element => {
               )}
 
               <Button
-                squircle={true}
                 text="Login"
                 loading={authenticating}
                 onPress={login}

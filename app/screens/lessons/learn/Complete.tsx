@@ -63,7 +63,6 @@ const LessonOverview = (): JSX.Element => {
         </View>
         <View style={[styles.buttonContainer, buttonPadding]}>
           <Button
-            squircle={true}
             text="Complete"
             onPress={() => {
               navigation.navigate('Home');

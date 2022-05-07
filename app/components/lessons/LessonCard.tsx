@@ -87,73 +87,40 @@ const LessonCard = (props: Props): JSX.Element => {
       />
     );
 
-    return null;
-    if (props.lesson.locked) {
-      return (
-        <Lock
-          stroke={Theme.colors.gray}
-          fill={Theme.colors.transparent}
-          width={20}
-          height={20}
-          strokeWidth={1.6}
-        />
-      );
-    } else if (props.lesson.progress === 100) {
-      return (
-        <View
-          style={{
-            backgroundColor: Theme.colors.purpleLight,
-            borderRadius: 75,
-            width: 38,
-            height: 38,
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}>
-          <Check
-            stroke={Theme.colors.white}
-            fill={Theme.colors.transparent}
-            strokeWidth={2}
-            width={28}
-            height={28}
-          />
-        </View>
-      );
-    } else if (props.lesson.progress === 0) {
-      return (
-        <PlayCircle
-          stroke={Theme.colors.white}
-          fill={Theme.colors.purpleLight}
-          strokeWidth={1}
-          width={46}
-          height={46}
-        />
-      );
-    }
-
-    return (
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <CircularProgress
-          value={props.lesson.progress}
-          radius={21}
-          duration={2000}
-          textColor={Theme.colors.black}
-          textStyle={{
-            ...Theme.typography.text.h7,
-            fontWeight: Platform.select({android: undefined, ios: '700'})
-          }}
-          maxValue={100}
-          title={undefined}
-          titleColor={undefined}
-          titleStyle={undefined}
-          titleFontSize={undefined}
-          activeStrokeWidth={3}
-          inActiveStrokeWidth={2}
-          activeStrokeColor={Theme.colors.purpleLight}
-          inActiveStrokeColor={Theme.colors.purpleBorder}
-          circleBackgroundColor={Theme.colors.transparent}
-        />
-      </View>
-    );
+    // return (
+    //   <PlayCircle
+    //     stroke={Theme.colors.white}
+    //     fill={Theme.colors.blue}
+    //     strokeWidth={1.2}
+    //     width={38}
+    //     height={38}
+    //   />
+    // );
+    
+    // return (
+    //   <View style={{flexDirection: 'row', alignItems: 'center'}}>
+    //     <CircularProgress
+    //       value={25}
+    //       radius={21}
+    //       duration={2000}
+    //       textColor={Theme.colors.black}
+    //       textStyle={{
+    //         ...Theme.typography.text.h7,
+    //         fontWeight: Platform.select({android: undefined, ios: '700'})
+    //       }}
+    //       maxValue={100}
+    //       title={undefined}
+    //       titleColor={undefined}
+    //       titleStyle={undefined}
+    //       titleFontSize={undefined}
+    //       activeStrokeWidth={3}
+    //       inActiveStrokeWidth={2}
+    //       activeStrokeColor={Theme.colors.purpleLight}
+    //       inActiveStrokeColor={Theme.colors.purpleBorder}
+    //       circleBackgroundColor={Theme.colors.transparent}
+    //     />
+    //   </View>
+    // );
   }
 };
 

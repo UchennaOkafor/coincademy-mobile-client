@@ -53,7 +53,6 @@ const DisclaimerStep = (props: Props): JSX.Element => {
 					text="Finish"
 					disabled={!checked}
 					theme={Theme.buttons.styles.primary}
-					squircle={true}
 					onPress={props.onNext}
 				/>
 			</View>

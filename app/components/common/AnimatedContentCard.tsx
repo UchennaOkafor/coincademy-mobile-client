@@ -26,7 +26,7 @@ const AnimatedContentCard = (props: Props): JSX.Element => {
       <Text style={styles.title}>
         {props.title}
       </Text>
-      <Spacer vertical={Theme.spacing.spacingXS} />
+      <Spacer vertical={Theme.spacing.spacing2XS} />
       <Text style={styles.subtitle}>
         {props.subtitle}
       </Text>

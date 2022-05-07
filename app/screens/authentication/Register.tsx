@@ -87,7 +87,6 @@ const Register = (): JSX.Element => {
         <Button
           text="Create account"
           onPress={createAccount}
-          squircle={true}
           disabled={!validateEmail(email) || !validatePassword(password)}
         />
       </View>

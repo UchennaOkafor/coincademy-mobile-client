@@ -2,7 +2,7 @@
 	{
 		"id": "0.223",
 		"name": "Polkadot",
-		"shortDescription": "The internet, but for blockchains.",
+		"shortDescription": "Enabling different blockchains to work together",
 		"tags": [
 			"Interoperability",
 			"Layer 0"
@@ -10,7 +10,8 @@
 		"categories": [
 			"🌎 web3"
 		],
-		"brandImageUrl": "https://bitcourier.co.uk/storage/photos/11/buying/polkadot.png",
+		"logoUrl": "https://s2.coinmarketcap.com/static/img/coins/64x64/6636.png",
+		"fullLogoUrl": "https://cdn.substack.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fd82373ee-8f28-44a6-ba7e-e825b348b8f6_1600x555.png",
 		"type": "token"
 	},
 	{
@@ -25,7 +26,8 @@
 			"💰 Fintech",
 			"🧑‍💻 Technology"
 		],
-		"brandImageUrl": "https://cdn.pixabay.com/photo/2013/12/08/12/12/bitcoin-225080_1280.png",
+		"logoUrl": "https://bitcoin.org/img/icons/opengraph.png",
+		"fullLogoUrl": "https://cdn.pixabay.com/photo/2013/12/08/12/12/bitcoin-225080_1280.png",
 		"type": "coin"
 	},
 	{
@@ -40,7 +42,8 @@
 			"💻 Developer",
 			"🌎 web3"
 		],
-		"brandImageUrl": "https://recvc.com/wp-content/uploads/2021/02/Solana_Logo_2021_Color.png",
+		"logoUrl": "https://cryptologos.cc/logos/solana-sol-logo.png",
+		"fullLogoUrl": "https://recvc.com/wp-content/uploads/2021/02/Solana_Logo_2021_Color.png",
 		"type": "token"
 	},
 	{
@@ -55,7 +58,8 @@
 		"categories": [
 			"🐕 Meme Coins"
 		],
-		"brandImageUrl": "https://cdn.shopify.com/s/files/1/0388/4833/1916/files/baby_doge_logo_retro_540x.png?v=1634498789",
+		"logoUrl": "https://s2.coinmarketcap.com/static/img/coins/64x64/10407.png",
+		"fullLogoUrl": "https://cdn.shopify.com/s/files/1/0388/4833/1916/files/baby_doge_logo_retro_540x.png?v=1634498789",
 		"type": "coin"
 	},
 	{
@@ -70,7 +74,8 @@
 			"🧑‍💻 Technology",
 			"💻 Developer"
 		],
-		"brandImageUrl": "https://d33wubrfki0l68.cloudfront.net/9e72bf7f221f56a4771559f5e7792c64c1ae506d/858e7/static/9e43837989f5a675de707424188ea962/2a657/ethereum-logo-portrait-black.png",
+		"logoUrl": "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=022",
+		"fullLogoUrl": "https://d33wubrfki0l68.cloudfront.net/9e72bf7f221f56a4771559f5e7792c64c1ae506d/858e7/static/9e43837989f5a675de707424188ea962/2a657/ethereum-logo-portrait-black.png",
 		"type": "coin"
 	},
 	{
@@ -85,7 +90,8 @@
 			"💻 Developer",
 			"🌎 web3"
 		],
-		"brandImageUrl": "https://handelpro.com/uploads/doge/0_KYAt9fZMMqUTeodo.png",
+		"logoUrl": "https://cryptologos.cc/logos/the-graph-grt-logo.png?v=022",
+		"fullLogoUrl": "https://handelpro.com/uploads/doge/0_KYAt9fZMMqUTeodo.png",
 		"type": "token"
 	},
 	{
@@ -100,7 +106,8 @@
 			"🏡 Real estate",
 			"💸 Passive Income"
 		],
-		"brandImageUrl": "https://miro.medium.com/max/1200/1*b5r7B0bxOGHIXqTA8_Kfmg.png",
+		"logoUrl": "https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/mrmzv8fxzvdhuz6o0mts",
+		"fullLogoUrl": "https://miro.medium.com/max/1200/1*b5r7B0bxOGHIXqTA8_Kfmg.png",
 		"type": "project"
 	},
 	{
@@ -115,7 +122,8 @@
 			"🏡 Real estate",
 			"💸 Passive Income"
 		],
-		"brandImageUrl": "https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/hrcqzxw59okfbkbmqihq",
+		"logoUrl": "https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/hrcqzxw59okfbkbmqihq",
+		"fullLogoUrl": "https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/hrcqzxw59okfbkbmqihq",
 		"type": "project"
 	},
 	{
@@ -130,7 +138,8 @@
 			"🏡 Real estate",
 			"💸 Passive Income"
 		],
-		"brandImageUrl": "https://assets.website-files.com/61eb3243f8c18af6816a1f92/61eb37337a0f1c28285b73c4_B2_logo_spin.gif",
+		"logoUrl": "https://assets.coingecko.com/coins/images/25173/large/bacon-200.png?1650526720",
+		"fullLogoUrl": "https://assets.website-files.com/61eb3243f8c18af6816a1f92/61eb37337a0f1c28285b73c4_B2_logo_spin.gif",
 		"type": "coin"
 	},
 	{
@@ -145,7 +154,8 @@
 			"🏃‍♂️ Fitness & Wellbeing",
 			"♻️ Sustainability"
 		],
-		"brandImageUrl": "https://getlogo.net/wp-content/uploads/2020/11/sweatcoin-logo-vector.png",
+		"logoUrl": "https://uploads-ssl.webflow.com/61110d4f51955c3ea8e4b009/613742ea635c6c8ef8369ff4_sweatcoin-icon-blue.png",
+		"fullLogoUrl": "https://getlogo.net/wp-content/uploads/2020/11/sweatcoin-logo-vector.png",
 		"type": "project"
 	},
 	{
@@ -160,7 +170,8 @@
 			"🤖 DAO",
 			"🏡 Real estate"
 		],
-		"brandImageUrl": "https://pbs.twimg.com/profile_images/1458804832551247877/z8CMVDb8_400x400.jpg",
+		"logoUrl": "https://pbs.twimg.com/profile_images/1458804832551247877/z8CMVDb8_400x400.jpg",
+		"fullLogoUrl": "https://pbs.twimg.com/profile_images/1458804832551247877/z8CMVDb8_400x400.jpg",
 		"type": "project"
 	},
 	{
@@ -174,8 +185,8 @@
 		"categories": [
 			"🌎 web3"
 		],
-		"iconUrl": "https://s2.coinmarketcap.com/static/img/coins/64x64/5034.png",
-		"brandImageUrl": "https://logovectordl.com/wp-content/uploads/2020/12/kusama-logo-vector.png",
+		"logoUrl": "https://s2.coinmarketcap.com/static/img/coins/64x64/5034.png",
+		"fullLogoUrl": "https://logovectordl.com/wp-content/uploads/2020/12/kusama-logo-vector.png",
 		"type": "coin"
 	}
 ]

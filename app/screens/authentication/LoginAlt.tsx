@@ -70,7 +70,6 @@ const LoginAlt = (): JSX.Element => {
               </Text>
 
               <Button
-                squircle={true}
                 text="Sign in with Apple"
                 loading={authenticating}
                 leadingIcon={
@@ -83,7 +82,6 @@ const LoginAlt = (): JSX.Element => {
               <Spacer />
 
               <Button
-                squircle={true}
                 text="Sign in with Google"
                 loading={authenticating}
                 leadingIcon={

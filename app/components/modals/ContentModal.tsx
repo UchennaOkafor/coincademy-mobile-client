@@ -37,7 +37,6 @@ const ContentModal = (props: Props): JSX.Element => {
 					<Button
 						text={props.primaryButton.text}
 						onPress={props.primaryButton.onClick}
-						squircle={true}
 					/>
 					<Spacer horizontal={Theme.spacing.spacingXS} />
 					<TouchableOpacity onPress={props.secondaryButton.onClick}>

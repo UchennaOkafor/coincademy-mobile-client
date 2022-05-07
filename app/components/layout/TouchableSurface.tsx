@@ -1,9 +1,12 @@
 import React, {ReactElement} from 'react';
 import {
   Platform,
+  StyleProp,
   StyleSheet,
   TouchableHighlight,
-  TouchableNativeFeedback
+  TouchableNativeFeedback,
+  View,
+  ViewStyle
 } from 'react-native';
 
 interface Props {
@@ -11,29 +14,42 @@ interface Props {
   children: ReactElement;
   onPress: () => void;
   androidDelayPressIn?: number | undefined;
+  style: StyleProp<ViewStyle>;
 }
 
 const TouchableSurface = (props: Props): ReactElement => {
+  const borderRadius = StyleSheet.flatten(props.style)?.borderRadius;
+
   return Platform.OS === 'android' ? (
     <TouchableNativeFeedback
       delayPressIn={props.androidDelayPressIn}
       disabled={props.disabled}
+      background={TouchableNativeFeedback.Ripple('#AAF', false)}
+      useForeground={true}
       onPress={props.onPress}>
-      {props.children}
+      <View style={[styles.container, props.style]}>
+        {props.children}
+      </View>
     </TouchableNativeFeedback>
   ) : (
     <TouchableHighlight
       disabled={props.disabled}
-      style={styles.touchableHighlight}
+      style={[{ borderRadius }, styles.touchableHighlight]}
       onPress={props.onPress}>
-      {props.children}
+      <View style={[styles.container, props.style]}>
+        {props.children}
+      </View>
     </TouchableHighlight>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    overflow: 'hidden'
+  },
   touchableHighlight: {
-    flexGrow: 1
+    overflow: 'hidden'
   }
 });
 

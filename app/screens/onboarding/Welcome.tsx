@@ -39,7 +39,6 @@ const Welcome = (): JSX.Element => {
 
 				<View style={styles.buttonContainer}>
 					<Button
-						squircle={true}
 						text="Create account"
 						onPress={() => navigation.navigate('Onboarding')}
 					/>
@@ -50,7 +49,6 @@ const Welcome = (): JSX.Element => {
 						text="Sign in"
 						onPress={navigateToLogin}
 						theme={Theme.buttons.styles.secondaryOutline}
-						squircle={true}
 					/>
 				</View>
 			</View>

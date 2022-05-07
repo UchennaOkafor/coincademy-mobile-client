@@ -60,7 +60,7 @@ const ForYou = (): JSX.Element => {
 			<ProjectPreviewCard
 				key={item.id}
 				project={item}
-				onPress={() => {}}
+				onPress={() => navigation.navigate('ProjectOverview', { project: item })}
 				style={styles.cardItem}
 			/>
 		);

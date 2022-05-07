@@ -32,7 +32,7 @@ const ProjectCard = (props: Props): JSX.Element => {
 					<View style={styles.topContentContainer}>
 						<Image
 							resizeMode="contain"
-							source={{ uri: props.project.imageUrl}}
+							source={{ uri: props.project.logoUrl}}
 							style={styles.logo}
 						/>
 						<ToggleIcon

@@ -49,11 +49,11 @@ const styles = StyleSheet.create({
 		padding: Theme.spacing.spacingL,
 	},
 	title: {
-		...Theme.typography.text.h4,
+		...Theme.typography.text.h5,
 		...Theme.typography.weight.bold,
 	},
 	text: {
-		...Theme.typography.text.h5,
+		...Theme.typography.text.h6,
 		...Theme.typography.weight.light,
 	},
 	buttonsContainer: {
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
 		paddingLeft: Theme.spacing.spacingS
 	},
 	baseTextButton: {
-		...Theme.typography.text.h5,
+		...Theme.typography.text.h6,
 		...Theme.typography.weight.medium,
 	},
 });

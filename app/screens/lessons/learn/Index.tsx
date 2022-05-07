@@ -264,7 +264,6 @@ const LessonOverview = (): JSX.Element => {
           style={[styles.buttonContainer, buttonPadding]}>
           <Button
             disabled={currentQuestionMultiChoice && selectedAnswerId == null}
-            squircle={true}
             text={!hasReachedEnd ? 'Continue' : 'Finish'}
             onPress={() => {
               if (currentQuestionMultiChoice) {
