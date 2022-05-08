@@ -11,10 +11,10 @@ import {
 
 interface Props {
   disabled?: boolean;
-  children: ReactElement;
+  children: React.ReactNode;
   onPress: () => void;
   androidDelayPressIn?: number | undefined;
-  style: StyleProp<ViewStyle>;
+  style?: StyleProp<ViewStyle>;
 }
 
 const TouchableSurface = (props: Props): ReactElement => {
@@ -34,7 +34,7 @@ const TouchableSurface = (props: Props): ReactElement => {
   ) : (
     <TouchableHighlight
       disabled={props.disabled}
-      style={[{ borderRadius }, styles.touchableHighlight]}
+      style={[{ borderRadius }, styles.container]}
       onPress={props.onPress}>
       <View style={[styles.container, props.style]}>
         {props.children}
@@ -46,9 +46,6 @@ const TouchableSurface = (props: Props): ReactElement => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    overflow: 'hidden'
-  },
-  touchableHighlight: {
     overflow: 'hidden'
   }
 });

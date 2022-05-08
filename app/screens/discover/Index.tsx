@@ -8,6 +8,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Theme } from 'styles/Index';
 import SearchBar from 'components/inputs/SearchBox';
 import CollectibleCardList from 'components/cards/CollectibleCardList';
+import BaseLayout from 'components/layout/BaseLayout';
 
 const Discover = (): JSX.Element => {
 	const navigation = useNavigation();
@@ -93,37 +94,33 @@ const Discover = (): JSX.Element => {
 	}];
 
 	return (
-		<ScrollView 
-			style={styles.container}
-			showsVerticalScrollIndicator={false}>
-			<View style={styles.defaultPadding}>
-				<Spacer vertical={Theme.spacing.spacing2XS} />
-				<Text style={styles.title}>Discover</Text>
-				<Spacer vertical={Theme.spacing.spacing3XS} />
-				<Text style={styles.subtitle}>Explore the world of web3</Text>
-				<Spacer vertical={Theme.spacing.spacing3XS} />
+		<BaseLayout
+			scrollable={true}>
+			<Text style={styles.title}>Discover</Text>
+			<Spacer vertical={Theme.spacing.spacing3XS} />
+			<Text style={styles.subtitle}>Explore the world of web3</Text>
+			<Spacer vertical={Theme.spacing.spacing3XS} />
 
-				<SearchBar
-					placeholder="Search topics & projects"
-					containerStyle={styles.searchBar}
-					onChangeText={() => {}}
-					onSubmitEditing={() => { }}
-					cancelTitleStyle={styles.searchBarCancelTitle}
-					textInputStyle={styles.searchBarInput}
-					borderRadius={Theme.radius.large}
-				/>
-			</View>
+			<SearchBar
+				placeholder="Search topics & projects"
+				containerStyle={styles.searchBar}
+				onChangeText={() => { }}
+				onSubmitEditing={() => { }}
+				cancelTitleStyle={styles.searchBarCancelTitle}
+				textInputStyle={styles.searchBarInput}
+				borderRadius={Theme.radius.large}
+			/>
 
 			<Spacer vertical={Theme.spacing.spacingS} />
 			<TitleSectionHeader
 				title="Real estate 🏡"
 				rightText="View More"
 				rightTextOnPress={() => navigation.navigate('CategoryListings')}
-				containerStyle={styles.defaultPadding}
 			/>
 			<ProjectCardList
 				projects={realEstateProjects}
-				contentContainertStyle={styles.projectCardList}
+				style={styles.defaultPadding}
+				contentContainertStyle={styles.projectCardListContent}
 				onPress={(project: Project) => navigation.navigate('ProjectOverview', { project })}
 			/>
 
@@ -132,11 +129,11 @@ const Discover = (): JSX.Element => {
 				title="Meme Coins"
 				rightText="View More"
 				rightTextOnPress={() => navigation.navigate('CategoryListings')}
-				containerStyle={styles.defaultPadding}
 			/>
 			<ProjectCardList
 				projects={memeProjects}
-				contentContainertStyle={styles.projectCardList}
+				style={styles.defaultPadding}
+				contentContainertStyle={styles.projectCardListContent}
 				onPress={(project: Project) => navigation.navigate('ProjectOverview', { project })}
 			/>
 
@@ -145,26 +142,21 @@ const Discover = (): JSX.Element => {
 				title="Collectibles & NFTs"
 				rightText="View More"
 				rightTextOnPress={() => navigation.navigate('CategoryListings')}
-				containerStyle={styles.defaultPadding}
 			/>
 			<CollectibleCardList
 				items={collectibles}
-				contentContainertStyle={styles.projectCardList}
+				style={styles.defaultPadding}
+				contentContainertStyle={styles.projectCardListContent}
 				onPress={(project: Project) => navigation.navigate('ProjectOverview', { project })}
 			/>
 			<Spacer vertical={Theme.spacing.spacing2XL} />
-		</ScrollView>
+		</BaseLayout>
 	);
 };
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		paddingTop: Theme.spacing.spacing2XS,
-		backgroundColor: Theme.colors.backgroundGray
-	},
 	defaultPadding: {
-		paddingHorizontal: Theme.spacing.spacingM
+		marginHorizontal: -Theme.spacing.spacingM
 	},
 	title: {
 		...Theme.typography.text.h2,
@@ -188,10 +180,10 @@ const styles = StyleSheet.create({
 		...Theme.typography.weight.medium, 
 		lineHeight: undefined
 	},
-	projectCardList: {
-		paddingVertical: Theme.spacing.spacingS, 
-		paddingHorizontal: Theme.spacing.spacingM
-	}
+	projectCardListContent: {
+		paddingHorizontal: Theme.spacing.spacingM,
+		paddingVertical: Theme.spacing.spacingS
+	},
 });
 
 export default Discover;

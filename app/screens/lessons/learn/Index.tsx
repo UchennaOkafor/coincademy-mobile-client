@@ -112,8 +112,6 @@ const LessonOverview = (): JSX.Element => {
     };
   }, [disposeSound]);
 
-
-
   useEffect(() => {
     const loadingTimer = setTimeout(() => {
       setLoading(false);
@@ -208,7 +206,7 @@ const LessonOverview = (): JSX.Element => {
       <ContentModal
         visible={contentModalVisible}
         title="Listen To Lessons"
-        text="You can choose to listen along to lessons or read at your own pace by toggling the sound icon."
+        text="You can choose to listen to lessons or read at your own pace by toggling the sound icon."
         image={require('@assets/images/narration_prompt.png')}
         primaryButton={{
           text: "Listen Now",
@@ -285,6 +283,7 @@ const LessonOverview = (): JSX.Element => {
 
               if (hasReachedEnd) {
                 disposeSound();
+                navigation.removeListener('beforeRemove', beforeRemove);
                 navigation.navigate('LessonComplete', {});
               } else {
                 setCurrentLessonItems(lessonItems.slice(0, carouselIndex + 2));

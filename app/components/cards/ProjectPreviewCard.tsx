@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
 	StyleSheet,
 	Text,
@@ -40,55 +40,56 @@ const ProjectPreviewCard = (props: Props): JSX.Element => {
 	return (
 		<GestureDetector gesture={tap}>
 			<View style={[styles.container, props.style]}>
-				<TouchableSurface disabled={false} onPress={props.onPress}>
-					<View style={styles.innerContainer}>
-						<ToggleIcon
-							ref={toggleIcon}
-							initialValue={liked}
-							size={20}
-							style={styles.loveHeart}
-							onChecked={(checked: boolean) => { }}
+				<TouchableSurface 
+					style={styles.innerContainer} 
+					disabled={false} 
+					onPress={props.onPress}>
+					<ToggleIcon
+						ref={toggleIcon}
+						initialValue={liked}
+						size={20}
+						style={styles.loveHeart}
+						onChecked={(checked: boolean) => { }}
+					/>
+					<View style={styles.header}>
+						<Image
+							resizeMode="contain"
+							source={{ uri: props.project.fullLogoUrl }}
+							style={styles.logoImage}
 						/>
-						<View style={styles.header}>
-							<Image
-								resizeMode="contain"
-								source={{ uri: props.project.fullLogoUrl }}
-								style={styles.logoImage}
-							/>
-							<Text style={styles.shortDescription} numberOfLines={2}>
-								{props.project.shortDescription}
-							</Text>
-							<Text style={styles.tags}>
-								{props.project.tags.map((value, index, tags) => `${value}${index === tags.length - 1 ? '' : '  ·  '}`)}
-							</Text>
-						</View>
-
-						<SectionTitle title="Category" />
-						<View style={styles.chipContainer}>
-							{sortedCategories.map((value: string) => (
-								<Chip key={value} text={value} />
-							))}
-						</View>
-
-						{props.project.type === 'project' && (
-							<>
-								<SectionTitle title="Company" />
-								<Text style={styles.smallText}>🌱  Pre-Seed</Text>
-								<Text style={styles.smallText}>💵  $1.5M total funding</Text>
-								<Text style={styles.smallText}>💰  $29.5T valuation</Text>
-							</>
-						)}
-
-						{(props.project.type === 'coin' || props.project.type === 'token') && (
-							<>
-								<SectionTitle title="Tokenomics" />
-								<BulletedPoint text="Utility Token" />
-								<BulletedPoint text="Proof of stake" />
-								<BulletedPoint text="Market Cap: $875.4B" />
-								<BulletedPoint text="Circulating Supply: 19 Million BTC" />
-							</>
-						)}
+						<Text style={styles.shortDescription} numberOfLines={2}>
+							{props.project.shortDescription}
+						</Text>
+						<Text style={styles.tags}>
+							{props.project.tags.map((value, index, tags) => `${value}${index === tags.length - 1 ? '' : '  ·  '}`)}
+						</Text>
 					</View>
+
+					<SectionTitle title="Category" />
+					<View style={styles.chipContainer}>
+						{sortedCategories.map((value: string) => (
+							<Chip key={value} text={value} />
+						))}
+					</View>
+
+					{props.project.type === 'project' && (
+						<>
+							<SectionTitle title="Company" />
+							<Text style={styles.smallText}>🌱  Pre-Seed</Text>
+							<Text style={styles.smallText}>💵  $1.5M total funding</Text>
+							<Text style={styles.smallText}>💰  $29.5T valuation</Text>
+						</>
+					)}
+
+					{(props.project.type === 'coin' || props.project.type === 'token') && (
+						<>
+							<SectionTitle title="Tokenomics" />
+							<BulletedPoint text="Utility Token" />
+							<BulletedPoint text="Proof of stake" />
+							<BulletedPoint text="Market Cap: $875.4B" />
+							<BulletedPoint text="Circulating Supply: 19 Million BTC" />
+						</>
+					)}
 				</TouchableSurface>
 			</View>
 		</GestureDetector>
@@ -128,7 +129,10 @@ const styles = StyleSheet.create({
 		overflow: 'hidden',
 		...Theme.shadows.small,
 		borderRadius: Theme.radius.large,
-		borderColor: Theme.colors.backgroundGrayDark,
+	},
+	innerContainer: {
+		padding: Theme.spacing.spacingXL,
+		backgroundColor: Theme.colors.white
 	},
 	header: {
 		marginTop: Theme.spacing.spacing2XS + Theme.spacing.spacing3XS, 
@@ -138,12 +142,8 @@ const styles = StyleSheet.create({
 	loveHeart: {
 		zIndex: 1,
 		position: 'absolute',
-		right: 20,
-		top: 20
-	},
-	innerContainer: {
-		padding: Theme.spacing.spacingXL,
-		backgroundColor: Theme.colors.white
+		right: 25,
+		top: 25
 	},
 	logoImage: {
 		height: 70,

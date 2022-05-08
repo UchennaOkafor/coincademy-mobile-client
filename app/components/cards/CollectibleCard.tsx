@@ -22,30 +22,31 @@ interface Props {
 const CollectibleCard = (props: Props): JSX.Element => {
 	return (
 		<View style={[styles.container, props.style]}>
-			<TouchableSurface disabled={false} onPress={props.onPress}>
-				<View style={styles.innerContainer}>
-					<Image
-						resizeMode="cover"
-						source={{ uri: props.item.imageUrl }}
-						style={styles.image}
-					/>
-					<View style={styles.contentContainer}>
-						<Text style={styles.title} numberOfLines={1}>
-							{props.item.name}
+			<TouchableSurface
+				style={styles.innerContainer}
+				disabled={false} 
+				onPress={props.onPress}>
+				<Image
+					resizeMode="cover"
+					source={{ uri: props.item.imageUrl }}
+					style={styles.image}
+				/>
+				<View style={styles.contentContainer}>
+					<Text style={styles.title} numberOfLines={1}>
+						{props.item.name}
+					</Text>
+					<Spacer vertical={Theme.spacing.spacing3XS} />
+					<View style={styles.footerContainer}>
+						<MaterialCommunityIcons 
+							name="ethereum" 
+							size={16} 
+							color={Theme.colors.black}
+							style={styles.ethIcon}
+						/>
+						<Spacer vertical={0} horizontal={Theme.spacing.spacing3XS} />
+						<Text style={styles.subtitle} numberOfLines={1}>
+							3.5 ETH
 						</Text>
-						<Spacer vertical={Theme.spacing.spacing3XS} />
-						<View style={styles.footerContainer}>
-							<MaterialCommunityIcons 
-								name="ethereum" 
-								size={16} 
-								color={Theme.colors.black}
-								style={styles.ethIcon}
-							/>
-							<Spacer vertical={0} horizontal={Theme.spacing.spacing3XS} />
-							<Text style={styles.subtitle} numberOfLines={1}>
-								3.5 ETH
-							</Text>
-						</View>
 					</View>
 				</View>
 			</TouchableSurface>
@@ -55,14 +56,13 @@ const CollectibleCard = (props: Props): JSX.Element => {
 
 const styles = StyleSheet.create({
 	container: {
-		...Theme.shadows.small,
 		overflow: 'hidden',
+		...Theme.shadows.small,
 		borderRadius: Theme.radius.large,
 	},
 	innerContainer: {
 		width: 160,
 		backgroundColor: Theme.colors.white,
-		// padding: Theme.spacing.spacingXS + Theme.spacing.spacing3XS,
 	},
 	image: {
 		height: 140,

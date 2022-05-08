@@ -2,8 +2,8 @@ import { useNavigation } from '@react-navigation/native';
 import Spacer from 'components/common/Spacer';
 import HeaderBackButton from 'components/headers/HeaderBackButton';
 import React, { ReactElement } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { ScrollView, StyleProp, StyleSheet, View, ViewProps, ViewStyle } from 'react-native';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Theme } from 'styles/Index';
 
 interface Props {
@@ -15,24 +15,25 @@ interface Props {
 	paddingVertical?: number;
 	useSafeAreaView?: boolean;
 	useInsets?: boolean;
+	style?: StyleProp<ViewStyle>;
 }
 
-const BaseView = (props: Props): JSX.Element => {
+const ContentView = (props: Props): JSX.Element => {
 	const insets = useSafeAreaInsets();
-	const style = [styles.container, { paddingTop: insets.top + Theme.spacing.spacingS }];
+	//const style = [styles.container, { paddingTop: insets.top + Theme.spacing.spacingS }];
 
 	if (props.scrollable === true) {
 		return (
 			<ScrollView 
-				style={style} 
-				contentContainerStyle={styles.defaultPadding}>
+				contentContainerStyle={[styles.defaultPadding, props.style]}
+				showsVerticalScrollIndicator={false}>
 				{props.children}
 			</ScrollView>
 		);
 	}
 
 	return (
-		<View style={[style, styles.defaultPadding]}>
+		<View style={[styles.defaultPadding, props.style]}>
 			{props.children}
 		</View>
 	);
@@ -42,13 +43,15 @@ const BaseLayout = (props: Props): JSX.Element => {
 	const navigation = useNavigation();
 
 	return (
-		<BaseView {...props}>
-			{/* <HeaderBackButton
-				onPress={() => navigation.canGoBack() ?? navigation.goBack()}
-			/> */}
-			{/* <Spacer /> */}
-			{props.children}
-		</BaseView>
+		<SafeAreaView edges={['top']} style={styles.container}>
+			<ContentView {...props}>
+				{/* <HeaderBackButton
+					onPress={() => navigation.canGoBack() ?? navigation.goBack()}
+				/> */}
+				<Spacer vertical={Theme.spacing.spacing2XS} />
+				{props.children}
+			</ContentView>
+		</SafeAreaView>
 	);
 };
 

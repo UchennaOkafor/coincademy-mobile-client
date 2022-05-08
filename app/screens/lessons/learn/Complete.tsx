@@ -30,7 +30,6 @@ const LessonOverview = (): JSX.Element => {
 
     const onBackPress = () => true;
     BackHandler.addEventListener('hardwareBackPress', onBackPress);
-    navigation.addListener('beforeRemove', (e) => e.preventDefault());
 
     return () => {
       sound?.unloadAsync();
@@ -64,9 +63,7 @@ const LessonOverview = (): JSX.Element => {
         <View style={[styles.buttonContainer, buttonPadding]}>
           <Button
             text="Complete"
-            onPress={() => {
-              navigation.navigate('Home');
-            }}
+            onPress={() => navigation.pop(2)}
           />
         </View>
       </View>

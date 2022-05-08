@@ -1,7 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 import ProjectPreviewCard from 'components/cards/ProjectPreviewCard';
+import Header from 'components/headers/Header';
 import BaseLayout from 'components/layout/BaseLayout';
 import { StatusBar } from 'expo-status-bar';
+import { getAuth } from 'firebase/auth';
 import Project from 'models/Project';
 import React from 'react';
 import { StyleSheet, Text, useWindowDimensions } from 'react-native';
@@ -21,6 +23,12 @@ const ForYou = (): JSX.Element => {
 	return (
 		<BaseLayout scrollable={false}>
 			<StatusBar style="dark" translucent={true} />
+			<Header
+				user={getAuth().currentUser}
+				onProfilePress={() => navigation.navigate('Profile')}
+				onSettingsPress={() => navigation.navigate('Settings')}
+			/>
+			
 			<Text style={styles.title}>Your Matches</Text>
 
 			<GestureHandlerRootView style={styles.carouselContainer}>

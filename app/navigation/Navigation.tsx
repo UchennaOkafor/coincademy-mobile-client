@@ -22,7 +22,7 @@ import {Theme} from 'styles/Index';
 import LoginAlt from 'screens/authentication/LoginAlt';
 import Empty from 'screens/Empty';
 import Discover from 'screens/discover/Index';
-import Overview from 'screens/discover/Overview';
+import ProjectOverview from 'screens/project/Overview';
 import CategoryListings from 'screens/discover/CategoryListings';
 import Onboarding2 from 'screens/onboarding/Onboarding2';
 import Welcome from 'screens/onboarding/Welcome';
@@ -42,50 +42,64 @@ const Tabs = () => {
   const iconSize = 19;
 
   return (
-    <SafeAreaView style={styles.bottomTabContainer} edges={['top']}>
-      <Tab.Navigator
-        initialRouteName="Home"
-        backBehavior="none"
-        screenOptions={{
-          headerShown: false,
-          tabBarStyle: {
-            height: 57 + insets.bottom
-          },
-          tabBarLabelStyle: {
-            marginBottom: 7,
-            ...Theme.typography.text.tabBarFooter
-          },
-          tabBarIconStyle: {
-            marginTop: 5
-          },
-          tabBarBadgeStyle: {
-            ...Theme.typography.text.h6,
-            ...Theme.typography.weight.normal,
-            color: Theme.colors.white,
-            backgroundColor: Theme.colors.purple
-          },
-          tabBarActiveTintColor: Theme.colors.purple
-        }}>
+    <Tab.Navigator
+      initialRouteName="Home"
+      backBehavior="none"
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          height: 57 + insets.bottom
+        },
+        tabBarLabelStyle: {
+          marginBottom: 7,
+          ...Theme.typography.text.tabBarFooter
+        },
+        tabBarIconStyle: {
+          marginTop: 5
+        },
+        tabBarBadgeStyle: {
+          ...Theme.typography.text.h6,
+          ...Theme.typography.weight.normal,
+          color: Theme.colors.white,
+          backgroundColor: Theme.colors.purple
+        },
+        tabBarActiveTintColor: Theme.colors.purple
+      }}>
+      <Tab.Screen
+        name="Home"
+        component={ForYou}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Home
+              stroke={color}
+              fill={Theme.colors.transparent}
+              width={iconSize}
+              height={iconSize}
+            />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="Discover"
+        component={Discover}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <TrendingUp
+              stroke={color}
+              fill={Theme.colors.transparent}
+              width={iconSize}
+              height={iconSize}
+            />
+          )
+        }}
+      />
+      {__DEV__ && (
         <Tab.Screen
-          name="Home"
-          component={ForYou}
-          options={{
-            tabBarIcon: ({color, size}) => (
-              <Home
-                stroke={color}
-                fill={Theme.colors.transparent}
-                width={iconSize}
-                height={iconSize}
-              />
-            )
-          }}
-        />
-        <Tab.Screen
-          name="Discover"
-          component={Discover}
+          name="Test"
+          component={Lessons}
           options={{
             tabBarIcon: ({ color, size }) => (
-              <TrendingUp
+              <HelpCircle
                 stroke={color}
                 fill={Theme.colors.transparent}
                 width={iconSize}
@@ -94,39 +108,23 @@ const Tabs = () => {
             )
           }}
         />
-        {__DEV__ && (
-          <Tab.Screen
-            name="Test"
-            component={Lessons}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <HelpCircle
-                  stroke={color}
-                  fill={Theme.colors.transparent}
-                  width={iconSize}
-                  height={iconSize}
-                />
-              )
-            }}
-          />
-        )}
-        <Tab.Screen
-          name="Profile"
-          component={Profile}
-          options={{
-            // tabBarBadge: '3',
-            tabBarIcon: ({color, size}) => (
-              <User
-                stroke={color}
-                fill={Theme.colors.transparent}
-                width={iconSize}
-                height={iconSize}
-              />
-            )
-          }}
-        />
-      </Tab.Navigator>
-    </SafeAreaView>
+      )}
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          // tabBarBadge: '3',
+          tabBarIcon: ({color, size}) => (
+            <User
+              stroke={color}
+              fill={Theme.colors.transparent}
+              width={iconSize}
+              height={iconSize}
+            />
+          )
+        }}
+      />
+    </Tab.Navigator>
   );
 };
 
@@ -166,7 +164,7 @@ const RootNavigation = (props: StateProps) => {
             />
             <Stack.Screen
               name="ProjectOverview"
-              component={Overview}
+              component={ProjectOverview}
               options={{
                 headerShown: false,
               }}
