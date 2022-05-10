@@ -18,7 +18,7 @@ const ForYou = (): JSX.Element => {
 	const insets = useSafeAreaInsets();
 	const dimensions = useWindowDimensions();
 
-	const projects: Project[] = require('@app/config/projects.json');
+	const projects: Project[] = require('@app/resources/projects.json');
 	
 	return (
 		<BaseLayout scrollable={false}>
