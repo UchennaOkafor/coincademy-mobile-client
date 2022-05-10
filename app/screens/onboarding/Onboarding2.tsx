@@ -55,7 +55,7 @@ const Onboarding2 = (): JSX.Element => {
         <View >
           <EnterNameStep
             key={1} 
-            onNext={(name: string) => {
+            onNext={(firstname: string, lastname: string) => {
               pagerView.current?.setPage(1);
             }}
           />

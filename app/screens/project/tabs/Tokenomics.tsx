@@ -15,8 +15,9 @@ const Tokenomics = (props: Props) => {
 		<ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
 			<Text style={styles.subheading}>Financials</Text>
 			<Text style={styles.text}>Market Cap: $2.4 billion</Text>
+			<Text style={styles.text}>Circulation Supply: 51.4 billion coins</Text>
+			<Text style={styles.text}>Max Supply: 15.4 coins</Text>
 			<Text style={styles.text}>Total Supply: 15.4 coins</Text>
-			<Text style={styles.text}>Circulating Supply: 51.4 billion coins</Text>
 			<Text style={styles.text}>Proof Of Work</Text>
 			<Text style={styles.text}>Staking</Text>
 			<Text style={styles.text}>Inflationary Coin</Text>

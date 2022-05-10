@@ -3,7 +3,7 @@ import Spacer from 'components/common/Spacer';
 import ToggleIcon from 'components/common/ToggleIcon';
 import HeaderBackButton from 'components/headers/HeaderBackButton';
 import Project from 'models/Project';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, Image, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Theme } from 'styles/Index';
@@ -25,6 +25,7 @@ const ProjectOverview = (): JSX.Element => {
 	const route = useRoute<RouteProp<{ params: ProjectRouteProps }, 'params'>>();
 	const project = route.params.project;
 	const insets = useSafeAreaInsets();
+	const [tabInitialized, setTabInitialized] = useState(false);
 
 	useEffect(() => {
 		navigation.setOptions({ headerTitle: project.name });
@@ -33,8 +34,7 @@ const ProjectOverview = (): JSX.Element => {
 	const layout = useWindowDimensions();
 	const [index, setIndex] = React.useState(0);
 	const [routes, setRoutes] = React.useState([
-		{ key: 'overview', title: 'Overview' },
-		{ key: 'learn', title: 'Learn' },
+		{ key: 'overview', title: 'Overview' }
 	]);
 
 	const renderScene = (props: SceneRendererRouteProps) => {
@@ -53,7 +53,11 @@ const ProjectOverview = (): JSX.Element => {
 	};
 
 	useEffect(() => {
-		const optionalRoutes = [];
+		if (tabInitialized) {
+			return;
+		}
+
+		const extraRoutes = [];
 
 		const isProject = project.type === 'project';
 		const isTokenOrCoin = (project.type === 'coin' || project.type === 'token');
@@ -62,12 +66,14 @@ const ProjectOverview = (): JSX.Element => {
 		const companyTabExists = routes.findIndex(e => e.key === 'company') > -1;
 
 		if (isTokenOrCoin && !tokenomicsTabExists) {
-			optionalRoutes.push({ key: 'tokenomics', title: 'Tokenomics' });
+			extraRoutes.push({ key: 'tokenomics', title: 'Tokenomics' });
 		} else if (isProject && !companyTabExists) {
-			optionalRoutes.push({ key: 'company', title: 'Company' });
+			extraRoutes.push({ key: 'company', title: 'Company' });
 		}
-
-		setRoutes([...routes, ...optionalRoutes]);
+		
+		extraRoutes.push({ key: 'learn', title: 'Learn' });
+		setRoutes([...routes, ...extraRoutes]);
+		setTabInitialized(true);
 	}, []);
 
 	return (
