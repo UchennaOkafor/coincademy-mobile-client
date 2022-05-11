@@ -16,6 +16,7 @@ import { useUserStore } from 'state/useUserStore';
 import EnterNameStep from './wizard/EnterNameStep';
 import SelectInterestStep from './wizard/SelectInterestStep';
 import DisclaimerStep from './wizard/DisclaimerStep';
+import SelectExperienceStep from './wizard/SelectExperienceStep';
 
 const Onboarding2 = (): JSX.Element => {
   const insets = useSafeAreaInsets();
@@ -45,16 +46,15 @@ const Onboarding2 = (): JSX.Element => {
         />
       </LinearGradient>
       <Spacer />
-      <Text style={styles.stepText}>Step {pageIndex + 1}/3</Text>
+      <Text style={styles.stepText}>Step {pageIndex + 1}/4</Text>
       <PagerView 
         initialPage={pageIndex}
         ref={pagerView} 
         scrollEnabled={false} 
         onPageSelected={(e) => setPageIndex(e.nativeEvent.position)}
         style={styles.pagerView}>
-        <View >
+        <View key={1}>
           <EnterNameStep
-            key={1} 
             onNext={(firstname: string, lastname: string) => {
               pagerView.current?.setPage(1);
             }}
@@ -62,13 +62,19 @@ const Onboarding2 = (): JSX.Element => {
         </View>
         <View key={2}>
           <SelectInterestStep
-            key={2}
             onNext={(interests: string[]) => {
               pagerView.current?.setPage(2);
             }} 
           />
         </View>
         <View key={3}>
+          <SelectExperienceStep
+            onNext={(experience: string) => {
+              pagerView.current?.setPage(3);
+            }}
+          />
+        </View>
+        <View key={4}>
           <DisclaimerStep
             onNext={() => {
               navigateToLogin();

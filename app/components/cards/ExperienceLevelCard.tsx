@@ -3,24 +3,23 @@ import {
 	StyleProp,
 	StyleSheet,
 	Text,
-	View,
-	ViewStyle} from 'react-native';
+	ViewStyle
+} from 'react-native';
 import equals from 'react-fast-compare';
 import { Theme } from 'styles/Index';
-import Spacer from 'components/common/Spacer';
 import RNBounceable from '@freakycoder/react-native-bounceable';
 import { CheckCircle } from 'react-native-feather';
 
 interface Props {
+	active: boolean;
 	emoji: string;
 	name: string;
 	onPress: (name: string) => void;
 }
 
-const InterestCard = (props: Props): JSX.Element => {
-	const [active, setActive] = useState(false);
+const ExperienceLevelCard = (props: Props): JSX.Element => {
 	const activeStyle: StyleProp<ViewStyle> = {
-		borderColor: active ? Theme.colors.blue : Theme.colors.transparent
+		borderColor: props.active ? Theme.colors.blue : Theme.colors.transparent
 	}
 	
 	return (
@@ -30,47 +29,43 @@ const InterestCard = (props: Props): JSX.Element => {
 			style={[styles.container, activeStyle]}
 			onPress={() => {
 				props.onPress?.(props.name);
-				setActive(!active);
 			}}>
 
 			<Text style={styles.emoji}>{props.emoji}</Text>
-			<Spacer vertical={Theme.spacing.spacing3XS} />
-			<View style={styles.nameContainer}>
-				<Text style={styles.name}>{props.name}</Text>
-				<CheckCircle
-					stroke={Theme.colors.white}
-					fill={Theme.colors.purple}
-					strokeWidth={3}
-					width={22}
-					height={22}
-					style={{ opacity: active ? 1 : 0 }}
-				/>
-			</View>
+			<Text style={styles.name}>{props.name}</Text>
+
+			<CheckCircle
+				stroke={Theme.colors.white}
+				fill={Theme.colors.blue}
+				strokeWidth={2.5}
+				width={26}
+				height={26}
+				style={[styles.checkCircle, { opacity: props.active ? 1 : 0 }]}
+			/>
 		</RNBounceable>
 	);
 };
 
 const styles = StyleSheet.create({
 	container: {
-		padding: Theme.spacing.spacingS, 
+		flexDirection: 'row',
+		alignItems: 'center',
+		paddingVertical: Theme.spacing.spacingXS, 
+		paddingHorizontal: Theme.spacing.spacingL, 
 		backgroundColor: Theme.colors.white, 
 		borderRadius: Theme.radius.large,
-		borderWidth: 1.8,
 	},
 	emoji: {
-		...Theme.typography.text.h5
+		...Theme.typography.text.h1,
+		marginRight: Theme.spacing.spacingM,
 	},
 	name: {
-		flex: 1,
 		...Theme.typography.text.h6, 
 		...Theme.typography.weight.medium,
-		marginRight: Theme.spacing.spacing2XS
 	},
-	nameContainer: {
-		flexDirection: 'row',
-		alignItems: 'center', 
-		justifyContent: 'space-between'
+	checkCircle: {
+		marginLeft: 'auto'
 	}
 });
 
-export default memo(InterestCard, equals);
+export default memo(ExperienceLevelCard, equals);

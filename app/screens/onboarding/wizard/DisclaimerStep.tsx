@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
 		borderTopWidth: 1
 	},
 	title: {
-		...Theme.typography.text.h3
+		...Theme.typography.text.h4
 	},
 	disclaimerText: {
 		flex: 1,

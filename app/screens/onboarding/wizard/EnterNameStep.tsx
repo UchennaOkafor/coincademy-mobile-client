@@ -79,10 +79,10 @@ const styles = StyleSheet.create({
 		borderTopWidth: 1
 	},
 	title: { 
-		...Theme.typography.text.h3 
+		...Theme.typography.text.h4 
 	},
 	subtitle: {
-		...Theme.typography.text.h5, 
+		...Theme.typography.text.h6, 
 		...Theme.typography.weight.normal, 
 		color: Theme.colors.gray 
 	}
