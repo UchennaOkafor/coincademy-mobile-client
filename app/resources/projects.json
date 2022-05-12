@@ -188,5 +188,50 @@
 		"logoUrl": "https://s2.coinmarketcap.com/static/img/coins/64x64/5034.png",
 		"fullLogoUrl": "https://logovectordl.com/wp-content/uploads/2020/12/kusama-logo-vector.png",
 		"type": "coin"
+	},
+	{
+		"id": "111",
+		"name": "Wirtual",
+		"shortDescription": "Exercise to earn",
+		"tags": [
+			"Fitness",
+			"Exercise"
+		],
+		"categories": [
+			"🌎 web3"
+		],
+		"logoUrl": "https://s2.coinmarketcap.com/static/img/coins/200x200/18939.png",
+		"fullLogoUrl": "https://assets-global.website-files.com/5ef302186b3c965d76869200/5f057a005c6423126da2824f_Wirtual%20Blog-p-500.png",
+		"type": "coin"
+	},
+	{
+		"id": "43",
+		"name": "Step App",
+		"shortDescription": "Run. Earn. Run.",
+		"tags": [
+			"Polkdadot",
+			"Interoperability"
+		],
+		"categories": [
+			"🌎 web3"
+		],
+		"logoUrl": "https://storage.googleapis.com/dao-pad-production.appspot.com/801485424e1f49bc8d0facff9287eb9b_photo.png",
+		"fullLogoUrl": "https://i.ibb.co/1QBnX8V/untitled.png",
+		"type": "coin"
+	},
+	{
+		"id": "3432",
+		"name": "Step'n",
+		"shortDescription": "Social Web3 Lifestyle App",
+		"tags": [
+			"Fitness",
+			"Social"
+		],
+		"categories": [
+			"🌎 web3"
+		],
+		"logoUrl": "https://bitcoin-trading.io/wp-content/uploads/2022/03/STEPN-font-logo-gradient_vertical.png",
+		"fullLogoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb40U8j4B8q9PC4yxpEvg7h7jTj1JU6Nyg9Q&usqp=CAU",
+		"type": "coin"
 	}
 ]
