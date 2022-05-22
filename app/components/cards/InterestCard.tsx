@@ -39,7 +39,7 @@ const InterestCard = (props: Props): JSX.Element => {
 				<Text style={styles.name}>{props.name}</Text>
 				<CheckCircle
 					stroke={Theme.colors.white}
-					fill={Theme.colors.purple}
+					fill={Theme.colors.blue}
 					strokeWidth={3}
 					width={22}
 					height={22}
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
 		padding: Theme.spacing.spacingS, 
 		backgroundColor: Theme.colors.white, 
 		borderRadius: Theme.radius.large,
-		borderWidth: 1.8,
+		borderWidth: 1.5,
 	},
 	emoji: {
 		...Theme.typography.text.h5

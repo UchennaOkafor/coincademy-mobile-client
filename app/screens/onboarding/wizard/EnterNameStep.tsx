@@ -3,7 +3,7 @@ import Spacer from 'components/common/Spacer';
 import IconTextInput from 'components/inputs/IconTextInput';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { User } from 'react-native-feather';
+import { User, Users } from 'react-native-feather';
 import { Theme } from 'styles/Index';
 
 interface Props {
@@ -17,11 +17,11 @@ const EnterNameStep = (props: Props): JSX.Element => {
 	return (
 		<>
 			<View style={styles.container}>
-				<Text style={styles.title}>Who art thou?</Text>
+				<Text style={styles.title}>What's your name?</Text>
 				<Spacer vertical={Theme.spacing.spacing3XS} />
-				<Text style={styles.subtitle}>So we know what you call you</Text>
+				<Text style={styles.subtitle}>So we know what to call you by</Text>
 
-				<Spacer vertical={Theme.spacing.spacingXS} />
+				<Spacer vertical={Theme.spacing.spacingS} />
 				<IconTextInput
 					autoCapitalize="none"
 					keyboardType="default"
@@ -42,7 +42,7 @@ const EnterNameStep = (props: Props): JSX.Element => {
 					autoCapitalize="none"
 					keyboardType="default"
 					icon={
-						<User
+						<Users
 							stroke={Theme.colors.gray}
 							fill={Theme.colors.transparent}
 							width={21}

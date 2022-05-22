@@ -1,5 +1,34 @@
 [
 	{
+		"id": "0321",
+		"name": "Terra",
+		"shortDescription": "Creating and holding a stablecoin",
+		"tags": [
+			"Stablecoin",
+			"USDT"
+		],
+		"categories": [
+			"🪙 Stablecoin"
+		],
+		"logoUrl": "https://cryptologos.cc/logos/terra-luna-luna-logo.png?v=022",
+		"fullLogoUrl": "https://www.cryptocoinzone.com/wp-content/uploads/2021/10/Terra-LUNA-logo.png",
+		"type": "token"
+	},
+	{
+		"id": "212",
+		"name": "Stellar",
+		"shortDescription": "Afforable crossborder transactions",
+		"tags": [
+			"Fintech"
+		],
+		"categories": [
+			"💰 Fintech"
+		],
+		"logoUrl": "https://cryptologos.cc/logos/stellar-xlm-logo.png?v=022",
+		"fullLogoUrl": "https://assets-global.website-files.com/5dee83171c0040227763490c/5df16d8f13f4cced330e587b_stellar-logo-solo-1.png",
+		"type": "token"
+	},
+	{
 		"id": "0.223",
 		"name": "Polkadot",
 		"shortDescription": "Enabling different blockchains to work together",

@@ -113,7 +113,7 @@ const Tabs = () => {
         name="Profile"
         component={Profile}
         options={{
-          // tabBarBadge: '3',
+          tabBarBadge: '3',
           tabBarIcon: ({color, size}) => (
             <User
               stroke={color}

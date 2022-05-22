@@ -21,13 +21,15 @@ const DisclaimerStep = (props: Props): JSX.Element => {
 				<Spacer vertical={Theme.spacing.spacing3XS} />
 				<Text style={styles.disclaimerText}>
 					DYOR stands for Do Your Own Research.
-					It is commonly used throughout the internet due to how fast and easily misinformation can spread.
+					It's commonly used throughout the internet due to how fast and easily misinformation can spread.
+					By using our platform, you agree that
 					{'\n'}
 				</Text>
 
-				<CheckedText text="Research and understand a cryptocurrency before investing" />
-				<CheckedText text="It's advised to make the decision on your own before investing, and not just because someone else has said it is worth it."/>
-				<CheckedText text="Always remain skeptical and do your own research." />
+				<CheckedText text="You will research and understand a cryptocurrency before investing" />
+				<CheckedText text="You will make the decision to invest on your own, and not just because someone else has said it's worth it"/>
+				<CheckedText text="The content on our platform is not financial advise" />
+				<CheckedText text="Your capital is at risk when you invest" />
 
 				<Spacer vertical={Theme.spacing.spacing2XS} />
 				<TouchableOpacity 
@@ -43,7 +45,7 @@ const DisclaimerStep = (props: Props): JSX.Element => {
 						iconImageStyle={styles.checkboxIconImage}
 						onPress={(checked: boolean) => setIsChecked(checked)}
 					/>
-					<Text style={styles.consentText}>I understand what it means to DYOR</Text>
+					<Text style={styles.consentText}>I have read the terms and I agree</Text>
 				</TouchableOpacity>
 				<Spacer vertical={Theme.spacing.spacingS} />
 			</ScrollView>

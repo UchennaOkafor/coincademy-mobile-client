@@ -11,13 +11,18 @@ import {Theme} from 'styles/Index';
 type BaseTextInputProps = Omit<TextInputProps, 'clearButtonMode' | 'style'>;
 
 interface Props extends BaseTextInputProps {
-  icon: JSX.Element;
+  icon?: JSX.Element;
 }
 
 const IconTextInput = (props: Props): JSX.Element => {
   return (
-    <View style={styles.searchSection}>
-      {props.icon}
+    <View style={styles.container}>
+      {props.icon && (
+        <View style={{ marginRight: Theme.spacing.spacingM }}>
+          {props.icon}
+        </View>
+      )}
+      
       <TextInput
         style={styles.input}
         underlineColorAndroid="transparent"
@@ -28,13 +33,12 @@ const IconTextInput = (props: Props): JSX.Element => {
 };
 
 const styles = StyleSheet.create({
-  searchSection: {
+  container: {
     flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'center',
     borderRadius: Theme.radius.large,
     borderColor: Theme.colors.borderGray,
-    borderWidth: 1,
+    borderWidth: StyleSheet.hairlineWidth,
     backgroundColor: Theme.colors.white,
     paddingHorizontal: Theme.spacing.spacingM
   },
@@ -46,7 +50,6 @@ const styles = StyleSheet.create({
     paddingVertical: Platform.OS === 'android'
         ? Theme.spacing.spacingXS + Theme.spacing.spacing3XS
         : Theme.spacing.spacingS + Theme.spacing.spacing3XS,
-    paddingHorizontal: Theme.spacing.spacingM
   }
 });
 

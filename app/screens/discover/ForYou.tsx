@@ -46,7 +46,6 @@ const ForYou = (): JSX.Element => {
 					width={dimensions.width}
 					height={dimensions.height / 1.4}
 					loop={false}
-					snapEnabled={true}
 					style={{  }}
 					// withAnimation={{
 					// 	type: 'spring',
@@ -80,7 +79,7 @@ const styles = StyleSheet.create({
 		marginHorizontal: -Theme.spacing.spacingM
 	},
 	title: {
-		...Theme.typography.text.h2,
+		...Theme.typography.text.h3,
 		...Theme.typography.weight.extraBold,
 		marginVertical: Theme.spacing.spacing2XS
 	},

@@ -43,7 +43,7 @@ const Welcome = (): JSX.Element => {
 						onPress={() => navigation.navigate('Onboarding')}
 					/>
 
-					<Spacer vertical={Theme.spacing.spacing2XS} />
+					<Spacer vertical={Theme.spacing.spacingXS} />
 
 					<Button
 						text="Sign in"
