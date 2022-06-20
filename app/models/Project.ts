@@ -9,5 +9,6 @@ export default interface Project {
 	imageUrl: string;
 	tags: string[];
 	categories: string[];
+	marketCap: number;
 	type: 'project' | 'token' | 'coin';
 }

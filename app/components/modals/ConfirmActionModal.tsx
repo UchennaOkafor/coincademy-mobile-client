@@ -22,9 +22,9 @@ const ConfirmActionModal = (props: Props): JSX.Element => {
 			isVisible={props.visible}>
 			<View style={styles.contentContainer}>
 				<Text style={styles.title}>{props.title}</Text>
-				<Spacer vertical={Theme.spacing.spacing2XS} />
+				<Spacer vertical={Theme.spacing.spacing3XS} />
 				<Text style={styles.text}>{props.text}</Text>
-				<Spacer vertical={Theme.spacing.spacingXS} />
+				<Spacer vertical={Theme.spacing.spacingS} />
 				<View style={styles.buttonsContainer}>
 					<TouchableOpacity onPress={props.secondaryButton.onClick} style={styles.textButtonTouchable}>
 						<Text style={[styles.baseTextButton, {color: Theme.colors.gray}]}>{props.secondaryButton.text}</Text>
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 	contentContainer: {
 		backgroundColor: Theme.colors.white,
 		borderRadius: Theme.radius.normal,
-		padding: Theme.spacing.spacingL,
+		padding: Theme.spacing.spacingL + Theme.spacing.spacing3XS,
 	},
 	title: {
 		...Theme.typography.text.h5,
@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
 	},
 	textButtonTouchable: {
 		paddingVertical: Theme.spacing.spacing2XS, 
-		paddingLeft: Theme.spacing.spacingS
+		paddingLeft: Theme.spacing.spacingM,
+		paddingRight: Theme.spacing.spacing2XS
 	},
 	baseTextButton: {
 		...Theme.typography.text.h6,

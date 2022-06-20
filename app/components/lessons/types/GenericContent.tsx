@@ -3,7 +3,7 @@ import {Platform, StyleSheet, Text, View, Image} from 'react-native';
 import equals from 'react-fast-compare';
 import {Theme} from 'styles/Index';
 import { ContentItem} from 'codegen/models/ContentItem';
-import {Video} from 'expo-av';
+import {ResizeMode, Video} from 'expo-av';
 import LottieView from 'components/lottie/LottieView';
 
 interface Props {
@@ -33,7 +33,7 @@ const GenericContent = (props: Props): JSX.Element => {
           shouldPlay
           useNativeControls
           source={{uri: props.item.videoUrl}}
-          resizeMode="cover"
+          resizeMode={ResizeMode.COVER}
           style={styles.video}
         />
       )}

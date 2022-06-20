@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import Spacer from 'components/common/Spacer';
 import HeaderBackButton from 'components/headers/HeaderBackButton';
 import React, { ReactElement } from 'react';
-import { ScrollView, StyleProp, StyleSheet, View, ViewProps, ViewStyle } from 'react-native';
+import { RefreshControlProps, ScrollView, StyleProp, StyleSheet, View, ViewProps, ViewStyle } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Theme } from 'styles/Index';
 
@@ -16,6 +16,7 @@ interface Props {
 	useSafeAreaView?: boolean;
 	useInsets?: boolean;
 	style?: StyleProp<ViewStyle>;
+	refreshControl?: React.ReactElement<RefreshControlProps> | undefined;
 }
 
 const ContentView = (props: Props): JSX.Element => {
@@ -26,7 +27,8 @@ const ContentView = (props: Props): JSX.Element => {
 		return (
 			<ScrollView 
 				contentContainerStyle={[styles.defaultPadding, props.style]}
-				showsVerticalScrollIndicator={false}>
+				showsVerticalScrollIndicator={false}
+				refreshControl={props.refreshControl}>
 				{props.children}
 			</ScrollView>
 		);
@@ -48,7 +50,7 @@ const BaseLayout = (props: Props): JSX.Element => {
 				{/* <HeaderBackButton
 					onPress={() => navigation.canGoBack() ?? navigation.goBack()}
 				/> */}
-				<Spacer vertical={Theme.spacing.spacing2XS} />
+				<Spacer vertical={Theme.spacing.spacing2XS + Theme.spacing.spacing3XS} />
 				{props.children}
 			</ContentView>
 		</SafeAreaView>

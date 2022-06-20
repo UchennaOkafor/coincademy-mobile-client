@@ -5,20 +5,30 @@ import BaseLayout from 'components/layout/BaseLayout';
 import { StatusBar } from 'expo-status-bar';
 import { getAuth } from 'firebase/auth';
 import Project from 'models/Project';
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, useWindowDimensions } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Carousel from 'react-native-reanimated-carousel';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Pagination } from 'react-native-snap-carousel';
+import CoinGeckoApiService from 'services/CoinGeckoApiService';
 import { Theme } from 'styles/Index';
 
 const ForYou = (): JSX.Element => {
 	const navigation = useNavigation();
 	const insets = useSafeAreaInsets();
 	const dimensions = useWindowDimensions();
+	//const [projects, setProjects] = useState<Project[]>(require('@app/resources/projects.json'));
+	const [projects, setProjects] = useState<Project[]>([]);
 
-	const projects: Project[] = require('@app/resources/projects.json');
+	const initialize = useCallback(async () => {
+		const coins = await CoinGeckoApiService.getTopCoins(30, "USD");
+		setProjects(coins);
+	}, []);
+
+	useEffect(() => {
+		initialize();
+	}, []);
 	
 	return (
 		<BaseLayout scrollable={false}>

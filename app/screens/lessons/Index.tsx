@@ -15,6 +15,7 @@ import CourseList from 'components/lessons/CourseList';
 import FeaturedLessonCardCarousel from 'components/lessons/FeaturedLessonCardCarousel';
 import { getAuth } from 'firebase/auth';
 import Spacer from 'components/common/Spacer';
+import BaseLayout from 'components/layout/BaseLayout';
 
 const Index = (): JSX.Element => {
   const navigation = useNavigation();
@@ -44,9 +45,8 @@ const Index = (): JSX.Element => {
   }, []);
 
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={styles.contentContainer}
+    <BaseLayout 
+      scrollable={true}
       refreshControl={
         <RefreshControl
           refreshing={isRefreshing}
@@ -56,9 +56,7 @@ const Index = (): JSX.Element => {
             setIsRefreshing(false);
           }}
         />
-      }
-      showsVerticalScrollIndicator={false}
-      >
+      }>
       <Header
         user={getAuth().currentUser}
         onProfilePress={() => navigation.navigate('Profile')}
@@ -91,24 +89,17 @@ const Index = (): JSX.Element => {
           )}
 
           <CourseList
-            courses={courses} 
-            onLessonPressed={onLessonPressed} 
+            courses={courses}
+            onLessonPressed={onLessonPressed}
           />
           <Spacer vertical={Theme.spacing.spacingM} />
         </>
       )}
-    </ScrollView>
+    </BaseLayout>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Theme.colors.backgroundGray
-  },
-  contentContainer: {
-    paddingHorizontal: Theme.spacing.spacingM
-  },
   spotlightTitle: {
     ...Theme.typography.text.h5,
     ...Theme.typography.weight.bold,

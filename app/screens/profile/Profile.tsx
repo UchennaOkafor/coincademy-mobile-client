@@ -4,12 +4,13 @@ import {LinearGradient} from 'expo-linear-gradient';
 import {Theme} from 'styles/Index';
 import ProfileCard from 'components/profile/ProfileCard';
 import { getAuth } from 'firebase/auth';
+import BaseLayout from 'components/layout/BaseLayout';
 
 const Profile = (): JSX.Element => {
   const user = getAuth().currentUser;
 
   return (
-    <View style={styles.container}>
+    <BaseLayout style={styles.container}>
       <ProfileCard user={user} />
       <LinearGradient
         style={styles.profileDivider}
@@ -25,16 +26,13 @@ const Profile = (): JSX.Element => {
         />
         <Text style={styles.emptyText}>Profile coming soon...</Text>
       </View>
-    </View>
+    </BaseLayout>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: Theme.spacing.spacingM,
-    paddingTop: Theme.spacing.spacing2XS,
-    backgroundColor: Theme.colors.backgroundGray
   },
   emptyContainer: {
     flex: 1,

@@ -20,7 +20,7 @@ interface Props {
 const ExperienceLevelCard = (props: Props): JSX.Element => {
 	const activeStyle: StyleProp<ViewStyle> = {
 		borderColor: props.active ? Theme.colors.blue : Theme.colors.transparent
-	}
+	};
 	
 	return (
 		<RNBounceable
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: Theme.spacing.spacingL, 
 		backgroundColor: Theme.colors.white, 
 		borderRadius: Theme.radius.large,
+		borderWidth: 1.5
 	},
 	emoji: {
 		...Theme.typography.text.h1,

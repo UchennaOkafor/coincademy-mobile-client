@@ -84,7 +84,7 @@ const ProjectOverview = (): JSX.Element => {
 					<ToggleIcon
 						size={20}
 						onChecked={(checked: boolean) => {}}
-						style={{ }}
+						style={{ marginRight: 5}}
 					/>
 				}
 			/>
@@ -93,7 +93,7 @@ const ProjectOverview = (): JSX.Element => {
 					<Text style={styles.title}>
 						{project.name}
 						<Text style={styles.subtitle}>
-							{' • DOGE'}
+							{` • ${project.symbol}`}
 						</Text>
 					</Text>
 					<Spacer vertical={Theme.spacing.spacing3XS} />

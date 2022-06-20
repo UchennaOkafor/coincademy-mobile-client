@@ -15,6 +15,7 @@ import ToggleIcon, { ToggleIconRef } from 'components/common/ToggleIcon';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { runOnJS } from 'react-native-reanimated';
 import Project from 'models/Project';
+import PriceUtility from 'utility/PriceUtility';
 
 interface Props {
 	project: Project;
@@ -84,9 +85,8 @@ const ProjectPreviewCard = (props: Props): JSX.Element => {
 					{(props.project.type === 'coin' || props.project.type === 'token') && (
 						<>
 							<SectionTitle title="Tokenomics" />
-							<BulletedPoint text="Utility Token" />
-							<BulletedPoint text="Proof of stake" />
-							<BulletedPoint text="Market Cap: $875.4B" />
+							<BulletedPoint text="Token: Utility" />
+							<BulletedPoint text={`Market Cap: ${PriceUtility.formatMarketCap(props.project.marketCap, { currency: "USD", locale: "en-US"})}`} />
 							<BulletedPoint text="Circulating Supply: 19 Million BTC" />
 						</>
 					)}
