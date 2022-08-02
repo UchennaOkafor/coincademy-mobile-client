@@ -14,6 +14,9 @@ import {useUserStore} from 'state/useUserStore';
 import {Theme} from '@styles/Index';
 import { getAuth } from 'firebase/auth';
 
+import { QueryClient, QueryClientProvider } from 'react-query'
+const queryClient = new QueryClient();
+
 export default function App() {
   const [loaded] = useFonts({
     'Inter-Black': require('@assets/fonts/Inter/Inter-Black.ttf'),
@@ -51,12 +54,14 @@ export default function App() {
         animated={true}
         backgroundColor={Theme.colors.backgroundGray} 
       />
-      <RootNavigation
-        onboarded={userStore.misc.onboarded}
-        // authenticated={userStore.misc.signedIn}
-        authenticated={userStore.misc.onboarded}
-        authToken="EMTPY_TOKEN"
-      />
+      <QueryClientProvider client={queryClient}>
+        <RootNavigation
+          onboarded={userStore.misc.onboarded}
+          // authenticated={userStore.misc.signedIn}
+          authenticated={userStore.misc.onboarded}
+          authToken="EMTPY_TOKEN"
+        />
+      </QueryClientProvider>
     </SafeAreaProvider>
   );
 }

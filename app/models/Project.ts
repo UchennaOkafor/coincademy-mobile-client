@@ -11,4 +11,15 @@ export default interface Project {
 	categories: string[];
 	marketCap: number;
 	type: 'project' | 'token' | 'coin';
+	links: {
+		website: Link,
+		discord: string,
+		twitter: Link,
+		reddit: Link
+	}
+}
+
+interface Link {
+	label: string;
+	link: string;
 }

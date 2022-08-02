@@ -3,9 +3,8 @@ import Spacer from 'components/common/Spacer';
 import ToggleIcon from 'components/common/ToggleIcon';
 import HeaderBackButton from 'components/headers/HeaderBackButton';
 import Project from 'models/Project';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, Image, useWindowDimensions, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Theme } from 'styles/Index';
 import { TabView, TabBar, SceneRendererProps } from 'react-native-tab-view';
 import BaseLayout from 'components/layout/BaseLayout';
@@ -13,6 +12,9 @@ import Overview from './tabs/Overview';
 import Learn from './tabs/Learn';
 import Tokenomics from './tabs/Tokenomics';
 import Company from './tabs/Company';
+import CoinGeckoApiService from 'services/CoinGeckoApiService';
+import * as lodash from 'lodash';
+import { useQuery } from 'react-query';
 
 interface ProjectRouteProps {
 	project: Project;
@@ -24,8 +26,11 @@ const ProjectOverview = (): JSX.Element => {
 	const navigation = useNavigation();
 	const route = useRoute<RouteProp<{ params: ProjectRouteProps }, 'params'>>();
 	const project = route.params.project;
-	const insets = useSafeAreaInsets();
 	const [tabInitialized, setTabInitialized] = useState(false);
+
+	const { data: coin } = useQuery(`coin_${project.id}`, async () => {
+		return await CoinGeckoApiService.getCoinById(project.id)
+	});
 
 	useEffect(() => {
 		navigation.setOptions({ headerTitle: project.name });
@@ -98,12 +103,12 @@ const ProjectOverview = (): JSX.Element => {
 					</Text>
 					<Spacer vertical={Theme.spacing.spacing3XS} />
 					<Text style={styles.subtitle}>
-						Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+						{lodash.truncate(coin?.shortDescription, { length: 80 })}
 					</Text>
 				</View>
 				<Image
-					resizeMode="cover"
-					style={styles.image}
+					resizeMode="contain"
+					style={styles.logo}
 					source={{ uri: project.logoUrl }}
 				/>
 			</View>
@@ -144,7 +149,7 @@ const styles = StyleSheet.create({
 		...Theme.typography.weight.normal,
 		color: Theme.colors.grayDark,
 	},
-	image: {
+	logo: {
 		width: 55, 
 		height: 55,
 		borderRadius: Theme.radius.normal,

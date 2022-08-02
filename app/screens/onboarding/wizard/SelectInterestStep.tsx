@@ -3,6 +3,7 @@ import InterestCard from 'components/cards/InterestCard';
 import Spacer from 'components/common/Spacer';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { FlatGrid } from 'react-native-super-grid';
 import { Theme } from 'styles/Index';
 
@@ -16,6 +17,8 @@ interface InterestType {
 }
 
 const SelectInterestStep = (props: Props): JSX.Element => {
+	const insets = useSafeAreaInsets();
+	const bottomButtonPadding = insets.bottom === 0 ? undefined : insets.bottom;
 	const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
 
 	const categories: InterestType[] = [{
@@ -112,7 +115,7 @@ const SelectInterestStep = (props: Props): JSX.Element => {
 				)}
 				keyExtractor={(item, index) => item.name}
 			/>
-			<View style={styles.buttonContainer}>
+			<View style={[styles.buttonContainer, { paddingBottom: bottomButtonPadding }]}>
 				<Button
 					text="Continue"
 					disabled={selectedInterests.length < 3}

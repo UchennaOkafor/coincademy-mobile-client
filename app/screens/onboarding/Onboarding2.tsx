@@ -4,7 +4,7 @@ import {
   StyleSheet,
   View,
   Text} from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import {Theme} from 'styles/Index';
 import PagerView from 'react-native-pager-view';
@@ -27,7 +27,7 @@ const Onboarding2 = (): JSX.Element => {
   const pagerView = useRef<PagerView>(null);
 
   return (
-    <SafeAreaView style={styles.container} edges={['bottom']}>
+    <View style={styles.container}>
       <StatusBar style='light' translucent={true} />
       <LinearGradient
         start={{ x: 0, y: 0 }}
@@ -82,7 +82,7 @@ const Onboarding2 = (): JSX.Element => {
           />
         </View>
       </PagerView>
-    </SafeAreaView>
+    </View>
   );
 
   function navigateToLogin(): void {

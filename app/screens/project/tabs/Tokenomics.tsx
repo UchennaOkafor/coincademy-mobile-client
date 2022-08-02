@@ -18,9 +18,7 @@ const Tokenomics = (props: Props) => {
 			<Text style={styles.text}>Circulation Supply: 51.4 billion coins</Text>
 			<Text style={styles.text}>Max Supply: 15.4 coins</Text>
 			<Text style={styles.text}>Total Supply: 15.4 coins</Text>
-			<Text style={styles.text}>Proof Of Work</Text>
-			<Text style={styles.text}>Staking</Text>
-			<Text style={styles.text}>Inflationary Coin</Text>
+			<Text style={styles.text}>Volume (24h): $56 billion</Text>
 
 			<Spacer />
 

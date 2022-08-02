@@ -4,6 +4,7 @@ import IconTextInput from 'components/inputs/IconTextInput';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { User, Users } from 'react-native-feather';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Theme } from 'styles/Index';
 
 interface Props {
@@ -13,7 +14,9 @@ interface Props {
 const EnterNameStep = (props: Props): JSX.Element => {
 	const [firstname, setFirstname] = useState('');
 	const [lastname, setLastname] = useState('');
-
+	const insets = useSafeAreaInsets();
+	const bottomButtonPadding = insets.bottom === 0 ? undefined : insets.bottom;
+	
 	return (
 		<>
 			<View style={styles.container}>
@@ -55,7 +58,7 @@ const EnterNameStep = (props: Props): JSX.Element => {
 				/>
 			</View>
 
-			<View style={styles.buttonContainer}>
+			<View style={[styles.buttonContainer, { paddingBottom: bottomButtonPadding }]}>
 				<Button
 					text="Continue"
 					disabled={firstname?.trim() === '' || lastname?.trim() === ''}

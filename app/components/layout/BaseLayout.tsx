@@ -42,10 +42,16 @@ const ContentView = (props: Props): JSX.Element => {
 }
 
 const BaseLayout = (props: Props): JSX.Element => {
-	const navigation = useNavigation();
+	//const navigation = useNavigation();
+	const insets = useSafeAreaInsets();
 
 	return (
-		<SafeAreaView edges={['top']} style={styles.container}>
+		<View style={[styles.container, {
+			paddingTop: insets.top,
+			paddingBottom: 0,
+			paddingLeft: insets.left,
+			paddingRight: insets.right
+		}]}>
 			<ContentView {...props}>
 				{/* <HeaderBackButton
 					onPress={() => navigation.canGoBack() ?? navigation.goBack()}
@@ -53,9 +59,26 @@ const BaseLayout = (props: Props): JSX.Element => {
 				<Spacer vertical={Theme.spacing.spacing2XS + Theme.spacing.spacing3XS} />
 				{props.children}
 			</ContentView>
-		</SafeAreaView>
+		</View>
 	);
 };
+
+//THE OLD ONE
+// const BaseLayout = (props: Props): JSX.Element => {
+// 	const navigation = useNavigation();
+
+// 	return (
+// 		<SafeAreaView edges={['top']} style={styles.container}>
+// 			<ContentView {...props}>
+// 				{/* <HeaderBackButton
+// 					onPress={() => navigation.canGoBack() ?? navigation.goBack()}
+// 				/> */}
+// 				<Spacer vertical={Theme.spacing.spacing2XS + Theme.spacing.spacing3XS} />
+// 				{props.children}
+// 			</ContentView>
+// 		</SafeAreaView>
+// 	);
+// };
 
 const styles = StyleSheet.create({
 	container: {

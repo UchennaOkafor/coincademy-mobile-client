@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { CheckCircle, User } from 'react-native-feather';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Theme } from 'styles/Index';
 
 interface Props {
@@ -13,6 +14,8 @@ interface Props {
 const DisclaimerStep = (props: Props): JSX.Element => {
 	const [checked, setIsChecked] = useState(false);
 	const checkbox = useRef<BouncyCheckbox>(null);
+	const insets = useSafeAreaInsets();
+	const bottomButtonPadding = insets.bottom === 0 ? undefined : insets.bottom;
 
 	return (
 		<>
@@ -50,7 +53,7 @@ const DisclaimerStep = (props: Props): JSX.Element => {
 				<Spacer vertical={Theme.spacing.spacingS} />
 			</ScrollView>
 
-			<View style={styles.buttonContainer}>
+			<View style={[styles.buttonContainer, { paddingBottom: bottomButtonPadding }]}>
 				<Button
 					text="Finish"
 					disabled={!checked}
@@ -89,7 +92,7 @@ const styles = StyleSheet.create({
 		padding: Theme.spacing.spacingM, 
 		backgroundColor: Theme.colors.white, 
 		borderTopColor: Theme.colors.borderGray, 
-		borderTopWidth: 1
+		borderTopWidth: 1,
 	},
 	title: {
 		...Theme.typography.text.h4

@@ -3,6 +3,7 @@ import ExperienceLevelCard from 'components/cards/ExperienceLevelCard';
 import Spacer from 'components/common/Spacer';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { FlatGrid } from 'react-native-super-grid';
 import { Theme } from 'styles/Index';
 
@@ -16,6 +17,9 @@ interface ExperienceType {
 }
 
 const SelectExperienceStep = (props: Props): JSX.Element => {
+	const insets = useSafeAreaInsets();
+	const bottomButtonPadding = insets.bottom === 0 ? undefined : insets.bottom;
+	
 	const [selectedExperience, setSelectedExperience] = useState<string>();
 	const categories: ExperienceType[] = [{
 		emoji: '🐣',
@@ -55,7 +59,7 @@ const SelectExperienceStep = (props: Props): JSX.Element => {
 				keyExtractor={(item, index) => item.name}
 			/>
 			
-			<View style={styles.buttonContainer}>
+			<View style={[styles.buttonContainer, { paddingBottom: bottomButtonPadding }]}>
 				<Button
 					text="Continue"
 					disabled={selectedExperience == null}
