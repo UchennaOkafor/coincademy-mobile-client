@@ -14,7 +14,7 @@ import {useUserStore} from 'state/useUserStore';
 import {Theme} from '@styles/Index';
 import { getAuth } from 'firebase/auth';
 
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 const queryClient = new QueryClient();
 
 export default function App() {

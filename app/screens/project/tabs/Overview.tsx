@@ -6,7 +6,7 @@ import { Theme } from 'styles/Index';
 import { Entypo, FontAwesome, Fontisto } from '@expo/vector-icons';
 import * as lodash from 'lodash';
 import CoinGeckoApiService from 'services/CoinGeckoApiService';
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { URL } from 'react-native-url-polyfill';
 import * as WebBrowser from 'expo-web-browser';
 
@@ -16,7 +16,7 @@ interface Props {
 
 const Overview = (props: Props) => {
 	const dimensions = useWindowDimensions();
-	const coin = useQuery(`coin_${props.project.id}`, async () => {
+	const coin = useQuery([`coin_${props.project.id}`], async () => {
 		return await CoinGeckoApiService.getCoinById(props.project.id)
 	});
 

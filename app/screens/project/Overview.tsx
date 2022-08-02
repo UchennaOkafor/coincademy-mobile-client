@@ -14,7 +14,7 @@ import Tokenomics from './tabs/Tokenomics';
 import Company from './tabs/Company';
 import CoinGeckoApiService from 'services/CoinGeckoApiService';
 import * as lodash from 'lodash';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 interface ProjectRouteProps {
 	project: Project;
@@ -28,7 +28,7 @@ const ProjectOverview = (): JSX.Element => {
 	const project = route.params.project;
 	const [tabInitialized, setTabInitialized] = useState(false);
 
-	const { data: coin } = useQuery(`coin_${project.id}`, async () => {
+	const { data: coin } = useQuery([`coin_${project.id}`], async () => {
 		return await CoinGeckoApiService.getCoinById(project.id)
 	});
 

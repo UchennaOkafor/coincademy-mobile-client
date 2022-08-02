@@ -13,15 +13,15 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Pagination } from 'react-native-snap-carousel';
 import CoinGeckoApiService from 'services/CoinGeckoApiService';
 import { Theme } from 'styles/Index';
-import { useQuery } from "react-query";
+import { useQuery } from '@tanstack/react-query';
 
 const ForYou = (): JSX.Element => {
 	const navigation = useNavigation();
 	const insets = useSafeAreaInsets();
 	const dimensions = useWindowDimensions();
 	//const [projects, setProjects] = useState<Project[]>(require('@app/resources/projects.json'));
-	const { data: projects } = useQuery("coins", async () => {
-		return await CoinGeckoApiService.getTopCoins(35, "USD");
+	const { data: projects } = useQuery(['coins'], async () => {
+		return await CoinGeckoApiService.getTopCoins(10, "USD");
 	});
 	
 	return (
