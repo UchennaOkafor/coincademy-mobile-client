@@ -25,8 +25,6 @@ const InterestCard = (props: Props): JSX.Element => {
 	
 	return (
 		<RNBounceable
-			bounceEffect={0.97} 
-			bounceFriction={5}
 			style={[styles.container, activeStyle]}
 			onPress={() => {
 				props.onPress?.(props.name);

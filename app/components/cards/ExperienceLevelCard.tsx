@@ -24,8 +24,8 @@ const ExperienceLevelCard = (props: Props): JSX.Element => {
 	
 	return (
 		<RNBounceable
-			bounceEffect={0.97} 
-			bounceFriction={5}
+			bounceEffectIn={1.04}
+			bounceEffectOut={1}
 			style={[styles.container, activeStyle]}
 			onPress={() => {
 				props.onPress?.(props.name);

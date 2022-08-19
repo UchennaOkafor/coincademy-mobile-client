@@ -26,7 +26,7 @@ let ToggleIcon = (props: Props, ref: React.ForwardedRef<ToggleIconRef>): JSX.Ele
       props.onChecked?.(value);
     },
     toggle: () => {
-      bounceable.current?.onPress();
+      bounceable.current?.bounceAnimation(0, 0, 0);
     }
   }));
 
@@ -34,7 +34,8 @@ let ToggleIcon = (props: Props, ref: React.ForwardedRef<ToggleIconRef>): JSX.Ele
     <RNBounceable
       ref={bounceable}
       style={props.style}
-      bounceEffect={0.8}
+      bounceEffectIn={1.5}
+      bounceEffectOut={1}
       onPress={() => {
         setIsLiked(!isLiked);
         props.onChecked?.(!isLiked);

@@ -36,7 +36,7 @@ const DisclaimerStep = (props: Props): JSX.Element => {
 
 				<Spacer vertical={Theme.spacing.spacing2XS} />
 				<TouchableOpacity 
-					onPress={() => checkbox.current?.onPress?.()}
+					onPress={() => checkbox.current?.handleCheck()}
 					style={styles.consentContainer}>
 					<BouncyCheckbox
 						ref={checkbox}
@@ -114,7 +114,6 @@ const styles = StyleSheet.create({
 	},
 	checkboxIcon: {
 		borderRadius: Theme.radius.normal, 
-		borderWidth: 1.5,
 		marginLeft: -Theme.spacing.spacing3XS,
 	},
 	checkboxIconImage: {
