@@ -6,11 +6,9 @@ import {Lock, Mail, User} from 'react-native-feather';
 import {Theme} from 'styles/Index';
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useNavigation } from '@react-navigation/native';
-import { useUserStore } from 'state/useUserStore';
 
 const Register = (): JSX.Element => {
   const navigation = useNavigation();
-  const useStore = useUserStore();
   
   const [displayName, setDisplayName] = useState<string>();
   const [email, setEmail] = useState<string>();
@@ -117,7 +115,6 @@ const Register = (): JSX.Element => {
         updateProfile(user, {
           displayName: displayName,
         }).then(() => {
-          useStore.setAuthenticated(true);
           navigation.reset({
             index: 0,
             routes: [{ name: 'Tabs' }]

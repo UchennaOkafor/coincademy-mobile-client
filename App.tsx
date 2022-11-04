@@ -10,9 +10,8 @@ import {StyleProp, useColorScheme, ViewStyle} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import RootNavigation from '@app/navigation/Navigation';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {useUserStore} from 'state/useUserStore';
+import {useLocalStore} from 'state/useLocalStore';
 import {Theme} from '@styles/Index';
-import { getAuth } from 'firebase/auth';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 const queryClient = new QueryClient();
@@ -30,7 +29,7 @@ export default function App() {
     'Inter-Thin': require('@assets/fonts/Inter/Inter-Thin.ttf')
   });
 
-  const userStore = useUserStore();
+  const localStore = useLocalStore();
   const isDarkMode = useColorScheme() === 'dark';
 
   if (!loaded) {
@@ -43,10 +42,6 @@ export default function App() {
     flex: 1
   };
 
-  if (userStore.misc.signedIn && !getAuth().currentUser) {
-    userStore.setAuthenticated(false);
-  }
-
   return (
     <SafeAreaProvider style={backgroundStyle}>
       <StatusBar 
@@ -56,10 +51,9 @@ export default function App() {
       />
       <QueryClientProvider client={queryClient}>
         <RootNavigation
-          onboarded={userStore.misc.onboarded}
-          // authenticated={userStore.misc.signedIn}
-          authenticated={userStore.misc.onboarded}
-          authToken="EMTPY_TOKEN"
+          onboarded={localStore.user.onboarded}
+          authenticated={localStore.user.onboarded}
+          authToken=""
         />
       </QueryClientProvider>
     </SafeAreaProvider>

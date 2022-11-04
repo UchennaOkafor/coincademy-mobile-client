@@ -1,23 +1,21 @@
 import Avatar from 'components/profile/Avatar';
 import { User } from 'firebase/auth';
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Settings} from 'react-native-feather';
 import {Theme} from 'styles/Index';
 
 interface Props {
+  title: string;
   user: User | null;
   onSettingsPress: () => void;
   onProfilePress: () => void;
 }
 
 const Header = (props: Props): JSX.Element => {
-  const name = props.user?.displayName?.split(' ')[0] ?? '';
-
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{name === '' ? 'Hello' : `Hi, ${name}`}  👋</Text>
-
+      <Text style={styles.title}>{props.title}</Text>
       <View style={styles.iconsContainer}>
         {/* <TouchableOpacity
           style={styles.secondIconContainer}
@@ -43,10 +41,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: Theme.spacing.spacingL
   },
   title: {
-    ...Theme.typography.text.h3
+    ...Theme.typography.text.h2,
+    ...Theme.typography.weight.extraBold
   },
   iconsContainer: {
     flexDirection: 'row',

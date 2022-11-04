@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 		borderWidth: 1.5
 	},
 	emoji: {
-		...Theme.typography.text.h1,
+		...Theme.typography.text.h3,
 		marginRight: Theme.spacing.spacingM,
 	},
 	name: {

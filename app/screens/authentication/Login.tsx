@@ -12,7 +12,6 @@ import IconTextInput from 'components/inputs/IconTextInput';
 import {Lock, Mail} from 'react-native-feather';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Theme} from 'styles/Index';
-import {useUserStore} from 'state/useUserStore';
 import GradientText from 'components/texts/GradientText';
 import ForgotPassword from 'components/authentication/ForgotPassword';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
@@ -22,7 +21,6 @@ const Login = (): JSX.Element => {
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const snapPoints = useMemo(() => ['42%', '55%'], []);
   const [authenticating, setAuthenticating] = useState(false);
-  const userStore = useUserStore();
 
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
@@ -39,7 +37,6 @@ const Login = (): JSX.Element => {
   useEffect(() => {
     const authSubscription = getAuth().onAuthStateChanged((user) => {
       if (user) {
-        userStore.setAuthenticated(true);
         navigation.reset({
           index: 0,
           routes: [{ name: 'Tabs' }]

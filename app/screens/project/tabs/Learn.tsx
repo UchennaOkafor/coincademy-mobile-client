@@ -43,7 +43,7 @@ const Learn = (props: Props) => {
 			style={styles.container}>
 			{/* <Text style={styles.courseListTitle}>Learn about Proptee</Text> */}
 			<Text style={styles.body}>
-				Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+				Ready to start learning? Tap any of the courses below to begin.
 			</Text>
 
 			<Spacer vertical={Theme.spacing.spacing2XS} />

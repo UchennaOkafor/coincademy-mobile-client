@@ -59,14 +59,14 @@ const ProjectPreviewCard = (props: Props): JSX.Element => {
 							style={styles.logoImage}
 						/>
 						<Text style={styles.shortDescription} numberOfLines={2}>
-							{props.project.shortDescription}
+							{props.project.name}
 						</Text>
 						<Text style={styles.tags}>
 							{props.project.tags.map((value, index, tags) => `${value}${index === tags.length - 1 ? '' : '  ·  '}`)}
 						</Text>
 					</View>
 
-					<SectionTitle title="Category" />
+					<SectionTitle title="Categories" />
 					<View style={styles.chipContainer}>
 						{sortedCategories.map((value: string) => (
 							<Chip key={value} text={value} />
@@ -85,9 +85,9 @@ const ProjectPreviewCard = (props: Props): JSX.Element => {
 					{(props.project.type === 'coin' || props.project.type === 'token') && (
 						<>
 							<SectionTitle title="Tokenomics" />
-							<BulletedPoint text="Token: Utility" />
+							{/* <BulletedPoint text="Token: Utility" /> */}
 							<BulletedPoint text={`Market Cap: ${PriceUtility.formatMarketCap(props.project.marketCap, { currency: "USD", locale: "en-US"})}`} />
-							<BulletedPoint text="Circulating Supply: 19 Million BTC" />
+							{/* <BulletedPoint text="Circulating Supply: 19 Million BTC" /> */}
 						</>
 					)}
 				</TouchableSurface>

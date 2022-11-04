@@ -8,12 +8,11 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Theme } from 'styles/Index';
 
 interface Props {
-	onNext: (firstname: string, lastname: string) => void;
+	onNext: (displayName: string) => void;
 }
 
 const EnterNameStep = (props: Props): JSX.Element => {
-	const [firstname, setFirstname] = useState('');
-	const [lastname, setLastname] = useState('');
+	const [displayName, setDisplayName] = useState('');
 	const insets = useSafeAreaInsets();
 	const bottomButtonPadding = insets.bottom === 0 ? undefined : insets.bottom;
 	
@@ -22,7 +21,7 @@ const EnterNameStep = (props: Props): JSX.Element => {
 			<View style={styles.container}>
 				<Text style={styles.title}>What's your name?</Text>
 				<Spacer vertical={Theme.spacing.spacing3XS} />
-				<Text style={styles.subtitle}>So we know what to call you by</Text>
+				<Text style={styles.subtitle}>Just so we know what to call you</Text>
 
 				<Spacer vertical={Theme.spacing.spacingS} />
 				<IconTextInput
@@ -37,33 +36,18 @@ const EnterNameStep = (props: Props): JSX.Element => {
 							strokeWidth={2}
 						/>
 					}
-					placeholder="Firstname"
-					onChangeText={(text: string) => setFirstname(text)}
+					placeholder="Display name"
+					onChangeText={(text: string) => setDisplayName(text)}
 				/>
 				<Spacer vertical={Theme.spacing.spacingXS} />
-				<IconTextInput
-					autoCapitalize="none"
-					keyboardType="default"
-					icon={
-						<Users
-							stroke={Theme.colors.gray}
-							fill={Theme.colors.transparent}
-							width={21}
-							height={21}
-							strokeWidth={2}
-						/>
-					}
-					placeholder="Lastname"
-					onChangeText={(text: string) => setLastname(text)}
-				/>
 			</View>
 
 			<View style={[styles.buttonContainer, { paddingBottom: bottomButtonPadding }]}>
 				<Button
 					text="Continue"
-					disabled={firstname?.trim() === '' || lastname?.trim() === ''}
+					disabled={displayName?.trim() === ''}
 					theme={Theme.buttons.styles.primary}
-					onPress={() => props.onNext?.(firstname, lastname)}
+					onPress={() => props.onNext?.(displayName)}
 				/>
 			</View>
 		</>

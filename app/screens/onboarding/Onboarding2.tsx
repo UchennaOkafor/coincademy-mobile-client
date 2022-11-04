@@ -12,19 +12,32 @@ import { StatusBar } from 'expo-status-bar';
 import HeaderBackButton from 'components/headers/HeaderBackButton';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
-import { useUserStore } from 'state/useUserStore';
+import { useLocalStore } from 'state/useLocalStore';
 import EnterNameStep from './wizard/EnterNameStep';
 import SelectInterestStep from './wizard/SelectInterestStep';
 import DisclaimerStep from './wizard/DisclaimerStep';
 import SelectExperienceStep from './wizard/SelectExperienceStep';
+import EmojiItem from 'models/EmojiItem';
+
+interface User {
+  name: string;
+  interests: EmojiItem[];
+  experience: EmojiItem | null;
+}
 
 const Onboarding2 = (): JSX.Element => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
-  const userStore = useUserStore();
+  const localStore = useLocalStore();
 
   const [pageIndex, setPageIndex] = useState(0);
   const pagerView = useRef<PagerView>(null);
+
+  const [user] = useState<User>({
+    name: '',
+    interests: [],
+    experience: null
+  });
 
   return (
     <View style={styles.container}>
@@ -55,40 +68,46 @@ const Onboarding2 = (): JSX.Element => {
         style={styles.pagerView}>
         <View key={1}>
           <EnterNameStep
-            onNext={(firstname: string, lastname: string) => {
+            onNext={(displayName: string) => {
               pagerView.current?.setPage(1);
+              user.name = displayName;
             }}
           />
         </View>
         <View key={2}>
           <SelectInterestStep
-            onNext={(interests: string[]) => {
+            onNext={(interests: EmojiItem[]) => {
               pagerView.current?.setPage(2);
+              user.interests = interests;
             }} 
           />
         </View>
         <View key={3}>
           <SelectExperienceStep
-            onNext={(experience: string) => {
+            onNext={(experience: EmojiItem) => {
               pagerView.current?.setPage(3);
+              user.experience = experience;
             }}
           />
         </View>
         <View key={4}>
           <DisclaimerStep
-            onNext={() => {
-              navigateToLogin();
+            onNext={async () => {
+              localStore.setOnboardingValues({
+                name: user.name,
+                experience: user.experience!.id,
+                interests: user.interests.map(e => e.id),
+                onboarded: true,
+                createdAt: Date.now()
+              });
+
+              navigation.navigate('Login');
             }}
           />
         </View>
       </PagerView>
     </View>
   );
-
-  function navigateToLogin(): void {
-    userStore.setOnboardingComplete();
-    navigation.navigate('Login');
-  }
 };
 
 const styles = StyleSheet.create({

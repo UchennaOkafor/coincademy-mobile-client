@@ -5,26 +5,49 @@ import {Theme} from 'styles/Index';
 import ProfileCard from 'components/profile/ProfileCard';
 import { getAuth } from 'firebase/auth';
 import BaseLayout from 'components/layout/BaseLayout';
+import Pill from 'components/cards/Pill';
+import { useLocalStore } from 'state/useLocalStore';
+import OnboardingData from 'resources/OnboardingData';
 
 const Profile = (): JSX.Element => {
   const user = getAuth().currentUser;
+  const localStore = useLocalStore();
+
+  const experiences = OnboardingData.getExperienceLevels().find(e => e.id == localStore.user.experience);
+  const interests = OnboardingData.getInterests().filter(e => localStore.user.interests.includes(e.id));
 
   return (
     <BaseLayout style={styles.container}>
-      <ProfileCard user={user} />
+      <ProfileCard 
+        displayName={localStore.user.name} 
+        createdAt={localStore.user.createdAt} 
+      />
       <LinearGradient
         style={styles.profileDivider}
         colors={[Theme.colors.orange, Theme.colors.blue]}
         start={{x: 0, y: 0}}
         end={{x: 1, y: 0}}
       />
-      <View style={styles.emptyContainer}>
-        <Image
-          resizeMode="contain"
-          style={styles.emptyImage}
-          source={require('@assets/images/zen.png')}
-        />
-        <Text style={styles.emptyText}>Profile coming soon...</Text>
+      <View style={styles.contentContainer}>
+        <View style={styles.section}>
+          <Text style={styles.title}>Interests</Text>
+          <View style={styles.sectionContainer}>
+            {interests.map((value, index) => (
+              <Pill 
+                key={value.id} 
+                text={`${value?.emoji} ${value?.name}`} 
+                style={styles.pillItem} 
+              />
+            ))}
+          </View>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.title}>Experience</Text>
+          <View style={styles.sectionContainer}>
+            <Pill text={`${experiences?.emoji} ${experiences?.name}`} style={styles.pillItem} />
+          </View>
+        </View>
       </View>
     </BaseLayout>
   );
@@ -34,30 +57,31 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  emptyContainer: {
+  contentContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: Theme.radius.extraSmall,
-    borderStyle: 'dashed',
-    borderWidth: 1.8,
-    borderColor: Theme.colors.backgroundGrayDark,
-    marginVertical: Theme.spacing.spacingL
+    marginVertical: Theme.spacing.spacingL,
   },
   profileDivider: {
     width: '100%',
     height: 3,
     borderRadius: Theme.radius.extraSmall
   },
-  emptyImage: {
-    width: '100%',
-    height: 90,
+  title: {
+    ...Theme.typography.text.h5,
+    ...Theme.typography.weight.semiBold,
+    color: Theme.colors.black,
+    marginBottom: Theme.spacing.spacingXS
+  },
+  section: {
     marginBottom: Theme.spacing.spacing2XL
   },
-  emptyText: {
-    ...Theme.typography.text.h6,
-    ...Theme.typography.weight.normal,
-    color: Theme.colors.gray
+  sectionContainer: {
+    flexDirection: 'row', 
+    flexWrap: 'wrap'
+  },
+  pillItem: {
+    marginRight: Theme.spacing.spacingXS + Theme.spacing.spacing3XS, 
+    marginBottom: Theme.spacing.spacingXS + Theme.spacing.spacing3XS
   }
 });
 

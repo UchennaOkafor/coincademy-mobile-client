@@ -1,14 +1,13 @@
 import Spacer from 'components/common/Spacer';
 import Project from 'models/Project';
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 import { ScrollView, StyleSheet, Text, useWindowDimensions, TouchableOpacity } from 'react-native';
 import { Theme } from 'styles/Index';
-import { Entypo, FontAwesome, Fontisto } from '@expo/vector-icons';
-import * as lodash from 'lodash';
+import { Entypo, FontAwesome } from '@expo/vector-icons';
 import CoinGeckoApiService from 'services/CoinGeckoApiService';
 import { useQuery } from "@tanstack/react-query";
-import { URL } from 'react-native-url-polyfill';
 import * as WebBrowser from 'expo-web-browser';
+import RenderHtml from 'react-native-render-html';
 
 interface Props {
 	project: Project;
@@ -25,9 +24,14 @@ const Overview = (props: Props) => {
 			showsVerticalScrollIndicator={false} 
 			style={styles.container}>
 			<Text style={styles.subheading}>Description</Text>
-			<Text style={styles.body}>
-				{lodash.truncate(coin.data?.description, { length: 300 })}
-			</Text>
+			
+			<RenderHtml
+				baseStyle={styles.body}
+				contentWidth={dimensions.width}
+				source={{ html: coin.data?.description ?? '' }}
+				defaultTextProps={{ numberOfLines: 4 }}
+			/>
+
 			<Spacer />
 			<Text style={styles.subheading}>Links</Text>
 			<TouchableOpacity style={styles.socialLinkContainer} onPress={() => WebBrowser.openBrowserAsync(coin.data?.links.website.link)}>

@@ -15,22 +15,25 @@ import CoinGeckoApiService from 'services/CoinGeckoApiService';
 import { Theme } from 'styles/Index';
 import { useQuery } from '@tanstack/react-query';
 
-const ForYou = (): JSX.Element => {
+const Home = (): JSX.Element => {
 	const navigation = useNavigation();
 	const insets = useSafeAreaInsets();
 	const dimensions = useWindowDimensions();
 	//const [projects, setProjects] = useState<Project[]>(require('@app/resources/projects.json'));
 	const { data: projects } = useQuery(['coins'], async () => {
-		return await CoinGeckoApiService.getTopCoins(8, "USD");
+		return await CoinGeckoApiService.getTopCoins(15, 'USD');
 	});
 
 	const [cardIndex, setCardIndex] = useState(0);
 	
 	return (
 		<BaseLayout scrollable={false}>
-			<StatusBar style="dark" translucent={true} />
-			<Text style={styles.title}>Your Matches  🐣</Text>
-
+			<Header
+				title="For You 🐣"
+				user={getAuth().currentUser}
+				onProfilePress={() => navigation.navigate('Profile')}
+				onSettingsPress={() => navigation.navigate('Settings')}
+			/>
 			<View style={styles.carouselContainer}>
 				<Carousel
 					vertical={false}
@@ -110,12 +113,8 @@ const ForYou = (): JSX.Element => {
 
 const styles = StyleSheet.create({
 	carouselContainer: {
+		marginTop: Theme.spacing.spacingM,
 		marginHorizontal: -Theme.spacing.spacingM
-	},
-	title: {
-		...Theme.typography.text.h3,
-		...Theme.typography.weight.extraBold,
-		marginVertical: Theme.spacing.spacing2XS
 	},
 	cardItem: {
 		marginHorizontal: Theme.spacing.spacingM, 
@@ -123,4 +122,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default ForYou;
+export default Home;

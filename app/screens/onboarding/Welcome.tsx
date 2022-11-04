@@ -7,12 +7,10 @@ import { StatusBar } from 'expo-status-bar';
 import React, {  } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useUserStore } from 'state/useUserStore';
 import { Theme } from 'styles/Index';
 
 const Welcome = (): JSX.Element => {
 	const navigation = useNavigation();
-	const userStore = useUserStore();
 	const insets = useSafeAreaInsets();
 
 	return (
@@ -22,7 +20,7 @@ const Welcome = (): JSX.Element => {
 				start={{ x: 0, y: 0 }}
 				end={{ x: 1, y: 0 }}
 				colors={[Theme.colors.orange, Theme.colors.blue]}
-				style={{ backgroundColor: 'green', paddingTop: insets.top + Theme.spacing.spacingS }}>
+				style={{ paddingTop: insets.top + Theme.spacing.spacing3XL * 2 }}>
 				<Image
 					source={require('@assets/images/astronaut.png')}
 					resizeMode="contain"
@@ -39,24 +37,23 @@ const Welcome = (): JSX.Element => {
 
 				<View style={styles.buttonContainer}>
 					<Button
-						text="Create account"
+						text="Get Started"
 						onPress={() => navigation.navigate('Onboarding')}
 					/>
 
 					<Spacer vertical={Theme.spacing.spacingXS} />
 
-					<Button
+					{/* <Button
 						text="Sign in"
 						onPress={navigateToLogin}
 						theme={Theme.buttons.styles.secondaryOutline}
-					/>
+					/> */}
 				</View>
 			</View>
 		</View>
 	);
 
 	function navigateToLogin(): void {
-		userStore.setOnboardingComplete();
 		navigation.navigate('Login');
 	}
 };
@@ -67,8 +64,8 @@ const styles = StyleSheet.create({
 		backgroundColor: Theme.colors.backgroundGray,
 	},
 	image: {
-		width: 400,
-		height: 200,
+		width: '100%',
+		height: 225,
 	},
 	title: {
 		...Theme.typography.text.h2, 
@@ -80,7 +77,7 @@ const styles = StyleSheet.create({
 		color: Theme.colors.gray
 	},
 	buttonContainer: {
-		marginTop: Theme.spacing.spacingXL
+		marginTop: Theme.spacing.spacingXL,
 	}
 });
 

@@ -8,6 +8,7 @@ export default interface Project {
 	fullLogoUrl: string;
 	imageUrl: string;
 	tags: string[];
+	primaryCategory: string;
 	categories: string[];
 	marketCap: number;
 	type: 'project' | 'token' | 'coin';

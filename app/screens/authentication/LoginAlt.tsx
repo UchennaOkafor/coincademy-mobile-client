@@ -9,7 +9,6 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Theme} from 'styles/Index';
-import {useUserStore} from 'state/useUserStore';
 import GradientText from 'components/texts/GradientText';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import Spacer from 'components/common/Spacer';
@@ -20,7 +19,6 @@ const LoginAlt = (): JSX.Element => {
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
   const snapPoints = useMemo(() => ['42%', '55%'], []);
   const [authenticating, setAuthenticating] = useState(false);
-  const userStore = useUserStore();
 
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
@@ -37,7 +35,6 @@ const LoginAlt = (): JSX.Element => {
   useEffect(() => {
     const authSubscription = getAuth().onAuthStateChanged((user) => {
       if (user) {
-        userStore.setAuthenticated(true);
         navigation.reset({
           index: 0,
           routes: [{ name: 'Tabs' }]

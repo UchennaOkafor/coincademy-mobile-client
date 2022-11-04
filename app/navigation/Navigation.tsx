@@ -16,8 +16,8 @@ import LessonComplete from 'screens/lessons/learn/Complete';
 
 import Settings from 'screens/settings/Settings';
 
-import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
-import {HelpCircle, Home, TrendingUp, User} from 'react-native-feather';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {BookOpen, Home as House, TrendingUp, User} from 'react-native-feather';
 import {Theme} from 'styles/Index';
 import LoginAlt from 'screens/authentication/LoginAlt';
 import Empty from 'screens/Empty';
@@ -26,7 +26,7 @@ import ProjectOverview from 'screens/project/Overview';
 import CategoryListings from 'screens/discover/CategoryListings';
 import Onboarding2 from 'screens/onboarding/Onboarding2';
 import Welcome from 'screens/onboarding/Welcome';
-import ForYou from 'screens/discover/ForYou';
+import Home from 'screens/home/Index';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -67,10 +67,24 @@ const Tabs = () => {
       }}>
       <Tab.Screen
         name="Home"
-        component={ForYou}
+        component={Home}
         options={{
           tabBarIcon: ({color, size}) => (
-            <Home
+            <House
+              stroke={color}
+              fill={Theme.colors.transparent}
+              width={iconSize}
+              height={iconSize}
+            />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="Learn"
+        component={Lessons}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <BookOpen
               stroke={color}
               fill={Theme.colors.transparent}
               width={iconSize}
@@ -93,27 +107,10 @@ const Tabs = () => {
           )
         }}
       />
-      {__DEV__ && (
-        <Tab.Screen
-          name="Test"
-          component={Lessons}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <HelpCircle
-                stroke={color}
-                fill={Theme.colors.transparent}
-                width={iconSize}
-                height={iconSize}
-              />
-            )
-          }}
-        />
-      )}
       <Tab.Screen
         name="Profile"
         component={Profile}
         options={{
-          tabBarBadge: '3',
           tabBarIcon: ({color, size}) => (
             <User
               stroke={color}

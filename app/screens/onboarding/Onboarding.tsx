@@ -14,12 +14,10 @@ import OnboardingData from 'resources/OnboardingData';
 import GradientButton from 'components/buttons/GradientButton';
 import Button from 'components/buttons/Button';
 import {Theme} from 'styles/Index';
-import {useUserStore} from 'state/useUserStore';
 
 const Onboarding = (): JSX.Element => {
   const navigation = useNavigation();
 
-  const userStore = useUserStore();
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [hasReachedEnd, setHasReachedEnd] = useState(false);
   const carousel = useRef<Carousel<OnboardingCarouselItem>>(null);
@@ -81,7 +79,6 @@ const Onboarding = (): JSX.Element => {
   );
 
   function navigateToLogin(): void {
-    userStore.setOnboardingComplete();
     navigation.navigate('Login');
   }
 

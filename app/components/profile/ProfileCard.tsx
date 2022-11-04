@@ -1,34 +1,20 @@
-import { User } from 'firebase/auth';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Clock} from 'react-native-feather';
 import {Theme} from 'styles/Index';
 import Avatar from './Avatar';
 import * as timeago from 'timeago.js';
-import * as Application from 'expo-application';
 
 interface Props {
-  user: User | null;
+  displayName: string;
+  createdAt: number;
 }
 
 const ProfileCard = (props: Props): JSX.Element => {
-  const [dateJoined, setDateJoined] = useState('');
-
-  useEffect(() => {
-    const initialize = async () => {
-      const timeInstalled = await Application.getInstallationTimeAsync();
-      const dateJoined = props.user?.metadata.creationTime;
-
-      setDateJoined(timeago.format(dateJoined ?? timeInstalled));
-    }
-
-    initialize();
-  });
-  
   return (
     <View style={styles.profileContainer}>
       <View>
-        <Text style={styles.name}>{props.user?.displayName ?? 'You'}</Text>
+        <Text style={styles.name}>{props.displayName}</Text>
         <View style={styles.joinedContainer}>
           <Clock
             stroke={Theme.colors.grayDark}
@@ -36,11 +22,11 @@ const ProfileCard = (props: Props): JSX.Element => {
             width={16}
             height={16}
           />
-          <Text style={styles.joinedText}>Joined {dateJoined}</Text>
+          <Text style={styles.joinedText}>Joined {timeago.format(props.createdAt)}</Text>
         </View>
       </View>
       <Avatar 
-        user={props.user} 
+        user={null} 
         size={50}
       />
     </View>
@@ -49,14 +35,14 @@ const ProfileCard = (props: Props): JSX.Element => {
 
 const styles = StyleSheet.create({
   profileContainer: {
-    marginTop: Theme.spacing.spacing2XS,
     marginBottom: Theme.spacing.spacingM,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
   },
   name: {
-    ...Theme.typography.text.h3
+    ...Theme.typography.text.h2,
+    ...Theme.typography.weight.extraBold
   },
   joinedContainer: {
     flexDirection: 'row',

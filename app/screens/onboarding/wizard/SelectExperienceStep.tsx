@@ -1,36 +1,22 @@
 import Button from 'components/buttons/Button';
 import ExperienceLevelCard from 'components/cards/ExperienceLevelCard';
 import Spacer from 'components/common/Spacer';
+import EmojiItem from 'models/EmojiItem';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { FlatGrid } from 'react-native-super-grid';
+import OnboardingData from 'resources/OnboardingData';
 import { Theme } from 'styles/Index';
 
 interface Props {
-	onNext: (experienceLevel: string) => void;
-}
-
-interface ExperienceType {
-	emoji: string;
-	name: string;
+	onNext: (experienceLevel: EmojiItem) => void;
 }
 
 const SelectExperienceStep = (props: Props): JSX.Element => {
 	const insets = useSafeAreaInsets();
 	const bottomButtonPadding = insets.bottom === 0 ? undefined : insets.bottom;
-	
-	const [selectedExperience, setSelectedExperience] = useState<string>();
-	const categories: ExperienceType[] = [{
-		emoji: '🐣',
-		name: 'Beginner'
-	}, {
-		emoji: '🐥',
-		name: 'Intermediate'
-	}, {
-		emoji: '🐓',
-		name: 'Expert'
-	}];
+	const [selectedExperience, setSelectedExperience] = useState<EmojiItem>();
 
 	return (
 		<>
@@ -42,21 +28,21 @@ const SelectExperienceStep = (props: Props): JSX.Element => {
 			</View>
 
 			<FlatGrid
-				data={categories}
+				data={OnboardingData.getExperienceLevels()}
 				spacing={Theme.spacing.spacingS}
 				maxItemsPerRow={1}
 				showsVerticalScrollIndicator={false}
-				renderItem={({ item, index }) => (
+				renderItem={({ item }) => (
 					<ExperienceLevelCard
-						active={selectedExperience === item.name}
+						active={selectedExperience?.id === item.id}
 						emoji={item.emoji}
 						name={item.name}
 						onPress={() => {
-							setSelectedExperience(item.name);
+							setSelectedExperience(item);
 						}}
 					/>
 				)}
-				keyExtractor={(item, index) => item.name}
+				keyExtractor={(item) => item.id}
 			/>
 			
 			<View style={[styles.buttonContainer, { paddingBottom: bottomButtonPadding }]}>
@@ -64,7 +50,7 @@ const SelectExperienceStep = (props: Props): JSX.Element => {
 					text="Continue"
 					disabled={selectedExperience == null}
 					theme={Theme.buttons.styles.primary}
-					onPress={() => props.onNext?.(selectedExperience ?? '')}
+					onPress={() => props.onNext?.(selectedExperience!)}
 				/>
 			</View>
 		</>

@@ -26,6 +26,7 @@ const IconTextInput = (props: Props): JSX.Element => {
       <TextInput
         style={styles.input}
         underlineColorAndroid="transparent"
+        placeholderTextColor={Theme.colors.gray}
         {...props}
       />
     </View>
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
     flex: 1,
     ...Theme.typography.text.h5,
     ...Theme.typography.weight.normal,
-    color: Theme.colors.grayDark,
+    color: Theme.colors.grayDark900,
     paddingVertical: Platform.OS === 'android'
         ? Theme.spacing.spacingXS + Theme.spacing.spacing3XS
         : Theme.spacing.spacingS + Theme.spacing.spacing3XS,

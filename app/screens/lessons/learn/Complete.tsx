@@ -7,7 +7,7 @@ import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import {Theme} from 'styles/Index';
 import {Audio} from 'expo-av';
-import {useUserStore} from 'state/useUserStore';
+import { useLocalStore } from 'state/useLocalStore';
 import LottieView from 'components/lottie/LottieView';
 
 interface LessonRouteProps {
@@ -21,8 +21,8 @@ const LessonOverview = (): JSX.Element => {
   //const confettiCannon = useRef<ConfettiCannon>(null);
   const dimensions = useWindowDimensions();
   const [sound, setSound] = React.useState<Audio.Sound>();
-  const userStore = useUserStore();
-  const [soundMuted] = useState(userStore.preferences.sound.muted);
+  const localStore = useLocalStore();
+  const [soundMuted] = useState(localStore.preferences.audio.muted);
 
   useEffect(() => {
     //confettiCannon.current?.start();

@@ -45,7 +45,7 @@ const CollectibleCard = (props: Props): JSX.Element => {
 						/>
 						<Spacer vertical={0} horizontal={Theme.spacing.spacing3XS} />
 						<Text style={styles.subtitle} numberOfLines={1}>
-							3.5 ETH
+							0.1 ETH
 						</Text>
 					</View>
 				</View>

@@ -44,7 +44,7 @@ const ProjectCard = (props: Props): JSX.Element => {
 				</Text>
 				<Spacer vertical={Theme.spacing.spacing3XS} />
 				<Text style={styles.description} numberOfLines={2}>
-					{props.project.description}
+					{props.project.shortDescription}
 				</Text>
 				<Spacer vertical={Theme.spacing.spacing2XS} />
 				{/* <View style={styles.trendIconContainer}>

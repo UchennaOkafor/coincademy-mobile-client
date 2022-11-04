@@ -58,6 +58,7 @@ const Index = (): JSX.Element => {
         />
       }>
       <Header
+        title='Learn'
         user={getAuth().currentUser}
         onProfilePress={() => navigation.navigate('Profile')}
         onSettingsPress={() => navigation.navigate('Settings')}
@@ -82,7 +83,7 @@ const Index = (): JSX.Element => {
             <>
               <Text style={styles.spotlightTitle}>Featured Lessons</Text>
               <FeaturedLessonCardCarousel
-                featuredLessons={courses[0].lessons}
+                featuredLessons={courses[1].lessons}
                 onLessonPressed={onLessonPressed}
               />
             </>
@@ -103,6 +104,7 @@ const styles = StyleSheet.create({
   spotlightTitle: {
     ...Theme.typography.text.h5,
     ...Theme.typography.weight.bold,
+    marginTop: Theme.spacing.spacingM,
     marginBottom: Theme.spacing.spacingXS + Theme.spacing.spacing3XS,
     textAlign: 'left'
   },

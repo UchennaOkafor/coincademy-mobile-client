@@ -1,4 +1,3 @@
-import { User } from 'firebase/auth';
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {ChevronRight} from 'react-native-feather';
@@ -6,7 +5,7 @@ import {Theme} from 'styles/Index';
 import Avatar from './Avatar';
 
 interface Props {
-  user: User | null;
+  displayName: string;
   onPress: () => void;
 }
 
@@ -14,9 +13,9 @@ const HorizontalProfileCard = (props: Props): JSX.Element => {
   return (
     <TouchableOpacity onPress={props.onPress} style={styles.container}>
       <View style={styles.innerContainer}>
-        <Avatar user={props.user} size={50} />
+        <Avatar user={null} size={50} />
         <View style={styles.profileContainer}>
-          <Text style={styles.name}>{props.user?.displayName}</Text>
+          <Text style={styles.name}>{props.displayName}</Text>
           <Text style={styles.joinedText}>View Profile</Text>
         </View>
       </View>

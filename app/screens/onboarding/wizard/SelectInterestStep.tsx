@@ -1,87 +1,22 @@
 import Button from 'components/buttons/Button';
 import InterestCard from 'components/cards/InterestCard';
 import Spacer from 'components/common/Spacer';
+import EmojiItem from 'models/EmojiItem';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { FlatGrid } from 'react-native-super-grid';
+import OnboardingData from 'resources/OnboardingData';
 import { Theme } from 'styles/Index';
 
 interface Props {
-	onNext: (interests: string[]) => void;
-}
-
-interface InterestType {
-	emoji: string;
-	name: string;
+	onNext: (interests: EmojiItem[]) => void;
 }
 
 const SelectInterestStep = (props: Props): JSX.Element => {
 	const insets = useSafeAreaInsets();
 	const bottomButtonPadding = insets.bottom === 0 ? undefined : insets.bottom;
-	const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
-
-	const categories: InterestType[] = [{
-		emoji: '🌎',
-		name: 'web3'
-	}, {
-		emoji: '🧑‍💻',
-		name: 'Tech'
-	}, {
-		emoji: '💻',
-		name: 'Developer'
-	}, {
-		emoji: '💼',
-		name: 'Business'
-	}, {
-		emoji: '💰',
-		name: 'Fintech'
-	}, {
-		emoji: '💸',
-		name: 'Passive Income'
-	}, {
-		emoji: '🪙',
-		name: 'DeFi'
-	}, {
-		emoji: '🎮',
-		name: 'eSports & Gaming'
-	}, {
-		emoji: '♻️',
-		name: 'Sustainability'
-	}, {
-		emoji: '🍃',
-		name: 'Green Energy'
-	}, {
-		emoji: '💊',
-		name: 'Healthcare'
-	}, {
-		emoji: '🦄',
-		name: 'Startups'
-	}, {
-		emoji: '🥽',
-		name: 'AR/VR'
-	}, {
-		emoji: '🕶',
-		name: 'Metaverse'
-	}, {
-		emoji: '🖼',
-		name: 'Collectibles/NFTs'
-	}, {
-		emoji: '🐕',
-		name: 'Meme Coins'
-	}, {
-		emoji: '🏡',
-		name: 'Real Estate'
-	}, {
-		emoji: '🏃‍♂️',
-		name: 'Fitness & Wellbeing'
-	}, {
-		emoji: '🎓',
-		name: 'Education'
-	}, {
-		emoji: '🍿',
-		name: 'Media & Entertainment'
-	}];
+	const [selectedInterests, setSelectedInterests] = useState<EmojiItem[]>([]);
 
 	return (
 		<>
@@ -92,33 +27,33 @@ const SelectInterestStep = (props: Props): JSX.Element => {
 				<Spacer vertical={Theme.spacing.spacing2XS} />
 			</View>
 			<FlatGrid
-				data={categories}
+				data={OnboardingData.getInterests()}
 				spacing={Theme.spacing.spacingS}
 				maxItemsPerRow={2}
 				showsVerticalScrollIndicator={false}
-				renderItem={({ item, index }) => (
+				renderItem={({ item }) => (
 					<InterestCard
 						emoji={item.emoji}
 						name={item.name}
 						onPress={() => {
-							let interests: string[] = [];
+							let interests: EmojiItem[] = [];
 
-							if (selectedInterests.includes(item.name)) {
-								interests = selectedInterests.filter(e => e !== item.name);
+							if (selectedInterests.some(e => e.id === item.id)) {
+								interests = selectedInterests.filter(e => e.id !== item.id);
 							} else {
-								interests = selectedInterests.concat(item.name)
+								interests = selectedInterests.concat(item)
 							}
-
+							
 							setSelectedInterests(interests);
 						}}
 					/>
 				)}
-				keyExtractor={(item, index) => item.name}
+				keyExtractor={(item) => item.id}
 			/>
 			<View style={[styles.buttonContainer, { paddingBottom: bottomButtonPadding }]}>
 				<Button
 					text="Continue"
-					disabled={selectedInterests.length < 3}
+					disabled={selectedInterests.length < 2}
 					theme={Theme.buttons.styles.primary}
 					onPress={() => props.onNext?.(selectedInterests)}
 				/>

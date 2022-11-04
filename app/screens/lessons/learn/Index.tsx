@@ -21,7 +21,7 @@ import {Lesson} from 'codegen/models/Lesson';
 import {BaseLessonItem} from 'codegen/models/BaseLessonItem';
 import {ContentItem, MultipleChoiceQuestionItem} from 'codegen';
 import {Theme} from 'styles/Index';
-import {useUserStore} from 'state/useUserStore';
+import {useLocalStore} from 'state/useLocalStore';
 import {Audio} from 'expo-av';
 import ImageContentCard from 'components/common/ImageContentCard';
 import AnimatedContentCard from 'components/common/AnimatedContentCard';
@@ -57,7 +57,7 @@ const LessonOverview = (): JSX.Element => {
   const safeAreaInsets = useSafeAreaInsets();
   const dimensions = useWindowDimensions();
 
-  const userStore = useUserStore();
+  const localStore = useLocalStore();
   const carousel = useRef<Carousel<BaseLessonItem>>(null);
 
   const [carouselIndex, setCarouselIndex] = useState(0);
@@ -69,10 +69,11 @@ const LessonOverview = (): JSX.Element => {
 
   const [networkSound, setNetworkSound] = useState<Audio.Sound>();
   const [localSound, setLocalSound] = useState<Audio.Sound>();
-  const [soundMuted, setSoundMuted] = useState(userStore.preferences.sound.muted);
+  const [soundMuted, setSoundMuted] = useState(localStore.preferences.audio.muted);
 
   const [exitModalVisible, setExitModalVisible] = useState(false);
-  const [contentModalVisible, setContentModalVisible] = useState(userStore.preferences.sound.muted);
+  const [contentModalVisible, setContentModalVisible] = useState(
+    localStore.preferences.audio.hasSeenNarrationPrompt === false);
 
   const pauseSound = useCallback(async () => {
     await networkSound?.pauseAsync();
@@ -152,7 +153,7 @@ const LessonOverview = (): JSX.Element => {
       return;
     }
 
-    userStore.setSoundMuted(soundMuted);
+    localStore.setAudioMuted(soundMuted);
 
     if (soundMuted) {
       pauseSound();
@@ -213,6 +214,7 @@ const LessonOverview = (): JSX.Element => {
           onClick: () => {
             setContentModalVisible(false);
             setSoundMuted(false);
+            localStore.setHasSeenNarrationPrompt(true);
           }
         }}
         secondaryButton={{
@@ -220,6 +222,7 @@ const LessonOverview = (): JSX.Element => {
           onClick: () => {
             setContentModalVisible(false);
             setSoundMuted(true);
+            localStore.setHasSeenNarrationPrompt(true);
           }
         }}
       />

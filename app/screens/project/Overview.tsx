@@ -64,17 +64,19 @@ const ProjectOverview = (): JSX.Element => {
 
 		const extraRoutes = [];
 
-		const isProject = project.type === 'project';
-		const isTokenOrCoin = (project.type === 'coin' || project.type === 'token');
+		//TODO: Uncomment this for the other tabs
 		
-		const tokenomicsTabExists = routes.findIndex(e => e.key === 'tokenomics') > -1;
-		const companyTabExists = routes.findIndex(e => e.key === 'company') > -1;
+		// const isProject = project.type === 'project';
+		// const isTokenOrCoin = (project.type === 'coin' || project.type === 'token');
+		
+		// const tokenomicsTabExists = routes.findIndex(e => e.key === 'tokenomics') > -1;
+		// const companyTabExists = routes.findIndex(e => e.key === 'company') > -1;
 
-		if (isTokenOrCoin && !tokenomicsTabExists) {
-			extraRoutes.push({ key: 'tokenomics', title: 'Tokenomics' });
-		} else if (isProject && !companyTabExists) {
-			extraRoutes.push({ key: 'company', title: 'Company' });
-		}
+		// if (isTokenOrCoin && !tokenomicsTabExists) {
+		// 	extraRoutes.push({ key: 'tokenomics', title: 'Tokenomics' });
+		// } else if (isProject && !companyTabExists) {
+		// 	extraRoutes.push({ key: 'company', title: 'Company' });
+		// }
 		
 		extraRoutes.push({ key: 'learn', title: 'Learn' });
 		setRoutes([...routes, ...extraRoutes]);

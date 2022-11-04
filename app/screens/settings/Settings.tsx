@@ -1,8 +1,8 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {StyleSheet, View, Text, StyleProp, ViewStyle, Linking} from 'react-native';
+import {StyleSheet, View, Text, StyleProp, ViewStyle} from 'react-native';
 import {Theme} from 'styles/Index';
-import {useUserStore} from 'state/useUserStore';
+import { useLocalStore } from 'state/useLocalStore';
 import Spacer from 'components/common/Spacer';
 import Constants from 'expo-constants';
 import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -16,10 +16,9 @@ import * as MailComposer from 'expo-mail-composer';
 
 const Settings = (): JSX.Element => {
   const navigation = useNavigation();
-  const state = useUserStore();
+  const localStore = useLocalStore();
   const sections = SettingsListData.getSettingsSections();
   const safeAreaInsets = useSafeAreaInsets();
-  const user = getAuth().currentUser;
 
   const versionStyle: StyleProp<ViewStyle> = {
     marginBottom: safeAreaInsets.bottom > 0 ? 0 : Theme.spacing.spacingL
@@ -30,15 +29,11 @@ const Settings = (): JSX.Element => {
       <ScrollView>
         <Spacer />
 
-        {user && (
-          <>
-            <HorizontalProfileCard
-              user={user}
-              onPress={() => navigation.navigate('Profile')}
-            />
-            <Spacer />
-          </>
-        )}
+        <HorizontalProfileCard
+          displayName={localStore.user.name}
+          onPress={() => navigation.navigate('Profile')}
+        />
+        <Spacer />
         
         <SettingsSections
           sections={sections}
@@ -54,7 +49,7 @@ const Settings = (): JSX.Element => {
 
               case 'logout':
                 await getAuth().signOut();
-                await state.logout();
+                localStore.reset();
                 navigation.reset({
                   index: 0,
                   routes: [{name: 'Login'}]
@@ -63,7 +58,7 @@ const Settings = (): JSX.Element => {
 
               case 'clear_cache':
                 await getAuth().signOut();
-                await state.clearCache();
+                localStore.reset();
                 navigation.reset({
                   index: 0,
                   routes: [{name: 'Welcome'}]
