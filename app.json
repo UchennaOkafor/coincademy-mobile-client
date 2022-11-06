@@ -11,7 +11,8 @@
       "backgroundColor": "#FFFFFF"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/4e6ba5a4-6d09-430a-84a9-1a26a5d953de"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -19,11 +20,11 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.cryptoverse",
-      "buildNumber": "4"
+      "buildNumber": "10"
     },
     "android": {
       "package": "com.cryptoverse",
-      "versionCode": 4,
+      "versionCode": 10,
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/images/app/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -33,7 +34,25 @@
     "web": {
       "favicon": "./app/assets/images/app/favicon.png"
     },
-    "jsEngine": "hermes"
+    "jsEngine": "hermes",
+    "extra": {
+      "eas": {
+        "projectId": "4e6ba5a4-6d09-430a-84a9-1a26a5d953de"
+      }
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
+    ],
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    }
   },
   "name": "coincademy-mobile-client"
 }

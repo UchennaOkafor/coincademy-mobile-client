@@ -4,7 +4,7 @@ import {StyleSheet, View, Text, StyleProp, ViewStyle} from 'react-native';
 import {Theme} from 'styles/Index';
 import { useLocalStore } from 'state/useLocalStore';
 import Spacer from 'components/common/Spacer';
-import Constants from 'expo-constants';
+import * as Application from 'expo-application';
 import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 import {ScrollView} from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
@@ -83,7 +83,7 @@ const Settings = (): JSX.Element => {
         />
       </ScrollView>
       <View style={[styles.versionContainer, versionStyle]}>
-        <Text style={styles.versionText}>v{Constants.manifest?.version}</Text>
+        <Text style={styles.versionText}>v{Application.nativeApplicationVersion}</Text>
       </View>
     </SafeAreaView>
   );
