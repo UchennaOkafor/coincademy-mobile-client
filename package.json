@@ -12,7 +12,9 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "prettier-format": "prettier --config .prettierrc '**/*.{json,js,jsx,ts,tsx,css,scss,md}' --write",
     "openapi-generate-dev": "rm -rf app/codegen && npx openapi-typescript-codegen -i http://localhost:5000/swagger/v1/swagger.json -o app/codegen -c fetch",
-    "openapi-generate-staging": "rm -rf app/codegen && npx openapi-typescript-codegen -i https://eko-learn-api-staging.azurewebsites.net/swagger/v1/swagger.json -o app/codegen -c fetch"
+    "openapi-generate-staging": "rm -rf app/codegen && npx openapi-typescript-codegen -i https://eko-learn-api-staging.azurewebsites.net/swagger/v1/swagger.json -o app/codegen -c fetch",
+    "build-ios-local": "eas build --platform ios --local --profile production",
+    "build-android-local": "eas build --platform android --local --profile production"
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
