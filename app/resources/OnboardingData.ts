@@ -36,13 +36,17 @@ export default class OnboardingData {
       emoji: '🧑‍💻',
       name: 'Tech'
     }, {
-      id: 'developer',
+      id: 'devtools',
       emoji: '💻',
-      name: 'Developer'
+      name: 'Dev Tools'
     }, {
-      id: 'business',
-      emoji: '💼',
-      name: 'Business'
+      id: 'startups',
+      emoji: '🦄',
+      name: 'Startups'
+    }, {
+      id: 'ar-vr',
+      emoji: '🥽',
+      name: 'AR/VR'
     }, {
       id: 'fintech',
       emoji: '💰',
@@ -51,6 +55,18 @@ export default class OnboardingData {
       id: 'passive-income',
       emoji: '💸',
       name: 'Passive Income'
+    }, {
+      id: 'meme-coins',
+      emoji: '🐕',
+      name: 'Meme Coins'
+    }, {
+      id: 'metaverse',
+      emoji: '🕶',
+      name: 'Metaverse'
+    }, {
+      id: 'collectibles-nfts',
+      emoji: '🖼',
+      name: 'Collectibles/NFTs'
     }, {
       id: 'defi',
       emoji: '🪙',
@@ -71,30 +87,14 @@ export default class OnboardingData {
       id: 'healthcare',
       emoji: '💊',
       name: 'Healthcare'
-    }, {
-      id: 'startups',
-      emoji: '🦄',
-      name: 'Startups'
-    }, {
-      id: 'ar-vr',
-      emoji: '🥽',
-      name: 'AR/VR'
-    }, {
-      id: 'metaverse',
-      emoji: '🕶',
-      name: 'Metaverse'
-    }, {
-      id: 'collectibles-nfts',
-      emoji: '🖼',
-      name: 'Collectibles/NFTs'
-    }, {
-      id: 'meme-coins',
-      emoji: '🐕',
-      name: 'Meme Coins'
-    }, {
+    },  {
       id: 'real-estate',
       emoji: '🏡',
       name: 'Real Estate'
+    }, {
+      id: 'business',
+      emoji: '💼',
+      name: 'Business'
     }, {
       id: 'fitness-and-wellbeing',
       emoji: '🏃‍♂️',

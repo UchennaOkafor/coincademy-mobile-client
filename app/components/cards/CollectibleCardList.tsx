@@ -39,7 +39,7 @@ const CollectibleCardList = (props: Props): JSX.Element => {
 										<CollectibleCard
 											key={item.id}
 											item={item}
-											onPress={() => props.onPress?.(item)}
+											// onPress={() => props.onPress?.(item)}
 											style={cardStyle}
 										/>
 									);

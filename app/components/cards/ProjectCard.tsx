@@ -32,11 +32,11 @@ const ProjectCard = (props: Props): JSX.Element => {
 						source={{ uri: props.project.logoUrl}}
 						style={styles.logo}
 					/>
-					<ToggleIcon
+					{/* <ToggleIcon
 						size={18}
 						style={styles.heart}
 						onChecked={(checked: boolean) => setIsLiked(checked)}
-					/>
+					/> */}
 				</View>
 				<Spacer vertical={Theme.spacing.spacing2XS} />
 				<Text style={styles.name} numberOfLines={1}>

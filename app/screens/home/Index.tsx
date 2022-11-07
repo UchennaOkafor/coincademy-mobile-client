@@ -6,7 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 import { getAuth } from 'firebase/auth';
 import Project from 'models/Project';
 import React, { useCallback, useEffect, useState } from 'react';
-import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 // import Carousel from 'react-native-reanimated-carousel';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -20,7 +20,7 @@ const Home = (): JSX.Element => {
 	const insets = useSafeAreaInsets();
 	const dimensions = useWindowDimensions();
 	//const [projects, setProjects] = useState<Project[]>(require('@app/resources/projects.json'));
-	const { data: projects } = useQuery(['coins'], async () => {
+	const projectQuery = useQuery(['coins'], async () => {
 		return await CoinGeckoApiService.getTopCoins(15, 'USD');
 	});
 
@@ -35,25 +35,36 @@ const Home = (): JSX.Element => {
 				onSettingsPress={() => navigation.navigate('Settings')}
 			/>
 			<View style={styles.carouselContainer}>
-				<Carousel
-					vertical={false}
-					// ref={carousel}
-					data={projects}
-					renderItem={renderCarouselItem}
-					sliderWidth={dimensions.width}
-					itemWidth={dimensions.width}
-					onScrollIndexChanged={(index: number) => setCardIndex(index)}
-					useScrollView={false}
-					loop={false}
-				/>
-			</View>
+				{projectQuery.isLoading ? (
+					<ActivityIndicator 
+						color={Theme.colors.purple}
+						style={styles.loadingIndicator}
+					/>
+				) : (
+					<>
+						<Carousel
+							vertical={false}
+							// ref={carousel}
+							data={projectQuery.data}
+							renderItem={renderCarouselItem}
+							sliderWidth={dimensions.width}
+							itemWidth={dimensions.width}
+							onScrollIndexChanged={(index: number) => setCardIndex(index)}
+							useScrollView={false}
+							loop={false}
+							layout="stack"
+							layoutCardOffset={4}
+						/>
 
-			<Pagination
-				dotColor={Theme.colors.purpleLight}
-				inactiveDotColor={Theme.colors.grayDark}
-				activeDotIndex={cardIndex}
-				dotsLength={projects?.length ?? 0}
-			/>
+						<Pagination
+							dotColor={Theme.colors.purpleLight}
+							inactiveDotColor={Theme.colors.grayDark}
+							activeDotIndex={cardIndex}
+							dotsLength={projectQuery.data?.length ?? 0}
+						/>
+					</>
+				)}
+			</View>
 		</BaseLayout>
 	);
 
@@ -119,6 +130,9 @@ const styles = StyleSheet.create({
 	cardItem: {
 		marginHorizontal: Theme.spacing.spacingM, 
 		marginTop: Theme.spacing.spacingS
+	},
+	loadingIndicator: {
+		marginTop: Theme.spacing.spacing3XL
 	}
 });
 

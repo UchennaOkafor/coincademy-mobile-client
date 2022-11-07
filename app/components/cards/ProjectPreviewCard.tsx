@@ -45,13 +45,13 @@ const ProjectPreviewCard = (props: Props): JSX.Element => {
 					style={styles.innerContainer} 
 					disabled={false} 
 					onPress={props.onPress}>
-					<ToggleIcon
+					{/* <ToggleIcon
 						ref={toggleIcon}
 						initialValue={liked}
 						size={20}
 						style={styles.loveHeart}
 						onChecked={(checked: boolean) => { }}
-					/>
+					/> */}
 					<View style={styles.header}>
 						<Image
 							resizeMode="contain"

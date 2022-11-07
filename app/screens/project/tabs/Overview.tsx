@@ -3,7 +3,7 @@ import Project from 'models/Project';
 import React from 'react';
 import { ScrollView, StyleSheet, Text, useWindowDimensions, TouchableOpacity } from 'react-native';
 import { Theme } from 'styles/Index';
-import { Entypo, FontAwesome } from '@expo/vector-icons';
+import { Entypo, FontAwesome, Fontisto } from '@expo/vector-icons';
 import CoinGeckoApiService from 'services/CoinGeckoApiService';
 import { useQuery } from "@tanstack/react-query";
 import * as WebBrowser from 'expo-web-browser';
@@ -43,33 +43,39 @@ const Overview = (props: Props) => {
 					/>
 				<Text style={styles.socialLinkText}>{coin.data?.links.website.label}</Text>
 			</TouchableOpacity>
-			{/* <TouchableOpacity style={styles.socialLinkContainer}>
-				<Fontisto 
-					name="discord" 
-					size={22}
-					color="#5865F2" 
-					style={styles.socialLinkIcon} 
-				/>
-				<Text style={styles.socialLinkText}>Discord</Text>
-			</TouchableOpacity> */}
-			<TouchableOpacity style={styles.socialLinkContainer} onPress={() => WebBrowser.openBrowserAsync(coin.data?.links.reddit.link)}>
-				<FontAwesome 
-					name="reddit" 
-					size={22} 
-					color="#FF4500" 
-					style={styles.socialLinkIcon} 
-				/>
-				<Text style={styles.socialLinkText}>r/{coin.data?.links.reddit.label}</Text>
-			</TouchableOpacity>
-			<TouchableOpacity style={styles.socialLinkContainer} onPress={() => WebBrowser.openBrowserAsync(coin.data?.links.twitter.link)}>
-				<Entypo 
-					name="twitter-with-circle" 
-					size={22} 
-					color="#1DA1F2" 
-					style={styles.socialLinkIcon} 
-				/>
-				<Text style={styles.socialLinkText}>@{coin.data?.links.twitter.label}</Text>
-			</TouchableOpacity>
+			{coin.data?.links.discord != '' && (
+				<TouchableOpacity style={styles.socialLinkContainer} onPress={() => WebBrowser.openBrowserAsync(coin.data?.links.discord)}>
+					<Fontisto
+						name="discord"
+						size={22}
+						color="#5865F2"
+						style={styles.socialLinkIcon}
+					/>
+					<Text style={styles.socialLinkText}>Discord</Text>
+				</TouchableOpacity>
+			)}
+			{coin.data?.links.reddit.label !== '' && (
+				<TouchableOpacity style={styles.socialLinkContainer} onPress={() => WebBrowser.openBrowserAsync(coin.data?.links.reddit.link)}>
+					<FontAwesome
+						name="reddit"
+						size={22}
+						color="#FF4500"
+						style={styles.socialLinkIcon}
+					/>
+					<Text style={styles.socialLinkText}>r/{coin.data?.links.reddit.label}</Text>
+				</TouchableOpacity>
+			)}
+			{coin.data?.links.twitter.label !== '' && (
+				<TouchableOpacity style={styles.socialLinkContainer} onPress={() => WebBrowser.openBrowserAsync(coin.data?.links.twitter.link)}>
+					<Entypo
+						name="twitter-with-circle"
+						size={22}
+						color="#1DA1F2"
+						style={styles.socialLinkIcon}
+					/>
+					<Text style={styles.socialLinkText}>@{coin.data?.links.twitter.label}</Text>
+				</TouchableOpacity>
+			)}
 		</ScrollView>
 	);
 }

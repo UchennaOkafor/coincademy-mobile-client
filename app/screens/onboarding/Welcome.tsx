@@ -28,11 +28,13 @@ const Welcome = (): JSX.Element => {
 				/>
 			</LinearGradient>
 
-			<View style={{ padding: Theme.spacing.spacingM }}>
-				{/* <GradientText style={styles.title}>Explore web3</GradientText> */}
-				<Text style={styles.title}>Explore web3</Text>
+			<View style={styles.contentContainer}>
 				<Spacer vertical={Theme.spacing.spacing3XS} />
-				<Text style={styles.subtitle}>Discover and learn about your next crypto project.</Text>
+				<GradientText style={styles.title} colors={[]}>Exploring web3</GradientText>
+				<Spacer vertical={Theme.spacing.spacing2XS} />
+				<Text style={styles.subtitle}>
+					Discover and learn about your next favourite crypto project.
+				</Text>
 				<Spacer />
 
 				<View style={styles.buttonContainer}>
@@ -63,6 +65,10 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: Theme.colors.backgroundGray,
 	},
+	contentContainer: {
+		flex: 1,
+		padding: Theme.spacing.spacingM
+	},
 	image: {
 		width: '100%',
 		height: 225,
@@ -72,12 +78,13 @@ const styles = StyleSheet.create({
 		...Theme.typography.weight.extraBold 
 	},
 	subtitle: {
-		...Theme.typography.text.h6, 
+		...Theme.typography.text.body, 
 		...Theme.typography.weight.medium, 
-		color: Theme.colors.gray
+		color: Theme.colors.grayDark900
 	},
 	buttonContainer: {
-		marginTop: Theme.spacing.spacingXL,
+		marginTop: 'auto',
+		marginBottom: Theme.spacing.spacingM
 	}
 });
 

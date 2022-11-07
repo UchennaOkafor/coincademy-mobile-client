@@ -87,13 +87,13 @@ const ProjectOverview = (): JSX.Element => {
 		<BaseLayout style={{flex: 1}} scrollable={false}>
 			<HeaderBackButton
 				onPress={() => navigation.goBack()}
-				rightComponent={
-					<ToggleIcon
-						size={20}
-						onChecked={(checked: boolean) => {}}
-						style={{ marginRight: 5}}
-					/>
-				}
+				// rightComponent={
+				// 	<ToggleIcon
+				// 		size={20}
+				// 		onChecked={(checked: boolean) => {}}
+				// 		style={{ marginRight: 5}}
+				// 	/>
+				// }
 			/>
 			<View style={styles.header}>
 				<View style={{ flex: 1 }}>
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
 	},
 	tabBar: {
 		...Theme.shadows.none, 
-		backgroundColor: Theme.colors.transparent, 
+		backgroundColor: Theme.colors.backgroundGray, 
 		marginHorizontal: Theme.spacing.spacingM
 	},
 	tabIndicator: {

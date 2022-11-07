@@ -15,7 +15,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 interface Props {
 	item: Project;
-	onPress: () => void;
+	onPress?: () => void;
 	style: StyleProp<ViewStyle>
 }
 
@@ -45,7 +45,7 @@ const CollectibleCard = (props: Props): JSX.Element => {
 						/>
 						<Spacer vertical={0} horizontal={Theme.spacing.spacing3XS} />
 						<Text style={styles.subtitle} numberOfLines={1}>
-							0.1 ETH
+							ETH
 						</Text>
 					</View>
 				</View>

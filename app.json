@@ -20,11 +20,11 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.cryptoverse",
-      "buildNumber": "10"
+      "buildNumber": "11"
     },
     "android": {
       "package": "com.cryptoverse",
-      "versionCode": 10,
+      "versionCode": 11,
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/images/app/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

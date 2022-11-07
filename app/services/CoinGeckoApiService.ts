@@ -99,6 +99,12 @@ const maps = {
 		categories: ['📹 Creators'],
 		primaryCategory: primaryCategories.web3
 	},
+	dai: {
+		shortDescription: 'A stable coin backed by Ethereum & pegged to the USD',
+		tags: ['USD', 'Ethereum'],
+		categories: ['💱 Stable Coin'],
+		primaryCategory: primaryCategories.stablecoin
+	},
 };
 
 export default class CoinGeckoApiService {

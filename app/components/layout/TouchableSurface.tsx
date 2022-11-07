@@ -12,7 +12,7 @@ import {
 interface Props {
   disabled?: boolean;
   children: React.ReactNode;
-  onPress: () => void;
+  onPress?: () => void;
   androidDelayPressIn?: number | undefined;
   style?: StyleProp<ViewStyle>;
 }

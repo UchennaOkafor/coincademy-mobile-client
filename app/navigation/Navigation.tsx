@@ -17,7 +17,7 @@ import LessonComplete from 'screens/lessons/learn/Complete';
 import Settings from 'screens/settings/Settings';
 
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {BookOpen, Home as House, TrendingUp, User} from 'react-native-feather';
+import {Book, Home as House, TrendingUp, User} from 'react-native-feather';
 import {Theme} from 'styles/Index';
 import LoginAlt from 'screens/authentication/LoginAlt';
 import Empty from 'screens/Empty';
@@ -80,11 +80,11 @@ const Tabs = () => {
         }}
       />
       <Tab.Screen
-        name="Learn"
-        component={Lessons}
+        name="Discover"
+        component={Discover}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <BookOpen
+            <TrendingUp
               stroke={color}
               fill={Theme.colors.transparent}
               width={iconSize}
@@ -94,11 +94,11 @@ const Tabs = () => {
         }}
       />
       <Tab.Screen
-        name="Discover"
-        component={Discover}
+        name="Learn"
+        component={Lessons}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <TrendingUp
+            <Book
               stroke={color}
               fill={Theme.colors.transparent}
               width={iconSize}
