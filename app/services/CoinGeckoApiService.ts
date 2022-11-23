@@ -105,6 +105,18 @@ const maps = {
 		categories: ['💱 Stable Coin'],
 		primaryCategory: primaryCategories.stablecoin
 	},
+	ltc: {
+		shortDescription: 'A copy & paste version of Bitcoin, but it\'s faster',
+		tags: ['Fast Bitcoin', 'Remittance'],
+		categories: ['💸 Payments'],
+		primaryCategory: primaryCategories.remittance
+	},
+	okb: {
+		shortDescription: 'The utility token of the OKX ecosystem',
+		tags: ['Utility Token'],
+		categories: ['🛠️ Utility'],
+		// primaryCategory: primaryCategories.stablecoin
+	},
 };
 
 export default class CoinGeckoApiService {

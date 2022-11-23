@@ -1,12 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React, { memo, useRef, useState } from 'react';
 import {
 	StyleSheet,
 	Text,
 	View,
 	Image,
 	ViewStyle,
-	StyleProp} from 'react-native';
-import TouchableSurface from 'components/layout/TouchableSurface';
+	StyleProp,
+	TouchableWithoutFeedback} from 'react-native';
 import { Theme } from 'styles/Index';
 import { ChevronRight } from 'react-native-feather';
 import Divider from 'components/common/Divider';
@@ -16,6 +16,7 @@ import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { runOnJS } from 'react-native-reanimated';
 import Project from 'models/Project';
 import PriceUtility from 'utility/PriceUtility';
+import equals from 'react-fast-compare';
 
 interface Props {
 	project: Project;
@@ -32,65 +33,74 @@ const ProjectPreviewCard = (props: Props): JSX.Element => {
 		toggleIcon.current?.toggle();
 	}
 
-	const tap = Gesture.Tap()
+	const handleOnPress = () => {
+		props.onPress?.();
+	}
+
+	const doubleTap = Gesture.Tap()
 		.numberOfTaps(2)
 		.onStart((e) => {
 			runOnJS(toggleHandler)();
 		});
 
+	const singleTap = Gesture.Tap()
+		.numberOfTaps(1)
+		.onStart((e) => {
+			runOnJS(handleOnPress)();
+		});
+
 	return (
-		<GestureDetector gesture={tap}>
+		<GestureDetector gesture={Gesture.Exclusive(doubleTap, singleTap)}>
 			<View style={[styles.container, props.style]}>
-				<TouchableSurface 
-					style={styles.innerContainer} 
-					disabled={false} 
-					onPress={props.onPress}>
-					{/* <ToggleIcon
-						ref={toggleIcon}
-						initialValue={liked}
-						size={20}
-						style={styles.loveHeart}
-						onChecked={(checked: boolean) => { }}
-					/> */}
-					<View style={styles.header}>
-						<Image
-							resizeMode="contain"
-							source={{ uri: props.project.fullLogoUrl }}
-							style={styles.logoImage}
+				<TouchableWithoutFeedback>
+					<View style={styles.innerContainer}>
+						<ToggleIcon
+							ref={toggleIcon}
+							initialValue={liked}
+							size={20}
+							style={styles.loveHeart}
+							onChecked={(checked: boolean) => { }}
 						/>
-						<Text style={styles.shortDescription} numberOfLines={2}>
-							{props.project.name}
-						</Text>
-						<Text style={styles.tags}>
-							{props.project.tags.map((value, index, tags) => `${value}${index === tags.length - 1 ? '' : '  ·  '}`)}
-						</Text>
+						<View style={styles.header}>
+							<Image
+								resizeMode="contain"
+								source={{ uri: props.project.fullLogoUrl }}
+								style={styles.logoImage}
+							/>
+							<Text style={styles.shortDescription} numberOfLines={2}>
+								{props.project.name}
+							</Text>
+							<Text style={styles.tags}>
+								{props.project.tags.map((value, index, tags) => `${value}${index === tags.length - 1 ? '' : '  ·  '}`)}
+							</Text>
+						</View>
+
+						<SectionTitle title="Categories" />
+						<View style={styles.chipContainer}>
+							{sortedCategories.map((value: string) => (
+								<Chip key={value} text={value} />
+							))}
+						</View>
+
+						{props.project.type === 'project' && (
+							<>
+								<SectionTitle title="Company" />
+								<Text style={styles.smallText}>🌱  Pre-Seed</Text>
+								<Text style={styles.smallText}>💵  $1.5M total funding</Text>
+								<Text style={styles.smallText}>💰  $29.5T valuation</Text>
+							</>
+						)}
+
+						{(props.project.type === 'coin' || props.project.type === 'token') && (
+							<>
+								<SectionTitle title="Tokenomics" />
+								{/* <BulletedPoint text="Token: Utility" /> */}
+								<BulletedPoint text={`Market Cap: ${PriceUtility.formatMarketCap(props.project.marketCap, { currency: "USD", locale: "en-US" })}`} />
+								{/* <BulletedPoint text="Circulating Supply: 19 Million BTC" /> */}
+							</>
+						)}
 					</View>
-
-					<SectionTitle title="Categories" />
-					<View style={styles.chipContainer}>
-						{sortedCategories.map((value: string) => (
-							<Chip key={value} text={value} />
-						))}
-					</View>
-
-					{props.project.type === 'project' && (
-						<>
-							<SectionTitle title="Company" />
-							<Text style={styles.smallText}>🌱  Pre-Seed</Text>
-							<Text style={styles.smallText}>💵  $1.5M total funding</Text>
-							<Text style={styles.smallText}>💰  $29.5T valuation</Text>
-						</>
-					)}
-
-					{(props.project.type === 'coin' || props.project.type === 'token') && (
-						<>
-							<SectionTitle title="Tokenomics" />
-							{/* <BulletedPoint text="Token: Utility" /> */}
-							<BulletedPoint text={`Market Cap: ${PriceUtility.formatMarketCap(props.project.marketCap, { currency: "USD", locale: "en-US"})}`} />
-							{/* <BulletedPoint text="Circulating Supply: 19 Million BTC" /> */}
-						</>
-					)}
-				</TouchableSurface>
+				</TouchableWithoutFeedback>
 			</View>
 		</GestureDetector>
 	);
@@ -126,11 +136,10 @@ const ProjectPreviewCard = (props: Props): JSX.Element => {
 
 const styles = StyleSheet.create({
 	container: {
-		overflow: 'hidden',
 		...Theme.shadows.small,
-		borderRadius: Theme.radius.large,
 	},
 	innerContainer: {
+		borderRadius: Theme.radius.large,
 		padding: Theme.spacing.spacingXL,
 		backgroundColor: Theme.colors.white
 	},
@@ -192,4 +201,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default ProjectPreviewCard;
+export default memo(ProjectPreviewCard, equals);
